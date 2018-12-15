@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Tally Bark LLC
+  description: >
+    An Ansible role to customize MATE (on Linux Mint 19)
+    to one developer's taste
+  company: https://tallybark.com
+
+  license: GPLv3
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+
+  galaxy_tags:
+    # Tags use alphanums only, max 20 per role.
+    - development
+
+dependencies: []
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.
