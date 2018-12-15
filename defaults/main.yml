@@ -1,0 +1,16 @@
+---
+# defaults file for zoidy_matecocido
+
+# DEVS: You'll find files on the host at, e.g.,
+#   ~/Documents/zoidy_matecocido/
+zoidy_matecocido_working_dir: "{{ ansible_env.HOME }}/Documents/zoidy_matecocido"
+
+zoidy_matecocido_gsettings_beg: "{{ zoidy_matecocido_working_dir }}/gsettings-BEG.ssv"
+zoidy_matecocido_gesttings_end: "{{ zoidy_matecocido_working_dir }}/gsettings-END.ssv"
+
+zoidy_matecocido_dconf_beg: "{{ zoidy_matecocido_working_dir }}/dconf-BEG.ssv"
+zoidy_matecocido_dconf_end: "{{ zoidy_matecocido_working_dir }}/dconf-END.ssv"
+
+# DEVS: Set this True to force applying changes, even if it looks like Role has previously run.
+zoidy_matecocido_force: False
+
