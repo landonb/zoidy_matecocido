@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - zoidy_matecocido
