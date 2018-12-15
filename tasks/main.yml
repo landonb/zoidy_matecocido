@@ -1,0 +1,13 @@
+---
+
+# Main task: Check if tasks yet run, and run (via include-role) those not.
+
+- stat: path="{{ zoidy_matecocido_gesttings_end }}"
+  register: gsettings_end_f
+
+- name: Tweak gsettings?
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: customize
+  when: (not gsettings_end_f.stat.exists) or zoidy_matecocido_force
+

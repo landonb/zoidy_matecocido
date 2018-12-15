@@ -1,0 +1,14 @@
+---
+
+- name: Stylize Mint Menu (in lower-left of MATE)
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    - schema: com.linuxmint.mintmenu
+      key: applet-icon
+      val: "false"
+
+    - schema: com.linuxmint.mintmenu
+      key: applet-text
+      val: "''"
+

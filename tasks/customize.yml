@@ -1,0 +1,57 @@
+---
+
+# *** Ensure dirs.
+
+- name: Ensure the working directory exists
+  file: path={{ zoidy_matecocido_working_dir }} state=directory
+
+# *** Record start states.
+
+- name: Record stock gsettings
+  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gsettings_beg }}"
+  args:
+    # Skip this task once the dump file exists.
+    creates: "{{ zoidy_matecocido_gsettings_beg }}"
+
+# FIXME/2018-12-15: Also dump gconftool-2 settings? Not that we change them.
+#    gconftool-2 --dump / > cmd-gconftool-2.txt
+
+- name: Record stock dconf
+  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_beg }}"
+  args:
+    # Skip this task once the dump file exists.
+    creates: "{{ zoidy_matecocido_dconf_beg }}"
+
+# *** Make changes.
+
+- name: Load role to Hide stupid Desktop icons
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: hide-desktop-icons
+
+- name: Load role to Disable screensaver, and its lock
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: disable-screensaver
+
+- name: Load role to Rewire Make Mint MATE Menu Hot Key
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: rewire-hot-key
+
+- name: Load role to Fix MATE Alt-Tab slugishness
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: fix-alt-tab-delay
+# FIXME/2018-12-14: Do we still need this?
+  when: False
+
+# *** Record final states.
+
+- name: Record final gsettings
+  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gesttings_end }}"
+  # Skip args: creates:, so this file will always be created.
+
+- name: Record final dconf
+  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_end }}"
+

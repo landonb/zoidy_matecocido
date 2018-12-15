@@ -1,0 +1,14 @@
+---
+
+- name: Disable MATE Screensaver, and Its Lock
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    - schema: org.mate.screensaver
+      key: idle-activation-enabled
+      val: "false"
+
+    - schema: org.mate.screensaver
+      key: lock-enabled
+      val: "false"
+
