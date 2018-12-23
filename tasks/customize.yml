@@ -55,6 +55,15 @@
         - key-bindings-rewire-hot-key
   tags: key-bindings-rewire-hot-key
 
+- name: Load role to Customize Mint MATE Menu
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-main-menu-pipify
+    apply:
+      tags:
+        - mate-main-menu-pipify
+  tags: mate-main-menu-pipify
+
 - name: Load role to Fiddle Laptop Lid & Power Settings
   include_role:
     name: zoidy_matecocido
