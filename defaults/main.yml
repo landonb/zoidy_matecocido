@@ -13,6 +13,3 @@ zoidy_matecocido_gesttings_dated: "{{ zoidy_matecocido_working_dir }}/gsettings-
 zoidy_matecocido_dconf_begin: "{{ zoidy_matecocido_working_dir }}/dconf-BEG.ssv"
 zoidy_matecocido_dconf_dated: "{{ zoidy_matecocido_working_dir }}/dconf-{{ now_date }}.ssv"
 
-# DEVS: Set this True to force applying changes, even if it looks like Role has previously run.
-zoidy_matecocido_force: False
-

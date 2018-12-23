@@ -16,10 +16,6 @@ A fresh install of MATE.
 Role Variables
 --------------
 
-This role will not run if it's been run previously, unless you set::
-
-  zoidy_matecocido_force: True
-
 Before and after configuring MATE, this role will create dump files
 of the current settings on the host machine(s) in::
 

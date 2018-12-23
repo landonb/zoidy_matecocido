@@ -2,12 +2,22 @@
 
 # Main task: Check if tasks yet run, and run (via include-role) those not.
 
-- stat: path="{{ zoidy_matecocido_gesttings_end }}"
-  register: gsettings_end_f
+# dconf ref:
+#
+#   https://wiki.gnome.org/action/show/Projects/dconf
+#
+#   https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 
-- name: Tweak gsettings?
+- name: Load Role to Load Roles to Customize MATE, and Tweak Application dconf
   include_role:
     name: zoidy_matecocido
     tasks_from: customize
-  when: (not gsettings_end_f.stat.exists) or zoidy_matecocido_force
+  tags:
+    - desktop-icons-hide
+    - key-bindings-fix-alt-tab-delay
+    - key-bindings-rewire-hot-key
+    - mate-main-menu-pipify
+    - power-management-prefs-laptop
+    - screensaver-disable
+    - terminal-configure
 
