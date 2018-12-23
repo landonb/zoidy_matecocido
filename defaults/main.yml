@@ -1,15 +1,17 @@
 ---
 # defaults file for zoidy_matecocido
 
+now_date: "{{ lookup('pipe', 'date +\"%Y_%m_%d_T%H:%M:%S\"') }}"
+
 # DEVS: You'll find files on the host at, e.g.,
 #   ~/Documents/zoidy_matecocido/
 zoidy_matecocido_working_dir: "{{ ansible_env.HOME }}/Documents/zoidy_matecocido"
 
-zoidy_matecocido_gsettings_beg: "{{ zoidy_matecocido_working_dir }}/gsettings-BEG.ssv"
-zoidy_matecocido_gesttings_end: "{{ zoidy_matecocido_working_dir }}/gsettings-END.ssv"
+zoidy_matecocido_gsettings_begin: "{{ zoidy_matecocido_working_dir }}/gsettings-BEG.ssv"
+zoidy_matecocido_gesttings_dated: "{{ zoidy_matecocido_working_dir }}/gsettings-{{ now_date }}.ssv"
 
-zoidy_matecocido_dconf_beg: "{{ zoidy_matecocido_working_dir }}/dconf-BEG.ssv"
-zoidy_matecocido_dconf_end: "{{ zoidy_matecocido_working_dir }}/dconf-END.ssv"
+zoidy_matecocido_dconf_begin: "{{ zoidy_matecocido_working_dir }}/dconf-BEG.ssv"
+zoidy_matecocido_dconf_dated: "{{ zoidy_matecocido_working_dir }}/dconf-{{ now_date }}.ssv"
 
 # DEVS: Set this True to force applying changes, even if it looks like Role has previously run.
 zoidy_matecocido_force: False

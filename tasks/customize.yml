@@ -8,19 +8,21 @@
 # *** Record start states.
 
 - name: Record stock gsettings
-  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gsettings_beg }}"
+  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gsettings_begin }}"
   args:
     # Skip this task once the dump file exists.
-    creates: "{{ zoidy_matecocido_gsettings_beg }}"
+    creates: "{{ zoidy_matecocido_gsettings_begin }}"
 
 # FIXME/2018-12-15: Also dump gconftool-2 settings? Not that we change them.
 #    gconftool-2 --dump / > cmd-gconftool-2.txt
 
 - name: Record stock dconf
-  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_beg }}"
+  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_begin }}"
   args:
     # Skip this task once the dump file exists.
-    creates: "{{ zoidy_matecocido_dconf_beg }}"
+    creates: "{{ zoidy_matecocido_dconf_begin }}"
+
+# ======================================================================= #
 
 # *** Make changes.
 
@@ -85,9 +87,8 @@
 # *** Record final states.
 
 - name: Record final gsettings
-  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gesttings_end }}"
-  # Skip args: creates:, so this file will always be created.
+  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gesttings_dated }}"
 
 - name: Record final dconf
-  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_end }}"
+  shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_dated }}"
 
