@@ -24,32 +24,63 @@
 
 # *** Make changes.
 
-- name: Load role to Hide stupid Desktop icons
+- name: Load role to Hide Desktop icons
   include_role:
     name: zoidy_matecocido
-    tasks_from: hide-desktop-icons
-
-- name: Load role to Disable screensaver, and its lock
-  include_role:
-    name: zoidy_matecocido
-    tasks_from: disable-screensaver
-
-- name: Load role to Rewire Make Mint MATE Menu Hot Key
-  include_role:
-    name: zoidy_matecocido
-    tasks_from: rewire-hot-key
+    tasks_from: desktop-icons-hide
+    apply:
+      tags:
+        - desktop-icons-hide
+  tags: desktop-icons-hide
 
 - name: Load role to Fix MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido
-    tasks_from: fix-alt-tab-delay
+    tasks_from: key-bindings-fix-alt-tab-delay
+    apply:
+      tags:
+        - key-bindings-fix-alt-tab-delay
+  tags: key-bindings-fix-alt-tab-delay
 # FIXME/2018-12-14: Do we still need this?
   when: False
 
-- name: Load role to Blank screen on Laptop Lid Closure
+- name: Load role to Rewire Make Mint MATE Menu Hot Key
   include_role:
     name: zoidy_matecocido
-    tasks_from: lid_closed-blank_screen
+    tasks_from: key-bindings-rewire-hot-key
+    apply:
+      tags:
+        - key-bindings-rewire-hot-key
+  tags: key-bindings-rewire-hot-key
+
+- name: Load role to Fiddle Laptop Lid & Power Settings
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: power-management-prefs-laptop
+    apply:
+      tags:
+        - power-management-prefs-laptop
+  tags: power-management-prefs-laptop
+
+- name: Load role to Disable screensaver, and its lock
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: screensaver-disable
+    apply:
+      tags:
+        - screensaver-disable
+  tags: screensaver-disable
+
+- name: Load role to Configure mate-terminal
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: terminal-configure
+    apply:
+      tags:
+        - terminal-configure
+  tags: terminal-configure
+
+# ======================================================================= #
 
 # *** Record final states.
 

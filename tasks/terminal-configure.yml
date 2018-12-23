@@ -1,0 +1,32 @@
+---
+
+- name: Makeover MATE-Terminal 
+  dconf:
+    key: "/org/mate/terminal/profiles/default/{{ item.key }}"
+    value: "{{ item.val }}"
+    state: present
+  loop:
+
+    - key: "use-theme-colors"
+      val: "false"
+
+    - key: "default-show-menubar"
+      val: "false"
+
+    - key: "foreground-color"
+      val: "'#FFFFFFFFFFFF'"
+
+    # Default: background-darkness=0.90000000000000002
+    - key: "background-darkness"
+      val: "1.0"
+
+    # Default: background-type='transparent'
+    - key: "background-type"
+      val: "'solid'"
+
+    # Default: background-color='#FFFFFFFFDDDD'
+    - key: "background-color"
+      val: "'#000000000000'"
+
+- debug: msg="NOTE! You must logon again for changes to take effect!"
+

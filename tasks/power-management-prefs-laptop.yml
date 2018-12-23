@@ -1,0 +1,22 @@
+---
+
+- name: Fiddle Laptop Lid & Power Settings
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # MATE Menu > Power Management Preferences
+
+    # On AC Power: When laptop lid is closed: Blank screen
+    - schema: org.mate.power-manager
+      key: button-lid-ac
+      val: "blank"
+    # On Battery Power: When laptop lid is closed: Blank screen
+    - schema: org.mate.power-manager
+      key: button-lid-battery
+      val: "blank"
+
+    # On Battery Power: When battery power is critically low: Shut'er down!
+    - schema: org.mate.power-manager
+      key: action-critical-battery
+      val: "shutdown"
+
