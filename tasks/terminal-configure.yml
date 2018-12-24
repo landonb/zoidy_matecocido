@@ -28,5 +28,11 @@
     - key: "background-color"
       val: "'#000000000000'"
 
+    - key: "use-system-font"
+      val: "false"
+
+    - key: "font"
+      val: "'Hack 10'"
+
 - debug: msg="NOTE! You must logon again for changes to take effect!"
 
