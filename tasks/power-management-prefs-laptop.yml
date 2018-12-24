@@ -6,17 +6,24 @@
 
     # MATE Menu > Power Management Preferences
 
+    # On Battery Power: When battery power is critically low: Shut'er down!
+    - schema: org.mate.power-manager
+      key: action-critical-battery
+      val: "shutdown"
+
     # On AC Power: When laptop lid is closed: Blank screen
     - schema: org.mate.power-manager
       key: button-lid-ac
       val: "blank"
+
     # On Battery Power: When laptop lid is closed: Blank screen
     - schema: org.mate.power-manager
       key: button-lid-battery
       val: "blank"
 
-    # On Battery Power: When battery power is critically low: Shut'er down!
+    # [lb]: When true, idle-dim-battery seems to dim screen within seconds
+    # of inactivity, i.e., Way too short!
     - schema: org.mate.power-manager
-      key: action-critical-battery
-      val: "shutdown"
+      key: idle-dim-battery
+      val: "false"
 
