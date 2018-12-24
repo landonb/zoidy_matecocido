@@ -1,0 +1,27 @@
+# Creating a systemd service...
+
+# FIXME: URIs
+# https://askubuntu.com/questions/152403/how-do-i-make-changes-to-proc-acpi-wakeup-permanent
+
+# man systemd.service
+#
+# FIXME: Use symlink to ~/.fries/bin file?
+#
+# systemctl start laptop-lid-disable-wake.service
+
+[Unit]
+Description=Do not Wake from Suspend when Laptop LID is Opened
+#After=mysql.service
+After=network.target
+
+[Service]
+ExecStart=/bin/bash -c '[[ $(cat /proc/acpi/wakeup | grep "^LID" | grep enabled) ]] && /bin/echo LID > /proc/acpi/wakeup'
+#ExecStart=/bin/sh -c '[ $(cat /proc/acpi/wakeup | grep "^LID" | grep enabled) ] && /bin/echo LID > /proc/acpi/wakeup'
+# ??
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+#WantedBy=multi-user.target
+
