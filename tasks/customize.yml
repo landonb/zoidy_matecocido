@@ -76,11 +76,11 @@
 - name: Load role to Disable screensaver, and its lock
   include_role:
     name: zoidy_matecocido
-    tasks_from: screensaver-disable
+    tasks_from: screensaver-tweak
     apply:
       tags:
-        - screensaver-disable
-  tags: screensaver-disable
+        - screensaver-tweak
+  tags: screensaver-tweak
 
 - name: Load role to Configure mate-terminal
   include_role:

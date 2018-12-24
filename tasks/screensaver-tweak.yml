@@ -6,9 +6,17 @@
 
     - schema: org.mate.screensaver
       key: idle-activation-enabled
-      val: "false"
+      val: "true"
 
     - schema: org.mate.screensaver
       key: lock-enabled
       val: "false"
+
+    - schema: org.mate.screensaver
+      key: themes
+      val: '"[''screensavers-gleidescope'']"'
+
+    - schema: org.mate.screensaver
+      key: mode
+      val: "'single'"
 
