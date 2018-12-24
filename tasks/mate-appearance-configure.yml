@@ -1,0 +1,30 @@
+---
+
+- name: Fiddle MATE Appearance, Look of the Desktop
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # MATE Menu > Power Management Preferences
+
+    # Under dconf as /org/mate/desktop/interface, but
+    # under gsettings as org.mate.interface
+    - schema: org.mate.interface
+      key: icon-theme
+      val: "Mint-Y"
+
+    - schema: org.mate.interface
+      key: gtk-theme
+      val: "Mint-Y-Darker"
+
+- name: Fiddle MATE Appearance, Notifications
+  shell: dconf write {{ item.key }} {{ item.val }}
+  loop:
+
+    # The 'coco' notification theme does not look good with Mint-Y.
+    - key: "/org/mate/notification-daemon/theme"
+      val: '"''slider''"'
+
+    # Leave default:
+    #   - key: /org/mate/notification-daemon/popup-location
+    #     val: "'top_right'"
+

@@ -16,6 +16,7 @@
     - desktop-icons-hide
     - key-bindings-fix-alt-tab-delay
     - key-bindings-rewire-hot-key
+    - mate-appearance-configure
     - mate-main-menu-pipify
     - power-management-prefs-laptop
     - screensaver-tweak
