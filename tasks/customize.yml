@@ -8,7 +8,7 @@
 # *** Record start states.
 
 - name: Record stock gsettings
-  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gsettings_begin }}"
+  shell: "dbus-launch gsettings list-recursively | sort > {{ zoidy_matecocido_gsettings_begin }}"
   args:
     # Skip this task once the dump file exists.
     creates: "{{ zoidy_matecocido_gsettings_begin }}"
@@ -105,7 +105,7 @@
 # *** Record final states.
 
 - name: Record final gsettings
-  shell: "dbus-launch gsettings list-recursively > {{ zoidy_matecocido_gesttings_dated }}"
+  shell: "dbus-launch gsettings list-recursively | sort > {{ zoidy_matecocido_gesttings_dated }}"
 
 - name: Record final dconf
   shell: "dbus-launch dconf dump / > {{ zoidy_matecocido_dconf_dated }}"
