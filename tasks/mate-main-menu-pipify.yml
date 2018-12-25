@@ -1,11 +1,24 @@
 ---
 
+- name: Ensure zoidy pooh config directory exists
+  file: path={{ zoidy_pooh_config_dir }} state=directory
+  tags: always
+
+- name: Copy MATE menu icon image to user home zoidy pooh config directory
+  copy:
+    src: "{{ zoidy_matecocido_mate_menu_icon_name }}"
+    dest: "{{ zoidy_matecocido_mate_menu_icon_path }}"
+
 - name: Stylize Mint Menu (in lower-left of MATE)
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     - schema: com.linuxmint.mintmenu
       key: applet-icon
+      val: "'{{ zoidy_matecocido_mate_menu_icon_path }}'"
+
+    - schema: com.linuxmint.mintmenu
+      key: hide-applet-icon
       val: "false"
 
     - schema: com.linuxmint.mintmenu

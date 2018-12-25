@@ -73,7 +73,7 @@
         - mate-main-menu-pipify
   tags: mate-main-menu-pipify
 
-- name: Load role to Fiddle Laptop Lid & Power Settings
+- name: Load role to Fiddle About Laptop Power Settings
   include_role:
     name: zoidy_matecocido
     tasks_from: power-management-prefs-laptop
