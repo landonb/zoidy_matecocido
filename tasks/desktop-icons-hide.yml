@@ -4,7 +4,19 @@
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
+    # Hide desktop icons.
+
     - schema: org.mate.background
       key: show-desktop-icons
       val: "false"
+
+    # Solid black background.
+
+    - schema: org.mate.background
+      key: picture-options
+      val: "'wallpaper'"
+
+    - schema: org.mate.background
+      key: picture-filename
+      val: "''"
 
