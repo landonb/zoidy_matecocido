@@ -27,34 +27,3 @@
       key: idle-dim-battery
       val: "false"
 
-# MEH: We could use symlink instead, which means we could edit service
-# as user (without sudo) but whatever, this script won't change often.
-- name: Permanently disable wake-on-lid
-  become: true
-  template:
-    src: laptop-lid-disable-wake.service
-    dest: /etc/systemd/system
-
-# `systemctl daemon-reload`
-- name: Reload systemd configs
-  become: true
-  systemd:
-    daemon_reload: yes
-
-# `systemctl enable laptop-lid-disable-wake.service`
-# `systemctl start laptop-lid-disable-wake.service`
-- name: Start and Enable on boot Our disable wake-on-lid service
-  become: true
-  systemd:
-    name: laptop-lid-disable-wake.service
-    state: started
-    enabled: yes
-
-# Check systemctl to verify that the LID service is setup:
-#
-#   systemctl status laptop-lid-disable-wake.service
-#
-# and
-#
-#   cat /proc/acpi/wakeup | grep "^LID"
-
