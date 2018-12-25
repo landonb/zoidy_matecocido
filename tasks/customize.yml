@@ -29,11 +29,11 @@
 - name: Load role to Hide Desktop icons
   include_role:
     name: zoidy_matecocido
-    tasks_from: desktop-icons-hide
+    tasks_from: background-hide_icons-go_black
     apply:
       tags:
-        - desktop-icons-hide
-  tags: desktop-icons-hide
+        - background-hide_icons-go_black
+  tags: background-hide_icons-go_black
 
 - name: Load role to Fix MATE Alt-Tab slugishness
   include_role:

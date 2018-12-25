@@ -13,7 +13,7 @@
     name: zoidy_matecocido
     tasks_from: customize
   tags:
-    - desktop-icons-hide
+    - background-hide_icons-go_black
     - key-bindings-fix-alt-tab-delay
     - key-bindings-rewire-hot-key
     - mate-appearance-configure
