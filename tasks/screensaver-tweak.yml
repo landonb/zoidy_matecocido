@@ -20,3 +20,10 @@
       key: mode
       val: "'single'"
 
+    # Because we disable lock-on-screensaver, we provide manual method,
+    #   gnome-screensaver-command --lock
+    # but that uses its own background, which defaults to Mint logo.
+    - schema: org.gnome.desktop.background
+      key: picture-uri
+      value: "'{{ zoidy_matecocido_desktop_background }}'"
+

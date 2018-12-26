@@ -17,3 +17,5 @@ zoidy_pooh_config_dir: "{{ ansible_env.HOME }}/.config/zoidy_pooh"
 zoidy_matecocido_mate_menu_icon_name: "triple-face-pips_21x21.png"
 zoidy_matecocido_mate_menu_icon_path: "{{ zoidy_pooh_config_dir }}/{{ zoidy_matecocido_mate_menu_icon_name }}"
 
+zoidy_matecocido_desktop_background: "/usr/share/backgrounds/linuxmint/default_background.jpg"
+
