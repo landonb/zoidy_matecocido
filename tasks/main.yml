@@ -11,7 +11,7 @@
 - name: Load Role to Load Roles to Customize MATE, and Tweak Application dconf
   include_role:
     name: zoidy_matecocido
-    tasks_from: customize
+    tasks_from: all
   tags:
     - background-hide_icons-go_black
     - key-bindings-fix-alt-tab-delay
