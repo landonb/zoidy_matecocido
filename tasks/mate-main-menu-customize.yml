@@ -2,7 +2,7 @@
 
 - name: Form MATE menu icon target path
   set_fact:
-    zoidy_matecocido_mate_menu_icon_dst: "{{ zoidy_matecocido_config_dir }}/mate-menu-icon_{{ zoidy_matecocido_mate_menu_icon_24x | basename }}"
+    zoidy_matecocido_mate_menu_icon_dst: "{{ zoidy_matecocido_config_dir }}/mate-menu-icon_{{ zoidy_matecocido_mate_menu_icon_22x | basename }}"
 
 - name: Ensure zoidy_matecocido config directory exists
   file: path={{ zoidy_matecocido_config_dir }} state=directory
@@ -10,7 +10,7 @@
 
 - name: Copy MATE menu icon image to user home application config directory
   copy:
-    src: "{{ zoidy_matecocido_mate_menu_icon_24x }}"
+    src: "{{ zoidy_matecocido_mate_menu_icon_22x }}"
     dest: "{{ zoidy_matecocido_mate_menu_icon_dst }}"
 
 - name: Stylize Mint Menu (in lower-left of MATE)

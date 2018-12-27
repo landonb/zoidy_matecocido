@@ -19,7 +19,7 @@ zoidy_matecocido_dconf_dated: "{{ zoidy_matecocido_working_dir }}/dconf-{{ now_d
 
 zoidy_matecocido_config_dir: "{{ ansible_env.HOME }}/.config/zoidy_matecocido"
 
-zoidy_matecocido_mate_menu_icon_24x: "/usr/share/icons/Mint-X/categories/24/applications-boardgames.png"
+zoidy_matecocido_mate_menu_icon_22x: "/usr/share/icons/Mint-X/categories/24/applications-boardgames.png"
 
 zoidy_matecocido_desktop_background: "/usr/share/backgrounds/linuxmint/default_background.jpg"
 
