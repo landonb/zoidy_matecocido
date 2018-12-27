@@ -67,11 +67,11 @@
 - name: Load role to Customize MATE Menu
   include_role:
     name: zoidy_matecocido
-    tasks_from: mate-main-menu-pipify
+    tasks_from: mate-main-menu-custom-icon
     apply:
       tags:
-        - mate-main-menu-pipify
-  tags: mate-main-menu-pipify
+        - mate-main-menu-custom-icon
+  tags: mate-main-menu-custom-icon
 
 - name: Load role to Fiddle About Laptop Power Settings
   include_role:
