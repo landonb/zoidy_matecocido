@@ -46,15 +46,6 @@
 # FIXME/2018-12-14: Do we still need this?
   when: False
 
-- name: Load role to Rewire Make Mint MATE Menu Hot Key
-  include_role:
-    name: zoidy_matecocido
-    tasks_from: key-bindings-rewire-hot-key
-    apply:
-      tags:
-        - key-bindings-rewire-hot-key
-  tags: key-bindings-rewire-hot-key
-
 - name: Load role to Customize MATE Appearance
   include_role:
     name: zoidy_matecocido

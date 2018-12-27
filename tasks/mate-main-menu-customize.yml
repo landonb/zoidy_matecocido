@@ -22,10 +22,18 @@
       val: "'{{ zoidy_matecocido_mate_menu_icon_dst }}'"
 
     - schema: com.linuxmint.mintmenu
+      key: applet-text
+      val: "''"
+
+    - schema: com.linuxmint.mintmenu
       key: hide-applet-icon
       val: "false"
 
+    # *** Make Mint MATE Menu Hot Key Harder to AcciDentPress
+    # The default mapping to open the MATE Menu is the Windows/Super key
+    # ('<Super>'), but I fat-finger it sometimes when I don't mean to so
+    # add the shift key.
     - schema: com.linuxmint.mintmenu
-      key: applet-text
-      val: "''"
+      key: hot-key
+      val: "'<Super>Shift_L'"
 
