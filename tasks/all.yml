@@ -47,6 +47,15 @@
   #   not needed. [[lb]: I..e, after setting up the other new machine.]
   when: False
 
+- name: Load role to Customize MATE Key Bindings
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: keybinding-circus
+    apply:
+      tags:
+        - keybinding-circus
+  tags: keybinding-circus
+
 - name: Load role to Customize MATE Appearance
   include_role:
     name: zoidy_matecocido

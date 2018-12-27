@@ -1,0 +1,16 @@
+---
+
+- name: Clear Existing MATE Key Bindings
+  shell: dconf reset -f /org/mate/desktop/keybindings/
+
+- name: Customize MATE Key Bindings
+  # debug:
+  #   msg: "{{ index }} -- {{ item.name }} / {{ item.binding }} / {{ item.action }}"
+  shell: |
+    dconf write /org/mate/desktop/keybindings/custom{{ index }}/name "{{ item.name }}" ; \
+    dconf write /org/mate/desktop/keybindings/custom{{ index }}/binding "{{ item.binding }}" ; \
+    dconf write /org/mate/desktop/keybindings/custom{{ index }}/action "{{ item.action }}" ; \
+  loop: "{{ zoidy_matecocido_keybindings_basic + zoidy_matecocido_keybindings_bonus }}"
+  loop_control:
+    index_var: index
+
