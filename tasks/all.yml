@@ -38,12 +38,13 @@
 - name: Load role to Fix MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido
-    tasks_from: key-bindings-fix-alt-tab-delay
+    tasks_from: deprecated-fix-alt-tab-delay.yml
     apply:
       tags:
-        - key-bindings-fix-alt-tab-delay
-  tags: key-bindings-fix-alt-tab-delay
-# FIXME/2018-12-14: Do we still need this?
+        - deprecated-fix-alt-tab-delay.yml
+  tags: deprecated-fix-alt-tab-delay.yml
+  # DEPRECATED/2018-12-26: Delete deprecated task file after verifying
+  #   not needed. [[lb]: I..e, after setting up the other new machine.]
   when: False
 
 - name: Load role to Customize MATE Appearance

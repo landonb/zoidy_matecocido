@@ -14,7 +14,7 @@
     tasks_from: all
   tags:
     - background-hide_icons-go_black
-    - key-bindings-fix-alt-tab-delay
+    - deprecated-fix-alt-tab-delay.yml
     - key-bindings-rewire-hot-key
     - mate-appearance-configure
     - mate-main-menu-custom-icon
