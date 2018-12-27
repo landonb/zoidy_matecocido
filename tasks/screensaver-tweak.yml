@@ -4,11 +4,11 @@
   set_fact:
     zoidy_matecocido_desktop_backgd_dst: "{{ zoidy_matecocido_config_dir }}/mate-dtop-bkgd_{{ zoidy_matecocido_desktop_background | basename }}"
 
-- name: Ensure zoidy pooh config directory exists
+- name: Ensure zoidy_matecocido config directory exists
   file: path={{ zoidy_matecocido_config_dir }} state=directory
   tags: always
 
-- name: Copy MATE menu icon image to user home zoidy pooh config directory
+- name: Copy lock screen background image to user home config application directory
   copy:
     src: "{{ zoidy_matecocido_desktop_background }}"
     dest: "{{ zoidy_matecocido_desktop_backgd_dst }}"

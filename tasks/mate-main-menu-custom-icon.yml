@@ -4,11 +4,11 @@
   set_fact:
     zoidy_matecocido_mate_menu_icon_dst: "{{ zoidy_matecocido_config_dir }}/mate-menu-icon_{{ zoidy_matecocido_mate_menu_icon_24x | basename }}"
 
-- name: Ensure zoidy pooh config directory exists
+- name: Ensure zoidy_matecocido config directory exists
   file: path={{ zoidy_matecocido_config_dir }} state=directory
   tags: always
 
-- name: Copy MATE menu icon image to user home zoidy pooh config directory
+- name: Copy MATE menu icon image to user home application config directory
   copy:
     src: "{{ zoidy_matecocido_mate_menu_icon_24x }}"
     dest: "{{ zoidy_matecocido_mate_menu_icon_dst }}"
