@@ -1,6 +1,19 @@
 ---
 
-- name: Disable MATE Screensaver, and Its Lock
+- name: Form MATE desktop background target path
+  set_fact:
+    zoidy_matecocido_desktop_backgd_dst: "{{ zoidy_matecocido_config_dir }}/mate-dtop-bkgd_{{ zoidy_matecocido_desktop_background | basename }}"
+
+- name: Ensure zoidy pooh config directory exists
+  file: path={{ zoidy_matecocido_config_dir }} state=directory
+  tags: always
+
+- name: Copy MATE menu icon image to user home zoidy pooh config directory
+  copy:
+    src: "{{ zoidy_matecocido_desktop_background }}"
+    dest: "{{ zoidy_matecocido_desktop_backgd_dst }}"
+
+- name: Disable MATE Screensaver, and Its Lock, and Set Lock Screen Background
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
@@ -25,5 +38,6 @@
     # but that uses its own background, which defaults to Mint logo.
     - schema: org.gnome.desktop.background
       key: picture-uri
-      value: "'{{ zoidy_matecocido_desktop_background }}'"
+      # NOTE: The file:// prefix is mandatory.
+      val: "'file://{{ zoidy_matecocido_desktop_backgd_dst }}'"
 
