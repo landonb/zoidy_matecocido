@@ -21,9 +21,15 @@
       key: applet-icon
       val: "'{{ zoidy_matecocido_mate_menu_icon_dst }}'"
 
+    # com.linuxmint.mintmenu applet-icon-size 22
+
     - schema: com.linuxmint.mintmenu
       key: applet-text
       val: "''"
+
+    # com.linuxmint.mintmenu custom-color '#DEDEDE'
+
+    # com.linuxmint.mintmenu custom-heading-color '#3C3C3C'
 
     - schema: com.linuxmint.mintmenu
       key: hide-applet-icon
@@ -36,4 +42,6 @@
     - schema: com.linuxmint.mintmenu
       key: hot-key
       val: "'<Super>Shift_L'"
+
+    # com.linuxmint.mintmenu offset 0
 
