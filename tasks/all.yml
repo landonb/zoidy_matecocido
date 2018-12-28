@@ -81,7 +81,9 @@
     apply:
       tags:
         - panels-awesome
-  tags: panels-awesome
+  tags:
+    - never
+    - panels-awesome
 
 - name: Load role to Fiddle About Laptop Power Settings
   include_role:
