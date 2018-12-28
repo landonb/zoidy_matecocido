@@ -34,7 +34,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>grave'"
     action: "'xdotool search --name SAMPI windowactivate'"
 
-  - name: PowerThesaurus tab
+  - name: "PowerThesaurus [tab]"
     binding: "'<Mod4>p'"
     action: "'sensible-browser https://www.powerthesaurus.org/'"
 
