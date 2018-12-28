@@ -1,0 +1,121 @@
+---
+
+# ***
+
+- name: Reset Existing MATE Panel DConf, and Clear ~/.config/mate/panel2.d/default/launchers/
+  shell: dconf reset -f /org/mate/panel/
+
+# ***
+
+# dconf-reset will also perform equivalent of:
+#
+# - name: Clear Existing MATE Panel Launcher Files
+#   file:
+#     state: absent
+#     path: "{{ ansible_env.HOME }}/.config/mate/panel2.d/default/launchers/"
+
+- name: Ensure MATE Panel Launcher Directory Exists
+  file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/.config/mate/panel2.d/default/launchers/"
+
+- name: Deploy Most MATE Panel Launchers
+  template:
+    src: "{{ item }}"
+    dest:
+      "{{ ansible_env.HOME }}/.config/mate/panel2.d/default/launchers/{{
+        item | basename | regex_replace('\\.j2$','')
+      }}"
+  with_fileglob:
+    - ../templates/launchers/*.desktop*
+
+- name: Deploy Dubs Vim Edit MATE Panel Launchers \#s 1-10
+  template:
+    src: ../templates/dubs-vim.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.config/mate/panel2.d/default/launchers/{{ item.id }}.desktop"
+  vars:
+    zoidy_matecocido_dubs_vim_name: "{{ item.name }}"
+    zoidy_matecocido_dubs_vim_edit: "{{ item.edit }}"
+    zoidy_matecocido_dubs_vim_icon: "{{ item.icon }}"
+  loop: "{{ zoidy_matecocido_dubs_vim_launchers }}"
+
+# ***
+
+- name: Deploy (Synchronize) MATE Panel Launcher Icons
+  synchronize:
+    src: "../files/launcher-icons/"
+    dest: "{{ ansible_env.HOME }}/.config/zoidy_matecocido/icons/"
+    delete: yes
+
+# ***
+
+- set_fact:
+    list_sep: "', '"
+
+- name: Format custom panel object IDs list
+  set_fact:
+    custom_object_ids: ", '{{ zoidy_matecocido_panel_objects | map(attribute='object_id') | join(list_sep) }}'"
+
+# BEWARE: If you specify a position that causes overlap, mate-panel crashes.
+#
+# E.g., the following config
+#
+#   [objects/notification-area]
+#   #position=1382
+#   position=1409
+#   ...
+#
+#   [objects/zoidy-workspace-switcher]
+#   position=1562
+#   ...
+#
+# crashes mate-panel.
+#
+# You can restart `mate-panel &`
+# after fixing the error.
+#
+# Oddly, after you set the config, you can unlock notification-area
+# and move it rightward, so that its position is the same value that
+# crashed mate-panel. Oh, well.
+- name: Format default panel DConf, including custom object IDs
+  set_fact:
+    org_mate_panel_dconf: "{{ lookup('template', 'templates/org-mate-panel.dconf.j2') }}"
+
+# ***
+
+- name: Generate custom panel sections
+  shell: |
+    echo "[objects/{{ item.object_id }}]
+    toplevel-id='bottom'
+    object-type='launcher'
+    launcher-location={{ item.launcher_location }}
+    position={{ item.position }}
+    locked=true
+    panel-right-stick=false
+    "
+    #position={{ 36 + (index > 1 and 35 or 0) + (index > 2 and (31 * (index - 2)) or 0) }}
+  register: dconf_launcher_cmds
+  loop: "{{ zoidy_matecocido_panel_objects }}"
+  loop_control:
+    index_var: index
+
+- name: Format custom MATE panel DConf parts
+  set_fact:
+    dconf_launcher_objects: "{{ dconf_launcher_cmds.results | map(attribute='stdout') | join('\n') }}"
+
+# ***
+
+- name: Load Custom MATE Panel DConf
+  shell: dconf load /org/mate/panel/
+  args:
+    stdin: "{{ org_mate_panel_dconf + dconf_launcher_objects }}"
+
+# The launchers should reflect changes to dconf, but 
+# Restart mate-panel to refresh window-list.
+- name: Kill-to-Restart mate-panel, to reload window-list
+  shell: sleep 5.0 ; killall -s SIGUSR1 mate-panel
+
+# 2018-12-27: [lb]: Sometimes mate-panel crashes, or stays dead, but restart seems to always work.
+- name: Ensure mate-panel running
+  shell: sleep 2.5 ; mate-panel &
+
