@@ -1,0 +1,44 @@
+---
+
+# 2018-12-24
+#[org/gnome/meld]
+#style-scheme='meld-base'
+#wrap-mode='none'
+#
+#gsettings:
+#  org.gnome.meld style-scheme 'meld-base'
+#  org.gnome.meld style-scheme 'classic'  # default
+
+
+- name: Configure Meld
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    - schema: org.gnome.meld
+      key: use-system-font
+      val: "false"
+
+    - schema: org.gnome.meld
+      key: custom-font
+      val: "'Hack 10'"
+
+    - schema: org.gnome.meld
+      key: highlight-current-line
+      val: "true"
+
+    - schema: org.gnome.meld
+      key: show-line-numbers
+      val: "true"
+
+    - schema: org.gnome.meld
+      key: indent-width
+      val: "4"
+
+    - schema: org.gnome.meld
+      key: insert-spaces-instead-of-tabs
+      val: "true"
+
+    - schema: org.gnome.meld
+      key: filename-filters
+      val: "\"[('Backups', true, '#*# .#* ~* *~ *.{orig,bak,swp}'), ('OS-specific metadata', true, '.DS_Store ._* .Spotlight-V100 .Trashes Thumbs.db Desktop.ini'), ('Version Control', true, '_MTN .bzr .svn .svn .hg .fslckout _FOSSIL_ .fos CVS _darcs .git .svn .osc'), ('Binaries', true, '*.{pyc,a,obj,o,so,la,lib,dll,exe}'), ('Media', false, '*.{jpg,gif,png,bmp,wav,mp3,ogg,flac,avi,mpg,xcf,xpm}'), ('Trust Me! CI', true, '.trustme.kill .trustme.lock .trustme.log'), ('Python bytecode', true, '__pycache__ .pytest_cache *.egg-info'), ('tags', true, 'tags')]\""
+

@@ -74,6 +74,15 @@
         - mate-main-menu-custom-icon
   tags: mate-main-menu-custom-icon
 
+- name: Load role to Configure Meld Preferences
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: meld-configure
+    apply:
+      tags:
+        - meld-configure
+  tags: meld-configure
+
 - name: Load role to Customize MATE Panels and Panel Launchers
   include_role:
     name: zoidy_matecocido
