@@ -54,7 +54,8 @@
     apply:
       tags:
         - keybinding-circus
-  tags: keybinding-circus
+        - reset-keybindings
+  tags: keybinding-circus, reset-keybindings
 
 - name: Load role to Customize MATE Appearance
   include_role:

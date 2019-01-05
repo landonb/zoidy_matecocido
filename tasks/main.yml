@@ -16,6 +16,7 @@
     - background-hide_icons-go_black
     - deprecated-fix-alt-tab-delay.yml
     - keybinding-circus
+    - reset-keybindings
     - mate-appearance-configure
     - mate-main-menu-custom-icon
     - meld-configure
