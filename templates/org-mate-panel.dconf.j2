@@ -1,5 +1,5 @@
 [general]
-object-id-list=['window-list', 'menu-bar', 'notification-area', 'zoidy-workspace-switcher', 'zoidy-multi-load', 'clock'{{ custom_object_ids }}]
+object-id-list=['window-list', 'menu-bar', 'notification-area', 'zoidy-workspace-switcher', 'zoidy-mate-weather', 'zoidy-multi-load', 'clock'{{ custom_object_ids }}]
 toplevel-id-list=['bottom', 'toplevel-0']
 
 [toplevels/bottom]
@@ -38,7 +38,7 @@ object-type='applet'
 applet-iid='NotificationAreaAppletFactory::NotificationArea'
 locked=true
 toplevel-id='bottom'
-position=1382
+position=1271
 object-type='applet'
 panel-right-stick=false
 
@@ -46,15 +46,31 @@ panel-right-stick=false
 applet-iid='WnckletFactory::WorkspaceSwitcherApplet'
 locked=true
 toplevel-id='bottom'
-position=1562
+position=1505
 object-type='applet'
 panel-right-stick=false
+
+[objects/zoidy-mate-weather]
+applet-iid='MateWeatherAppletFactory::MateWeatherApplet'
+locked=true
+toplevel-id='bottom'
+position=1710
+object-type='applet'
+panel-right-stick=false
+
+[objects/zoidy-mate-weather/prefs]
+location2='MNZ060'
+location3='msp'
+location4='Minneapolis'
+coordinates='44-52-59N 093-13-44W'
+auto-update=true
+location1='KMSP'
 
 [objects/zoidy-multi-load]
 applet-iid='MultiLoadAppletFactory::MultiLoadApplet'
 locked=true
 toplevel-id='bottom'
-position=1769
+position=1767
 object-type='applet'
 panel-right-stick=false
 
