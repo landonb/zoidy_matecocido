@@ -40,5 +40,5 @@
 
     - schema: org.gnome.meld
       key: filename-filters
-      val: "\"[('Backups', true, '#*# .#* ~* *~ *.{orig,bak,swp}'), ('OS-specific metadata', true, '.DS_Store ._* .Spotlight-V100 .Trashes Thumbs.db Desktop.ini'), ('Version Control', true, '_MTN .bzr .svn .svn .hg .fslckout _FOSSIL_ .fos CVS _darcs .git .svn .osc'), ('Binaries', true, '*.{pyc,a,obj,o,so,la,lib,dll,exe}'), ('Media', false, '*.{jpg,gif,png,bmp,wav,mp3,ogg,flac,avi,mpg,xcf,xpm}'), (\\\"Nark Dobbin'\\\", true, '.tox _build'), ('Trust Me! CI', true, '.trustme.kill .trustme.lock .trustme.log'), ('Python bytecode', true, '__pycache__ .pytest_cache *.egg-info'), ('tags', true, 'tags')]\""
+      val: "\"[('Backups', true, '#*# .#* ~* *~ *.{orig,bak,swp}'), ('OS-specific metadata', true, '.DS_Store ._* .Spotlight-V100 .Trashes Thumbs.db Desktop.ini'), ('Version Control', true, '_MTN .bzr .svn .svn .hg .fslckout _FOSSIL_ .fos CVS _darcs .git .svn .osc'), ('Binaries', true, '*.{pyc,a,obj,o,so,la,lib,dll,exe}'), ('Media', false, '*.{jpg,gif,png,bmp,wav,mp3,ogg,flac,avi,mpg,xcf,xpm}'), (\\\"Nark Dobbin'\\\", true, '.make.out .tox _build htmlcov'), ('Trust Me! CI', true, '.trustme.kill .trustme.lock .trustme.log'), ('Python bytecode', true, '__pycache__ .pytest_cache *.egg-info'), ('tags', true, 'tags')]\""
 
