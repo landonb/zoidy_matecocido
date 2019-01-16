@@ -31,9 +31,14 @@ zoidy_matecocido_keybindings_basic:
   # Bring gVim to the foreground (based on Home Fries' `fs` alias,
   # when uses the SAMPI --servername convention).
   # [lb]: Using Super_L+Tab, so just one Levenshtein unit from Alt+Tab.
+  #  - name: "'gVim [fs]'"
+  #    binding: "'<Mod4>Escape'"
+  #    action: "'xdotool search --name SAMPI windowactivate'"
   - name: "'gVim [fs]'"
-    #binding: "'<Mod4>grave'"
-    #binding: "'<Mod4>Escape'"
+    binding: "'<Mod4>grave'"
+    action: "'xdotool search --name SAMPI windowactivate'"
+  #
+  - name: "'gVim [fs]'"
     binding: "'<Mod4>Tab'"
     action: "'xdotool search --name SAMPI windowactivate'"
 
