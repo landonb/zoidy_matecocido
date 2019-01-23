@@ -18,7 +18,13 @@
 #   as a bundled option, in a sense (though not sure what "compton"
 #   means -- is it just non-compositing, or is it something more?).
 
-- fail: msg="DISABLED: Compositing no longer issue in 18.04?"
+# FIXME/2019-01-22: I disabled compositing via
+#   MATE Menu > Desktop Settings > Windows [tab] > Window Manager > Manager [drop]
+# and changed "Marco + Compositing" to "Marco"
+# but I don't see a change in gsettings, which
+# still says 'marco-composite'.
+# What am I missing?
+- fail: msg="DISABLED: FIXME: Broke until fixed."
 
 - name: Fix MATE Alt-Tab slugishness
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
@@ -27,5 +33,7 @@
     # The default mate-window-manager is 'marco-composite'.
     - schema: com.linuxmint.desktop
       key: mate-window-manager
+      # Default:
+      #  val: 'marco-composite'
       val: 'marco-compton'
 
