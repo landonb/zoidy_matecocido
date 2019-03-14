@@ -14,7 +14,7 @@
     tasks_from: all
   tags:
     - background-hide_icons-go_black
-    - deprecated-fix-alt-tab-delay.yml
+    - deprecated-fix-alt-tab-delay
     - keybinding-circus
     - reset-keybindings
     - mate-appearance-configure
