@@ -69,11 +69,11 @@
 - name: Load role to Customize MATE Menu
   include_role:
     name: zoidy_matecocido
-    tasks_from: mate-main-menu-custom-icon
+    tasks_from: mate-main-menu-customize
     apply:
       tags:
-        - mate-main-menu-custom-icon
-  tags: mate-main-menu-custom-icon
+        - mate-main-menu-customize
+  tags: mate-main-menu-customize
 
 - name: Load role to Configure Meld Preferences
   include_role:
