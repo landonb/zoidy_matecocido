@@ -84,6 +84,17 @@
         - meld-configure
   tags: meld-configure
 
+# ***
+
+- name: Determine if host is “Desktop” or “Laptop”
+  # (lb): Response should be either "Desktop" or "Notebook", at least what I've seen.
+  shell: dmidecode --string chassis-type
+  become: yes
+  register: chassis_type
+  tags: power-management-prefs-laptop
+
+# (lb): It does not hurt to configure these setting on a Desktop,
+# but for completeness, we'll restrict this task to Laptop hosts.
 - name: Load role to Fiddle About Laptop Power Settings
   include_role:
     name: zoidy_matecocido
@@ -92,6 +103,9 @@
       tags:
         - power-management-prefs-laptop
   tags: power-management-prefs-laptop
+  when: chassis_type.stdout == 'Notebook'
+
+# ***
 
 - name: Load role to Disable screensaver, and its lock
   include_role:
