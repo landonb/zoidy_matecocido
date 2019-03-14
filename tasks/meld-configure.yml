@@ -1,14 +1,22 @@
 ---
 
-# 2018-12-24
-#[org/gnome/meld]
-#style-scheme='meld-base'
-#wrap-mode='none'
+# MAYBE/2018-12-24: Fiddle with style.
+# ::
 #
-#gsettings:
-#  org.gnome.meld style-scheme 'meld-base'
-#  org.gnome.meld style-scheme 'classic'  # default
+#   [org/gnome/meld]
+#   style-scheme='meld-base'
+#   wrap-mode='none'
+#
+#   gsettings:
+#     org.gnome.meld style-scheme 'meld-base'
+#     org.gnome.meld style-scheme 'classic'  # default
 
+# 2019-03-13 16:28: gsettings fails if schema not present.
+# But I've been running this task before/independently of
+# zoidy_mintyfresh. So apt-ensure installed here, I suppose!
+- name: Install Meld
+  become: true
+  apt: name=meld
 
 - name: Configure Meld
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
