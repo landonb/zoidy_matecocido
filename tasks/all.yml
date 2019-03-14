@@ -84,17 +84,6 @@
         - meld-configure
   tags: meld-configure
 
-- name: Load role to Customize MATE Panels and Panel Launchers
-  include_role:
-    name: zoidy_matecocido
-    tasks_from: panels-awesome
-    apply:
-      tags:
-        - panels-awesome
-  tags:
-    - never
-    - panels-awesome
-
 - name: Load role to Fiddle About Laptop Power Settings
   include_role:
     name: zoidy_matecocido

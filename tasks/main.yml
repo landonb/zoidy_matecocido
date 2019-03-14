@@ -15,13 +15,31 @@
   tags:
     - background-hide_icons-go_black
     - deprecated-fix-alt-tab-delay
+    - font-hack
     - keybinding-circus
     - reset-keybindings
     - mate-appearance-configure
     - mate-main-menu-customize
     - meld-configure
-    - panels-awesome
     - power-management-prefs-laptop
     - screensaver-tweak
     - terminal-configure
+
+# NOTE/2019-03-13: To call without panels-awesome, try, e.g.,:
+#
+#   ANSIBLE_DEBUG=0 ansible-playbook ~/.zoidy/site.yml -l machine.local \
+#     --tags zoidy_matecocido --skip-tags panels-awesome -K
+#
+# MAYBE/2019-03-13 17:17: Split out to its own role, to avoid this mess.
+- name: Load role to Customize MATE Panels and Panel Launchers
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: panels-awesome
+    apply:
+      tags:
+        - panels-awesome
+        - never
+  tags:
+    - panels-awesome
+    - never
 
