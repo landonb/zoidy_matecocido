@@ -48,7 +48,7 @@
   when: False
 
 # The Hack font is used by: meld-configure, and terminal-configure.
-# (And if you use Dubs Vim <https://github.com/landonb/dubs-vim>.)
+# (And preffered by Dubs Vim <https://github.com/landonb/dubs-vim>.)
 - name: Load role to Install Font “Hack”
   include_role:
     name: zoidy_matecocido
@@ -56,10 +56,9 @@
     apply:
       tags:
         - font-hack
-        - dubs-vim
         - meld-configure
         - terminal-configure
-  tags: font-hack, dubs-vim, meld-configure, terminal-configure
+  tags: font-hack, meld-configure, terminal-configure
 
 - name: Load role to Customize MATE Key Bindings
   include_role:
