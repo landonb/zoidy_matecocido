@@ -38,7 +38,7 @@
 - name: Load role to Fix MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido
-    tasks_from: deprecated-fix-alt-tab-delay.yml
+    tasks_from: deprecated-fix-alt-tab-delay
     apply:
       tags:
         - deprecated-fix-alt-tab-delay.yml
