@@ -18,6 +18,10 @@
 
 # FIXME/2018-12-23: Run this and other curl's, or check GitHubs, for latest versions (of things).
 
+- name: 'Ensure ‘jq’ is available'
+  become: true
+  apt: name=jq
+
 - name: Check for new version of Hack.
   shell: "curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq -r '.tag_name'"
   register: LATEST_VERSION
