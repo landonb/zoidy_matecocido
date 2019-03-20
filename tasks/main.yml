@@ -8,7 +8,7 @@
 #
 #   https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 
-- name: Load Role to Load Roles to Customize MATE, and Tweak Application dconf
+- name: Load tasks dispatcher for ‘zoidy_matecocido’
   include_role:
     name: zoidy_matecocido
     tasks_from: all
