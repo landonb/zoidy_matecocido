@@ -41,3 +41,9 @@
       # NOTE: The file:// prefix is mandatory.
       val: "'file://{{ zoidy_matecocido_desktop_backgd_dst }}'"
 
+    # You'll this option on the Screensaver Preferences dialog,
+    # but it's a session setting, a cousin of screensaver.
+    - schema: org.mate.session
+      key: idle-delay
+      val: "19"
+
