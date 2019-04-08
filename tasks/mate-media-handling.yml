@@ -16,9 +16,9 @@
 
     - schema: org.mate.media-handling
       key: autorun-x-content-ignore
-      val: "['x-content/audio-cdda', 'x-content/video-dvd', 'x-content/audio-player', 'x-content/image-dcf', 'x-content/software']"
+      val: "\"['x-content/audio-cdda', 'x-content/video-dvd', 'x-content/audio-player', 'x-content/image-dcf', 'x-content/software']\""
 
     - schema: org.mate.media-handling
       key: autorun-x-content-start-app
-      val: "@as []"
+      val: "'@as []'"
 
