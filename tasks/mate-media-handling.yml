@@ -1,0 +1,24 @@
+---
+
+- name: Disable MATE Automatic Media Handling (autorun)
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # caja > Edit > Preference > File Management Preferences > Media
+
+    - schema: org.mate.media-handling
+      key: automount-open
+      val: "false"
+
+    - schema: org.mate.media-handling
+      key: autorun-never
+      val: "true"
+
+    - schema: org.mate.media-handling
+      key: autorun-x-content-ignore
+      val: "['x-content/audio-cdda', 'x-content/video-dvd', 'x-content/audio-player', 'x-content/image-dcf', 'x-content/software']"
+
+    - schema: org.mate.media-handling
+      key: autorun-x-content-start-app
+      val: "@as []"
+

@@ -1,0 +1,16 @@
+---
+
+- name: Configure MATE Take Screenshot application
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # Mint MATE Menu > Take Screenshot
+
+    - schema: org.mate.screenshot
+      key: delay
+      val: "2"
+
+    - schema: org.mate.screenshot
+      key: last-save-directory
+      val: "'file://{{ ansible_env.HOME }}/Downloads'"
+

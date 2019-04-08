@@ -88,6 +88,24 @@
         - mate-main-menu-customize
   tags: mate-main-menu-customize
 
+- name: Load role to Configure caja File Browser
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-caja-preferences
+    apply:
+      tags:
+        - mate-caja-preferences
+  tags: mate-caja-preferences
+
+- name: Load role to Configure caja Media Handling
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-media-handling
+    apply:
+      tags:
+        - mate-media-handling
+  tags: mate-media-handling
+
 - name: Load role to Configure Meld Preferences
   include_role:
     name: zoidy_matecocido
@@ -119,6 +137,15 @@
   when: chassis_type.stdout == 'Notebook'
 
 # ***
+
+- name: Load role to Configure MATE Take Screenshot
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: screenshot-configure
+    apply:
+      tags:
+        - screenshot-configure
+  tags: screenshot-configure
 
 - name: Load role to Disable screensaver, and its lock
   include_role:

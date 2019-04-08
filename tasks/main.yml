@@ -19,9 +19,12 @@
     - keybinding-circus
     - reset-keybindings
     - mate-appearance-configure
+    - mate-caja-preferences
     - mate-main-menu-customize
+    - mate-media-handling
     - meld-configure
     - power-management-prefs-laptop
     - screensaver-tweak
+    - screenshot-configure
     - terminal-configure
 
