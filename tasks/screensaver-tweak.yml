@@ -19,7 +19,8 @@
 
     - schema: org.mate.screensaver
       key: idle-activation-enabled
-      val: "true"
+      # 2019-04-08: (lb): This was true, but perhaps should be opt-in.
+      val: "false"
 
     - schema: org.mate.screensaver
       key: lock-enabled
