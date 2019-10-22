@@ -47,6 +47,15 @@
   #   not needed. [[lb]: I..e, after setting up the other new machine.]
   when: False
 
+- name: Load role to Disable Window Manager Compositing (to fix Window List random crashes)
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: fix-mate-panel-wnck-applet-crashes
+    apply:
+      tags:
+        - fix-mate-panel-wnck-applet-crashes
+  tags: fix-mate-panel-wnck-applet-crashes
+
 # The Hack font is used by: meld-configure, and terminal-configure.
 # (And preffered by Dubs Vim <https://github.com/landonb/dubs-vim>.)
 - name: Load role to Install Font “Hack”

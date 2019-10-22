@@ -15,6 +15,7 @@
   tags:
     - background-hide_icons-go_black
     - deprecated-fix-alt-tab-delay
+    - fix-mate-panel-wnck-applet-crashes
     - font-hack
     - keybinding-circus
     - reset-keybindings

@@ -1,0 +1,18 @@
+---
+
+- name: Disable Window Manager Compositing (to fix Window List random crashes)
+  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # The default mate-window-manager
+    # is 'marco-composite'.
+    - schema: com.linuxmint.desktop
+      key: mate-window-manager
+      val: 'marco'
+
+    # The default mate-window-manager
+    # is 'marco-composite'.
+    - schema: org.mate.Marco.general
+      key: compositing-manager
+      val: 'false'
+
