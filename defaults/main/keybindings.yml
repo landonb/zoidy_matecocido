@@ -42,11 +42,18 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>Tab'"
     action: "'xdotool search --name SAMPI windowactivate'"
 
+  # [lb]: Use --new-window for the obvious reason of not changing any
+  # existing browser windows you've got open (and, say, changing the
+  # active tab, to your annoyance), but also so the browser is brought
+  # to the front (so you don't have to alt-tab or otherwise find it
+  # yourself, which happens if we call `sensible-browser` without the
+  # option).
+
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Mod4>p'"
-    action: "'sensible-browser https://www.powerthesaurus.org/'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\'\\\"'"
 
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
-    action: "'sensible-browser https://www.visca.com/regexdict/'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
 
