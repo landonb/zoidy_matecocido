@@ -25,6 +25,8 @@ zoidy_matecocido_keybindings_basic:
   #   Super_L + p   Open or BTF browser tab: PowerThesaurus
   #
   #   Super_L + x   Open or BTF browser tab: Regex Dictionary
+  #
+  #   Super_L + m   Run tmux in mate-terminal window.
 
   - name: "'Chromium Browser'"
     binding: "'<Mod4>t'"
@@ -124,4 +126,9 @@ zoidy_matecocido_keybindings_basic:
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
+
+  - name: "'tmux Window'"
+    # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
+    binding: "'<Mod4>m'"
+    action: "'mate-terminal --geometry=130x48+402+8 -e tmux'"
 
