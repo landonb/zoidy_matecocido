@@ -4,6 +4,28 @@
 zoidy_matecocido_keybindings_bonus: []
 
 zoidy_matecocido_keybindings_basic:
+
+  # *** Keybindings defined below:
+  #
+  #   Super_L + t   New Chromium Browser tab
+  #
+  #   Super_L + y   New Chrome Browser tab
+  #
+  #   Super_L + f   Open File Manager (caja)
+  #
+  #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
+  #
+  #   Super_L + g   Float Topmost Window
+  #
+  #   Super_L + i   Invert Screen Colors
+  #
+  #   Super_L + `      Bring gVim [fs] to front
+  #   Super_L + [TAB]  Bring gVim [fs] to front
+  #
+  #   Super_L + p   Open or BTF browser tab: PowerThesaurus
+  #
+  #   Super_L + x   Open or BTF browser tab: Regex Dictionary
+
   - name: "'Chromium Browser'"
     binding: "'<Mod4>t'"
     action: "'/usr/bin/chromium-browser'"
