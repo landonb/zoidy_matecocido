@@ -40,7 +40,53 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'[Facebook] Messenger'"
     binding: "'<Mod4>s'"
-    action: "'wmctrl -a \\\"Messenger\\\"'"
+    # Brings the Facebook Messenger browser tab to the front.
+    #
+    # (lb): If you always had a Messenger tab active in some window somewhere,
+    # this would be a simple action:
+    #
+    #   action: "'wmctrl -a \\\"Messenger - \\\"'"
+    #
+    # However, Facebook "blinks" the window title on new message, which can
+    # be very distracting if you're not checking messages immediately when
+    # they're received. (Moreover, I think it's rather rude and intrusive.
+    # I realize the behavior ensures that you know you have unread messages,
+    # but why couldn't it be more like Gmail and just indicate the number of
+    # new messages in parentheses in the window title?)
+    #
+    # Because of this, and so that I can leave my Messenger window open and
+    # in its spot in the mate-panel window list, I like to check messages,
+    # but then I'll park the browser window on a static tab. The static tab
+    # is simply a blank page I've got saved on my filesystem, which is titled,
+    # 'Chat & Social' (a hint to what tabs I have loaded in that browser window,
+    # which is especially useful because mate-panels has been crashing of late,
+    # and I sometimes find myself manually dragging windows icons back to their
+    # proper window list positions, so having labeled windows helps).
+    #
+    # In short, I can check messages at my leisure, and I'm not annoyed by a
+    # blinking window title as soon as I receive a new message. But now there's
+    # extra work to bring Messenger to the front -- we might have to bring the
+    # static page to the front and then switch tabs.
+    #
+    # 2020-01-04: There's a timing issue running this from a keybinding!
+    # This snippet works fine from the command line,
+    #   but not as a MATE keybinding.
+    # If we call the implicit send-key command immediately:
+    #     xdotool key 'ctrl+Tab'
+    #   the key send has no effect.
+    # If we get the window ID and try using that, still nothing:
+    #     local window_id=$(xdotool search --name 'Chat & Social' | head -n 1)
+    #     # local winid_hex=$(printf "0x%x" ${window_id})
+    #     # Ensure exists:
+    #     #   xwininfo -id $WINID_HEX | grep 'Chat & Social'
+    #     xdotool key --window ${window_id} 'ctrl+Tab'
+    #     # Chat & Social tab focused, but ctrl+Tab not received!
+    # Fortunately, like all things uncontrollable, just wait for
+    #   things to simmer down, then attack.
+    # Note that I tried `sleep 0.05` but that didn't work.
+    #   Using 0.1 seems to always work (so far, at least).
+    #   Or maybe 0.13, I think I had one 0.1 slip through.
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
 
   - name: "'Float Topmost Window'"
     binding: "'<Mod4>g'"
