@@ -13,8 +13,6 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + f   Open File Manager (caja)
   #
-  #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
-  #
   #   Super_L + g   Float Topmost Window
   #
   #   Super_L + i   Invert Screen Colors
@@ -27,6 +25,8 @@ zoidy_matecocido_keybindings_basic:
   #   Super_L + x   Open or BTF browser tab: Regex Dictionary
   #
   #   Super_L + m   Run tmux in mate-terminal window.
+  #
+  #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
 
   - name: "'Chromium Browser'"
     binding: "'<Mod4>t'"
@@ -40,10 +40,52 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>f'"
     action: "'caja {{ ansible_env.HOME }}/Downloads'"
 
+  - name: "'Float Topmost Window'"
+    binding: "'<Mod4>g'"
+    action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
+
+  - name: "'Invert Screen Colors'"
+    binding: "'<Mod4>i'"
+    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors.bin\\\"'"
+
+  # Bring gVim to the foreground (based on Home Fries' `fs` alias,
+  # when uses the SAMPI --servername convention).
+  # [lb]: Using Super_L+Tab, so just one Levenshtein unit from Alt+Tab.
+  #  - name: "'gVim [fs]'"
+  #    binding: "'<Mod4>Escape'"
+  #    action: "'xdotool search --name SAMPI windowactivate'"
+  - name: "'gVim [fs]'"
+    binding: "'<Mod4>grave'"
+    action: "'xdotool search --name SAMPI windowactivate'"
+  #
+  - name: "'gVim [fs]'"
+    binding: "'<Mod4>Tab'"
+    action: "'xdotool search --name SAMPI windowactivate'"
+
+  # [lb]: Use --new-window for the obvious reason of not changing any
+  # existing browser windows you've got open (and, say, changing the
+  # active tab, to your annoyance), but also so the browser is brought
+  # to the front (so you don't have to alt-tab or otherwise find it
+  # yourself, which happens if we call `sensible-browser` without the
+  # option).
+
+  - name: "'PowerThesaurus [tab]'"
+    binding: "'<Mod4>p'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\'\\\"'"
+
+  - name: "'Regex Dictionary [tab]'"
+    binding: "'<Mod4>x'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
+
+  - name: "'tmux Window'"
+    # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
+    binding: "'<Mod4>m'"
+    action: "'mate-terminal --geometry=130x48+402+8 -e tmux'"
+
   - name: "'[Facebook] Messenger'"
-    binding: "'<Mod4>s'"
     # Brings the Facebook Messenger browser tab to the front.
-    #
+    binding: "'<Mod4>s'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
@@ -88,47 +130,4 @@ zoidy_matecocido_keybindings_basic:
     # Note that I tried `sleep 0.05` but that didn't work.
     #   Using 0.1 seems to always work (so far, at least).
     #   Or maybe 0.13, I think I had one 0.1 slip through.
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
-
-  - name: "'Float Topmost Window'"
-    binding: "'<Mod4>g'"
-    action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
-
-  - name: "'Invert Screen Colors'"
-    binding: "'<Mod4>i'"
-    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors.bin\\\"'"
-
-  # Bring gVim to the foreground (based on Home Fries' `fs` alias,
-  # when uses the SAMPI --servername convention).
-  # [lb]: Using Super_L+Tab, so just one Levenshtein unit from Alt+Tab.
-  #  - name: "'gVim [fs]'"
-  #    binding: "'<Mod4>Escape'"
-  #    action: "'xdotool search --name SAMPI windowactivate'"
-  - name: "'gVim [fs]'"
-    binding: "'<Mod4>grave'"
-    action: "'xdotool search --name SAMPI windowactivate'"
-  #
-  - name: "'gVim [fs]'"
-    binding: "'<Mod4>Tab'"
-    action: "'xdotool search --name SAMPI windowactivate'"
-
-  # [lb]: Use --new-window for the obvious reason of not changing any
-  # existing browser windows you've got open (and, say, changing the
-  # active tab, to your annoyance), but also so the browser is brought
-  # to the front (so you don't have to alt-tab or otherwise find it
-  # yourself, which happens if we call `sensible-browser` without the
-  # option).
-
-  - name: "'PowerThesaurus [tab]'"
-    binding: "'<Mod4>p'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\'\\\"'"
-
-  - name: "'Regex Dictionary [tab]'"
-    binding: "'<Mod4>x'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
-
-  - name: "'tmux Window'"
-    # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
-    binding: "'<Mod4>m'"
-    action: "'mate-terminal --geometry=130x48+402+8 -e tmux'"
 
