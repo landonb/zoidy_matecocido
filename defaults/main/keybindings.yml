@@ -39,25 +39,37 @@ zoidy_matecocido_keybindings_basic:
     # Using static landing tab, and also sleep because timing issue:
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\' - Gmail - \\\' || ( wmctrl -a \\\'Email & Calendar - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
 
+  # *** New Chromium window: Super_L + t
+
   - name: "'Chromium Browser'"
     binding: "'<Mod4>t'"
     action: "'/usr/bin/chromium-browser'"
+
+  # *** New Chrome window: Super_L + y
 
   - name: "'Chrome Browser'"
     binding: "'<Mod4>y'"
     action: "'/opt/google/chrome/chrome'"
 
+  # *** New caja (file system) window: Super_L + f
+
   - name: "'File Manager'"
     binding: "'<Mod4>f'"
     action: "'caja {{ ansible_env.HOME }}/Downloads'"
+
+  # *** Float topmost window: Super_L + g
 
   - name: "'Float Topmost Window'"
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
 
+  # *** Invert Screen Colors (ew!): Super_L + g
+
   - name: "'Invert Screen Colors'"
     binding: "'<Mod4>i'"
     action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors.bin\\\"'"
+
+  # *** Focum gVim window: Super_L + `
 
   # Bring gVim to the foreground (based on Home Fries' `fs` alias,
   # when uses the SAMPI --servername convention).
@@ -68,6 +80,8 @@ zoidy_matecocido_keybindings_basic:
   - name: "'gVim [fs]'"
     binding: "'<Mod4>grave'"
     action: "'xdotool search --name SAMPI windowactivate'"
+  #
+  # *** Focum gVim window: Super_L + TAB
   #
   - name: "'gVim [fs]'"
     binding: "'<Mod4>Tab'"
@@ -80,13 +94,19 @@ zoidy_matecocido_keybindings_basic:
   # yourself, which happens if we call `sensible-browser` without the
   # option).
 
+  # *** Focus or Open PowerThesaurus browser tab: Super_L + p
+
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Mod4>p'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\'\\\"'"
 
+  # *** Focus or Open RegexDictionary browser tab: Super_L + x
+
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
+
+  # *** Open new tmux mate-terminal: Super_L + m
 
   - name: "'tmux Window'"
     # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
