@@ -7,6 +7,8 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Keybindings defined below:
   #
+  #   Super_L + a   Focus window and tab: Gmail Inbox
+  #
   #   Super_L + t   New Chromium Browser tab
   #
   #   Super_L + y   New Chrome Browser tab
@@ -27,6 +29,15 @@ zoidy_matecocido_keybindings_basic:
   #   Super_L + m   Run tmux in mate-terminal window.
   #
   #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
+
+  # *** Focus Email window/tab: Super_L + a
+
+  - name: "'[Personal] Gmail'"
+    binding: "'<Mod4>a'"
+    # Simple action when Gmail always active tab in its window:
+    #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
+    # Using static landing tab, and also sleep because timing issue:
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\' - Gmail - \\\' || ( wmctrl -a \\\'Email & Calendar - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
 
   - name: "'Chromium Browser'"
     binding: "'<Mod4>t'"
