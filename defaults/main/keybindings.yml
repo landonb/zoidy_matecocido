@@ -28,9 +28,9 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + m   Run tmux in mate-terminal window.
   #
-  #   Super_L + s   Bring "Spotify" window to front
+  #   Super_L + d   Bring "Spotify" window to front
   #
-  #   Super_L + d   Bring "Messenger" window to front (Does not open new tab)
+  #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
 
   # *** Focus Email window/tab: Super_L + a
 
@@ -119,7 +119,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Kick Out The Jams [Spotify]'"
     # Brings the Spotify application window to the front.
-    binding: "'<Mod4>s'"
+    binding: "'<Mod4>d'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
     action: "'{{ ansible_env.HOME }}/.fries/bin/keybinding-focus-spotify'"
@@ -128,7 +128,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
-    binding: "'<Mod4>d'"
+    binding: "'<Mod4>s'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
