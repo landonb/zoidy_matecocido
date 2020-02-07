@@ -113,7 +113,13 @@ zoidy_matecocido_keybindings_basic:
   - name: "'tmux Window'"
     # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
     binding: "'<Mod4>m'"
-    action: "'mate-terminal --geometry=130x48+402+8 -e tmux'"
+    # - See the app-tmux.yml task, which builds and installs tmux to ~/.local/bin.
+    # - See also ~/.profile, which updates PATH to include ~/.local/bin, so we can
+    #   simply call `tmux` here, and not have to specify the full path.
+    # - (lb): Unforunately, after ~/.profile updates LD_LIBRARY_PATH, something
+    #   else resets it, so we have to include the path here (to user-local
+    #   libevent and ncurses libraries).
+    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\\'\\\"'"
 
   # *** Focus Spotify application window: Super_L + s
 
