@@ -166,6 +166,21 @@
         - screensaver-tweak
   tags: screensaver-tweak
 
+# ***
+
+- name: Load role to ensure Ansible dconf module available
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: ansible-ensure-dconf
+    apply:
+      tags:
+        - ansible-ensure-dconf
+        # 2020-02-07: The terminal-configure task uses dconf module,
+        #             but doesn't require sudo/-K, unless we want to
+        #             call ansible-ensure-dconf...
+        # - terminal-configure
+  tags: ansible-ensure-dconf, terminal-configure
+
 - name: Load role to Configure mate-terminal
   include_role:
     name: zoidy_matecocido
