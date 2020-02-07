@@ -51,6 +51,46 @@
     #       - key: "bold-color"
     #         val: "'#000000000000'"
 
+- name: Configure MATE-Terminal Keyboard Shortcuts
+  dconf:
+    key: "/org/mate/terminal/keybindings/{{ item.key }}"
+    value: "{{ item.val }}"
+    state: present
+  loop:
+
+    # Disabling: Because conflicts with Dubs Vim and tmux key bindings.
+    #            - And I don't use mate-terminal tabs,
+    #              nor do I use more than one profile.
+
+    # "Move Tab to the Left"
+    # Default: Shift+Ctrl+Page Up
+    - key: "move-tab-left"
+      val: "'disabled'"
+
+    # "Move Tab to the Right"
+    # Default: Shift+Ctrl+Page Down
+    - key: "move-tab-right"
+      val: "'disabled'"
+
+    # "Switch to Next Tab"
+    # Default: Ctrl+Page Down
+    - key: "next-tab"
+      val: "'disabled'"
+
+    # "Switch to Previous Tab"
+    # Default: Ctrl+Page Up
+    - key: "prev-tab"
+      val: "'disabled'"
+
+    # "Switch to Next Profile"
+    # Default: Alt+Page Down
+    - key: "next-profile"
+      val: "'disabled'"
+
+    # "Switch to Previous Profile"
+    # Default: Alt+Page Up
+    - key: "prev-profile"
+      val: "'disabled'"
 
 - debug: msg="NOTE! You must logon again for changes to take effect!"
 
