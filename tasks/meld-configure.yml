@@ -17,6 +17,7 @@
 - name: Install Meld
   become: true
   apt: name=meld
+  when: False  # See instead: zoidy_home-fries/tasks/app-meld.yml
 
 - name: Configure Meld
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
