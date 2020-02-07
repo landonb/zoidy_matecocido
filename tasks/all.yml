@@ -66,7 +66,8 @@
       tags:
         - font-hack
         - meld-configure
-        - terminal-configure
+        # 2020-02-07: Disabling for now, b/c make terminal-configure require -K.
+        # - terminal-configure
   tags: font-hack, meld-configure, terminal-configure
 
 - name: Load role to Customize MATE Key Bindings
