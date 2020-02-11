@@ -58,6 +58,125 @@
     state: present
   loop:
 
+    # HINT:
+    #
+    #       dconf reset /org/mate/terminal/keybindings/KEY
+
+    # Audit *all the bindings*!
+    # - (lb): This list is exhaustive, AFAIK!
+
+    # *** [✓] checkboxes, above the Shortcut keys.
+
+    # [✓] Enable menu access keys (such as Alt+F to open the File menu)
+    #
+    #     /org/mate/terminal/global/use-mnemonics=true
+    #
+    # (lb): I've already got Gvim Alt-f wired to its File menu.
+    # - And I don't use Alt-f from terminal.
+    # - And it's not a readline binding.
+    # - So it's fine to leave this enabled.
+
+    # [✓] Enable the menu shortcut key (F10 by default)
+    #
+    #     /org/mate/terminal/global/use-menu-accelerators=true
+    #
+    # (lb): Pressing <F10> has same effect has Alt-f: Expands the File menu.
+    # - Ha! I didn't know this until 2020-02-11-today: Same effect in GVim!
+    # - So pressing F10 is a convention, to appease keyboarders whom lack an
+    #   Alt key, perhaps (much like pressing ESC is a convention for starting
+    #   an Alt-key press without using the Alt key).
+
+    # *** EDIT
+
+    # Copy, Paste, and Select All are currently keepers.
+    # - I use these still — brainy still wired this way.
+
+    # # "Copy"
+    # # Default: Shift+Ctrl+C
+    # - key: "copy"
+    #   val: "'<Primary><Shift>c'"
+
+    # # "Paste"
+    # # Default: Shift+Ctrl+V
+    # - key: "paste"
+    #   val: "'<Primary><Shift>v'"
+
+    # # "Select All"
+    # # Default: Shift+Ctrl+A
+    # - key: "select-all"
+    #   val: "'<Primary><Shift>a'"
+
+    # *** FILE
+
+    # "Close Tab"
+    # Default: Shift+Ctrl+W
+    - key: "close-tab"
+      val: "'disable'"
+
+    # (lb): I use this! It's a quick way to close the window!
+    # - Especially because I disabled Ctrl-d exit from term.
+    #
+    # # "Close Window"
+    # # Default: Shift+Ctrl+Q
+    # - key: "close-window"
+    #   val: "'<Primary><Shift>q'"
+
+    # # "New Profile"
+    # # Default: Disabled
+    # - key: "new-profile"
+    #   val: "'disabled'"
+
+    # "New Tab"
+    # Default: Shift+Ctrl+T
+    - key: "new-tab"
+      val: "'disabled'"
+
+    # (lb): 2020-02-11: Leave this'un?
+    #
+    # # "New Window"
+    # # Default: Shift+Ctrl+N
+    # - key: "new-window"
+    #   val: "'<Primary><Shift>n'"
+
+    # *** HELP
+
+    # (lb): Fairly helpless.
+    #
+    # "Contents"
+    # Default: F1
+    - key: "help"
+      val: "'disabled'"
+
+    # *** SEARCH
+
+    # (lb): I'm torn on these -- part of me wants to disable these,
+    # because I should be using tmux buffer search! But I don't *always*
+    # tmux, though I'm leanving more-so towards always tmuxxing recently.
+    # So, I dunno, let's disable the Find bindings; I so rarely use, I
+    # can go to the mate-terminal menubar when (if ever again) I need.
+
+    # "Find"
+    # Default: Shift+Ctrl+F
+    - key: "search-find"
+      val: "'disabled'"
+
+    # "Find Next"
+    # Default: Shift+Ctrl+H
+    - key: "search-find-next"
+      val: "'disabled'"
+
+    # "Find Previous"
+    # Default: Shift+Ctrl+G
+    - key: "search-find-previous"
+      val: "'disabled'"
+
+    # *** TABS
+
+    # # "Detach Tab"
+    # # Default: Disabled
+    # - key: "detach-tab"
+    #   val: "'disabled'"
+
     # Disabling: Because conflicts with Dubs Vim and tmux key bindings.
     #            - And I don't use mate-terminal tabs,
     #              nor do I use more than one profile.
@@ -82,6 +201,83 @@
     - key: "prev-tab"
       val: "'disabled'"
 
+    # "Switch to Tab 1"
+    # Default: Alt+1
+    - key: "switch-to-tab-1"
+      val: "'disabled'"
+
+    # "Switch to Tab 2"
+    # Default: Alt+2
+    - key: "switch-to-tab-2"
+      val: "'disabled'"
+
+    # "Switch to Tab 3"
+    # Default: Alt+3
+    - key: "switch-to-tab-3"
+      val: "'disabled'"
+
+    # "Switch to Tab 4"
+    # Default: Alt+4
+    - key: "switch-to-tab-4"
+      val: "'disabled'"
+
+    # "Switch to Tab 5"
+    # Default: Alt+5
+    - key: "switch-to-tab-5"
+      val: "'disabled'"
+
+    # "Switch to Tab 6"
+    # Default: Alt+6
+    - key: "switch-to-tab-6"
+      val: "'disabled'"
+
+    # "Switch to Tab 7"
+    # Default: Alt+7
+    - key: "switch-to-tab-7"
+      val: "'disabled'"
+
+    # "Switch to Tab 8"
+    # Default: Alt+8
+    - key: "switch-to-tab-8"
+      val: "'disabled'"
+
+    # "Switch to Tab 9"
+    # Default: Alt+9
+    - key: "switch-to-tab-9"
+      val: "'disabled'"
+
+    # "Switch to Tab 10"
+    # Default: Alt+0
+    - key: "switch-to-tab-10"
+      val: "'disabled'"
+
+    # # "Switch to Tab 11"
+    # # Default: Disabled
+    # - key: "switch-to-tab-11"
+    #   val: "'disabled'"
+
+    # # "Switch to Tab 12"
+    # # Default: Disabled
+    # - key: "switch-to-tab-12"
+    #   val: "'disabled'"
+
+    # *** TERMINAL
+
+    # # "Reset"
+    # # Default: Disabled
+    # - key: "reset"
+    #   val: "'disabled'"
+
+    # # "Reset and Clear
+    # # Default: Disabled
+    # - key: "reset-and-clear"
+    #   val: "'disabled'"
+
+    # # "Set Title"
+    # # Default: Disabled
+    # - key: "set-terminal-title"
+    #   val: "'disabled'"
+
     # "Switch to Next Profile"
     # Default: Alt+Page Down
     - key: "next-profile"
@@ -91,6 +287,42 @@
     # Default: Alt+Page Up
     - key: "prev-profile"
       val: "'disabled'"
+
+    # *** VIEW
+
+    # (lb): 2020-02-11: Leave this'un?
+    #
+    # # "Full Screen"
+    # # Default: F11
+    # - key: ""
+    #   val: "'disabled'"
+
+    # # "Hide and Show menubar"
+    # # Default: Disabled
+    # - key: "toggle-menubar"
+    #   val: "'disabled'"
+
+    # (lb): I don't think I ever use zoom controls
+    # except when I boxing glove zoom in or zoom out
+    # by accident and need to then deliberately Ctrl+0
+    # to restore the normal (no) zoom size.
+
+    # "Normal Size
+    # Default: Ctrl+0
+    - key: "zoom-normal"
+      val: "'disabled'"
+
+    # "Zoom In
+    # Default: Ctrl+
+    - key: "zoom-in"
+      val: "'disabled'"
+
+    # "Zoom Out
+    # Default: Ctrl+-
+    - key: "zoom-out"
+      val: "'disabled'"
+
+  # ***
 
 - debug: msg="NOTE! You must logon again for changes to take effect!"
 
