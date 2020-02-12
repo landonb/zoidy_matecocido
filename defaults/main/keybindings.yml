@@ -128,7 +128,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>d'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
-    action: "'{{ ansible_env.HOME }}/.fries/bin/keybinding-focus-spotify'"
+    action: "'{{ ansible_env.HOME }}/.homefries/bin/keybinding-focus-spotify'"
 
   # *** Focus Facebook Messenger browser tab: Super_L + d
 
