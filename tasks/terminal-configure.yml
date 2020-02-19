@@ -306,21 +306,23 @@
     # except when I boxing glove zoom in or zoom out
     # by accident and need to then deliberately Ctrl+0
     # to restore the normal (no) zoom size.
+    # - 2020-02-18 12:59: On second thought, they're
+    #   useful when presenting!!
 
-    # "Normal Size
-    # Default: Ctrl+0
-    - key: "zoom-normal"
-      val: "'disabled'"
+    # # "Normal Size
+    # # Default: Ctrl+0
+    # - key: "zoom-normal"
+    #   val: "'disabled'"
 
-    # "Zoom In
-    # Default: Ctrl+
-    - key: "zoom-in"
-      val: "'disabled'"
+    # # "Zoom In
+    # # Default: Ctrl+
+    # - key: "zoom-in"
+    #   val: "'disabled'"
 
-    # "Zoom Out
-    # Default: Ctrl+-
-    - key: "zoom-out"
-      val: "'disabled'"
+    # # "Zoom Out
+    # # Default: Ctrl+-
+    # - key: "zoom-out"
+    #   val: "'disabled'"
 
   # ***
 
