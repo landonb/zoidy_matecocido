@@ -16,6 +16,12 @@
       key: gtk-theme
       val: "Mint-Y-Darker"
 
+    # Change from too-bright white border (e.g., window titlebar) to darker.
+    # - With green close button circle-x (see also Mint-Y-Dark-Aqua, etc.).
+    - schema: org.mate.Marco.general
+      key: theme
+      val: "Mint-Y-Dark"
+
 - name: Fiddle MATE Appearance, Notifications
   shell: dconf write {{ item.key }} {{ item.val }}
   loop:
