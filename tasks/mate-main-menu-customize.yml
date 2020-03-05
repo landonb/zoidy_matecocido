@@ -17,12 +17,15 @@
   shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
+    # Default: applet-icon 'linuxmint-logo-filled-ring'
     - schema: com.linuxmint.mintmenu
       key: applet-icon
       val: "'{{ zoidy_matecocido_mate_menu_icon_dst }}'"
 
-    # com.linuxmint.mintmenu applet-icon-size 22
+    # Default: applet-icon-size '22'
+    # com.linuxmint.mintmenu applet-icon-size '22'
 
+    # Default: applet-text "'Menu'"
     - schema: com.linuxmint.mintmenu
       key: applet-text
       val: "''"
@@ -31,17 +34,45 @@
 
     # com.linuxmint.mintmenu custom-heading-color '#3C3C3C'
 
-    - schema: com.linuxmint.mintmenu
-      key: hide-applet-icon
-      val: "false"
+    # com.linuxmint.mintmenu default-applet-icon 'linuxmint-logo-filled-ring'
 
     # *** Make Mint MATE Menu Hot Key Harder to AcciDentPress
     # The default mapping to open the MATE Menu is the Windows/Super key
     # ('<Super>'), but I fat-finger it sometimes when I don't mean to so
     # add the shift key.
+    # Default: hot-key "'Shift_L'"
     - schema: com.linuxmint.mintmenu
       key: hot-key
       val: "'<Super>Shift_L'"
 
-    # com.linuxmint.mintmenu offset 0
+    # Default: offset '0'
+    # com.linuxmint.mintmenu offset '0'
+
+    # Do not show (useless to me) list of places (caja shortcuts).
+    # com.linuxmint.mintmenu plugins-list ['places', 'system_management', 'newpane', 'applications']
+    - schema: com.linuxmint.mintmenu
+      key: plugins-list
+      val: "\"['system_management', 'newpane', 'applications']\""
+
+    - schema: com.linuxmint.mintmenu
+      key: start-with-favorites
+      val: "true"
+
+    - schema: com.linuxmint.mintmenu
+      key: theme-name
+      val: "Mint-Y-Darker-Blue"
+
+    # ***
+
+    - schema: com.linuxmint.mintmenu.plugins.system_management
+      key: height
+      val: "600"
+
+    - schema: com.linuxmint.mintmenu.plugins.system_management
+      key: show-package-manager
+      val: "false"
+
+    - schema: com.linuxmint.mintmenu.plugins.system_management
+      key: show-software-manager
+      val: "false"
 
