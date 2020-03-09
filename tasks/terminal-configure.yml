@@ -7,14 +7,9 @@
     state: present
   loop:
 
-    - key: "use-theme-colors"
-      val: "false"
-
-    - key: "default-show-menubar"
-      val: "false"
-
-    - key: "foreground-color"
-      val: "'#FFFFFFFFFFFF'"
+    # Default: background-color='#FFFFFFFFDDDD'
+    - key: "background-color"
+      val: "'#000000000000'"
 
     # Default: background-darkness=0.90000000000000002
     - key: "background-darkness"
@@ -24,15 +19,20 @@
     - key: "background-type"
       val: "'solid'"
 
-    # Default: background-color='#FFFFFFFFDDDD'
-    - key: "background-color"
-      val: "'#000000000000'"
-
-    - key: "use-system-font"
+    - key: "default-show-menubar"
       val: "false"
 
     - key: "font"
       val: "'Hack 10'"
+
+    - key: "foreground-color"
+      val: "'#FFFFFFFFFFFF'"
+
+    - key: "use-theme-colors"
+      val: "false"
+
+    - key: "use-system-font"
+      val: "false"
 
     # Other values whose defaults work without being twiddled:
     #
