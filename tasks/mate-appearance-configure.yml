@@ -22,6 +22,15 @@
       key: theme
       val: "Mint-Y-Dark-Pink"
 
+    # WEIRD/2020-03-09 12:04: I changed another value to 'Mint-Y-Dark-Pink' at
+    # Mint MENU > Appearance Preferences > Customize Theme > Window Border, but
+    # I cannot find the corresponding key in neither gsettings nor dconf, nor
+    # under ~/.config/. Oh, well, maybe it was a holder from the 19.1 → 19.3
+    # upgrade? In any case, just be aware on next distro install:
+    # - HINT: If mate-terminal has no border (which makes it hard to tell where
+    # one window ends and another begins; and just looks bad in general), then
+    # open Appearances from the Mint MATE menu, and customize the Window Border.
+
 - name: Fiddle MATE Appearance, Notifications
   shell: dconf write {{ item.key }} {{ item.val }}
   loop:
