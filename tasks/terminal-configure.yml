@@ -28,6 +28,9 @@
     - key: "foreground-color"
       val: "'#FFFFFFFFFFFF'"
 
+    - key: "scrollbar-position"
+      val: "hidden"
+
     - key: "use-theme-colors"
       val: "false"
 
