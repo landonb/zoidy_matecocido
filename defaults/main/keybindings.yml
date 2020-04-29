@@ -31,6 +31,8 @@ zoidy_matecocido_keybindings_basic:
   #   Super_L + 1   Bring "Spotify" window to front [think !, like music]
   #
   #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
+  #
+  #   Super_L + d   dob it
 
   # *** Focus Email window/tab: Super_L + a
 
@@ -180,4 +182,11 @@ zoidy_matecocido_keybindings_basic:
     # Note that I tried `sleep 0.05` but that didn't work.
     #   Using 0.1 seems to always work (so far, at least).
     #   Or maybe 0.13, I think I had one 0.1 slip through.
+
+  # *** Focus dob terminal window: Super_L + d
+
+  - name: "'dob sweet [dob]'"
+    # Brings dob to the front.
+    binding: "'<Mod4>d'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'dob edit\\\'\\\"'"
 
