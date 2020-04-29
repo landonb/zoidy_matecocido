@@ -28,7 +28,7 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + m   Run tmux in mate-terminal window.
   #
-  #   Super_L + d   Bring "Spotify" window to front
+  #   Super_L + 1   Bring "Spotify" window to front [think !, like music]
   #
   #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
 
@@ -125,7 +125,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Kick Out The Jams [Spotify]'"
     # Brings the Spotify application window to the front.
-    binding: "'<Mod4>d'"
+    binding: "'<Mod4>1'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
     action: "'{{ ansible_env.HOME }}/.homefries/bin/keybinding-focus-spotify'"
