@@ -43,7 +43,7 @@ zoidy_matecocido_keybindings_basic:
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\' - Gmail - \\\' || ( wmctrl -a \\\'Email & Calendar - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"( wmctrl -a \\\'Email & Calendar - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' ) || wmctrl -a \\\' - Gmail - \\\'\\\"'"
 
   # *** New Chromium window: Super_L + t
 
