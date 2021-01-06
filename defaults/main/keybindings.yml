@@ -34,6 +34,10 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + k   Bring "Slack" application window to front
   #
+  #   Super_L + -   Feed *now* into (pasteable) clipboard buffer.
+  #
+  #    Also Ctrl + Super_L + minus, and Shift + Ctrl + Super_L + minus.
+  #
   #   Super_L + d   dob it
 
   # *** Focus Email window/tab: Super_L + a
@@ -192,6 +196,38 @@ zoidy_matecocido_keybindings_basic:
   - name: "'Slack'"
     binding: "'<Mod4>k'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Slack |\\\'\\\"'"
+
+  # *** Date.now()/datetime.now(): Super_L + j
+
+  # Put YYYY-MM-DD into clipboard register using Cmd+-.
+  #
+  # - Note: Use printf to avoid newline injection.
+  # - Note: It's 'minus', not '-' (I.e., not: `binding: "'<Mod4>-'"`).
+  - name: "'Now(TTT)'"
+    binding: "'<Mod4>minus'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d\\\') | xclip -selection c\\\"'"
+
+  # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
+  #
+  # (lb): I'd prefer just Shift-Cmd-minus, to keep it simple, but MATE does
+  #       not recognize Shift-Cmd-{key} any differently than plain Cmd-{key}.
+  #       - But it does recognize Shift-Ctrl-Cmd differently than Ctrl-Cmd!
+  #       - I find Shift-Ctrl-Cmd easier to type than Ctrl-Cmd (it's easier
+  #         to press Shift with my left hand ring finger than to keep that
+  #         finger off the keyboard), so I'm wiring *both* the modifier
+  #         alternatives to the same mapping.
+  #         MAYBE/2021-01-06 12:27: I might change my mind eventually;
+  #         I'm only today adding the first Cmd-plus-modifier mappings
+  #         (because I ran out of vanilla Cmd-key combinations), so it
+  #         remains to be seen how much I'll use this feature and what
+  #         what combination I'll find myself preferring.
+  - name: "'Now(TTTtt)'"
+    binding: "'<Primary><Mod4>minus'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
+  # Let's
+  - name: "'Now(TTTtt)'"
+    binding: "'<Primary><Shift><Mod4>minus'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
 
   # *** Focus dob terminal window: Super_L + d
 
