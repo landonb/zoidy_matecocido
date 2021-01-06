@@ -3,6 +3,12 @@
 # YOU: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
+# YOU: Send file to the Gvim instance using its --servername.
+# (lb): 'SAMPI' is just the arbitrary term that I use.
+zoidy_matecocido_gvim_servername: 'SAMPI'
+# YOU: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
+zoidy_matecocido_keybindings_gvims: []
+
 zoidy_matecocido_keybindings_basic:
 
   # *** Keybindings defined below:
@@ -34,9 +40,10 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + k   Bring "Slack" application window to front
   #
-  #   Super_L + -   Feed *now* into (pasteable) clipboard buffer.
+  #   Super_L + -   Make *now* date (YYYY-MM-DD) pasteable (send to clipboard buffer).
   #
-  #    Also Ctrl + Super_L + minus, and Shift + Ctrl + Super_L + minus.
+  #      Also Ctrl + Super_L + minus, and
+  #   Shift + Ctrl + Super_L + minus, to feed YYYY-MM-DD-TT-tt into clippy.
   #
   #   Super_L + d   dob it
 

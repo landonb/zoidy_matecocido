@@ -10,7 +10,12 @@
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/name "{{ item.name }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/binding "{{ item.binding }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/action "{{ item.action }}" ; \
-  loop: "{{ zoidy_matecocido_keybindings_basic + zoidy_matecocido_keybindings_bonus }}"
+  loop: "{{
+    zoidy_matecocido_keybindings_basic
+    + zoidy_matecocido_keybindings_bonus
+    + zoidy_matecocido_keybindings_gvims
+      | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
+  }}"
   loop_control:
     index_var: index
 
