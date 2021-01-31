@@ -98,6 +98,15 @@
         - mate-main-menu-customize
   tags: mate-main-menu-customize
 
+- name: Load role to Customize MATE Marco Window-Keybindings
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-marco-window-keybindings
+    apply:
+      tags:
+        - mate-marco-window-keybindings
+  tags: mate-marco-window-keybindings
+
 - name: Load role to Configure caja File Browser
   include_role:
     name: zoidy_matecocido

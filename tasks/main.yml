@@ -23,6 +23,7 @@
     - mate-appearance-configure
     - mate-caja-preferences
     - mate-main-menu-customize
+    - mate-marco-window-keybindings
     - mate-media-handling
     - meld-configure
     - power-management-prefs-laptop
