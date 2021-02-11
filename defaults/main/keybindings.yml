@@ -14,6 +14,7 @@ zoidy_matecocido_keybindings_basic:
   # *** Keybindings defined below:
   #
   #   Super_L + a   Focus window and tab: Gmail Inbox
+  #   + Shift + Ctrl [for parity w/ macOS Karabiner-Elements binding]
   #
   #   Super_L + t   New Chromium Browser tab
   #
@@ -37,6 +38,7 @@ zoidy_matecocido_keybindings_basic:
   #   Super_L + 1   Bring "Spotify" window to front [think !, like music]
   #
   #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
+  #   + Shift + Ctrl [for parity w/ macOS Karabiner-Elements binding]
   #
   #   Super_L + k   Bring "Slack" application window to front
   #
@@ -50,7 +52,9 @@ zoidy_matecocido_keybindings_basic:
   # *** Focus Email window/tab: Super_L + a
 
   - name: "'[Personal] Gmail'"
-    binding: "'<Mod4>a'"
+    # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
+    #  binding: "'<Mod4>a'"
+    binding: "'<Primary><Shift><Mod4>a'"
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
@@ -149,7 +153,9 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
-    binding: "'<Mod4>s'"
+    # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
+    #  binding: "'<Mod4>s'"
+    binding: "'<Primary><Shift><Mod4>s'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
