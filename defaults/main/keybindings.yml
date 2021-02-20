@@ -47,6 +47,8 @@ zoidy_matecocido_keybindings_basic:
   #      Also Ctrl + Super_L + minus, and
   #   Shift + Ctrl + Super_L + minus, to feed YYYY-MM-DD-TT-tt into clippy.
   #
+  #   Ctrl + Super_L + p   pwgen21 → clipboard
+  #
   #   Super_L + d   dob it
 
   # *** Focus Email window/tab: Super_L + a
@@ -237,10 +239,17 @@ zoidy_matecocido_keybindings_basic:
   - name: "'Now(TTTtt)'"
     binding: "'<Primary><Mod4>minus'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
-  # Let's
+  # FIXME/2021-02-20 17:09: Choose one or the other binding, and remote the other or the one.
   - name: "'Now(TTTtt)'"
     binding: "'<Primary><Shift><Mod4>minus'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
+
+  # *** Pwgen21 to clippy: Super_L + Alt + p
+
+  # Using printf to avoid the newline.
+  - name: "'pwgen|xclip'"
+    binding: "'<Alt><Mod4>p'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(pwgen -n 21 -s -N 1 -y) | xclip -selection c\\\"'"
 
   # *** Focus dob terminal window: Super_L + d
 
