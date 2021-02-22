@@ -40,7 +40,12 @@ class FilterModule(object):
 
 # ***
 
-def to_gvim_keybinding_action(name_binding_actions, servername='SAMPI', user_home=''):
+def to_gvim_keybinding_action(
+    name_binding_actions,
+    # SYNC_ME: Syncs with Home Fries' ${HOMEFRIES_GVIM_PRIMARY:-SAMPI}.
+    servername='SAMPI',
+    user_home='',
+):
     """"""
 
     # (lb): I didn't figure out how to expandvars the return string, or send
