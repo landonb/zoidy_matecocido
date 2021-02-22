@@ -87,14 +87,12 @@ def to_gvim_keybinding_action(
         return with_hydrated_actions
 
     def hydrate_action(file_path):
+        # OPTIONAL: We could enable row and line jumping, too.
+        #           For now, not specified: \\\'\\\' \\\'\\\'.
         bash_cmd = (
             "'{user_home}/.local/bin/bash -c \\\""
-                "{user_home}/.local/bin/gvim "
-                    "--servername {servername} "
-                    "--remote-silent {file_path} "
-                "&& xdotool search "
-                    "--name {servername} "
-                    "windowactivate "
+                "{user_home}/.homefries/bin/gvim-open-kindness "
+                    "\\\'{servername}\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\' "
                 "&& wmctrl -b add,sticky -r {servername}"
             "\\\"'"
         ).format(
