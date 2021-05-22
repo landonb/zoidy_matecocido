@@ -256,6 +256,10 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'dob sweet [dob]'"
     # Brings dob to the front.
+    # CONVENTION: Assumes you're running the `dob edit` command, or that you
+    # started a tmux session named 'ham'-something (e.g., 'hamsterdob'; note
+    # that tmux truncates it after 3 letters and prefixes a box drawing heavy
+    # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     binding: "'<Mod4>d'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'dob edit\\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'┇ ham\\\' ; wmctrl -a \\\'dob edit\\\'\\\"'"
 
