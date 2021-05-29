@@ -42,6 +42,49 @@
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4>KP_Left'"
 
+    # Maximize window vertically
+    # Use Case: Use as part of a sequence to resize and center a window.
+    # - Inspiration: There's a great app for Darwin (macOS), Rectangle, that
+    #   exposes a bunch of window commands to which you can assign shortcuts.
+    #   When I want to center and resize a window, but not quite maximize it,
+    #   I use the *Almost Maximize* command (wired to Ctrl-Shift-Cmd-/),
+    #   followed by a couple *Larger* commands (wired to Ctrl-Shift-Cmd-+).
+    #   Why? Because I hide the macOS menubar, and hence the clock, so I
+    #   use a Vim plugin that shows the clock in the titlebar (and status
+    #   line). Then, when I use the browser, I make the window almost-
+    #   maximized so I can see the clock in the Vim titlebar.
+    # - On Mint MATE, there's not a similar such command. Well, there
+    #   *appears* to be, but it doesn't work for me: There are tile-to-*
+    #   commands and a move-to-center command, but when I try tile-to-side-e
+    #   or tile-to-side-w and then move-to-center, the window doesn't budge!
+    # - So here's the best workaround I could figure out:
+    #     Tile to corner, center, maximize:
+    #       Ctrl-Shift-Cmd-7 tiles to the upper left;
+    #       Ctrl-Shift-Cmd-5 centers the window; and
+    #       Ctrl-Shift-Cmd-/ maximizes the window height.
+    #   Aka, the long way to centering a window using maximum height.
+    #
+    # - EVEN BETTER: No sooner did I add this mapping (and write this long
+    #   comment) then I looked for a window resizer and centerer, found a
+    #   decent example, and cooked up my own solution, found here:
+    #     https://github.com/landonb/reputed-tiler/blob/release/bin/window-to-center
+    #   I wired this as a custom binding, which you'll find in this repo at:
+    #     defaults/main/keybindings.yml
+    #   and which is wired to Ctrl-Shift-Cmd-KP_Add. I like the custom
+    #   solution better not just because it's wired to one shortcut,
+    #   but because it makes the window wider than the workaround that
+    #   I documented above.
+    #   - Nonetheless, I still might find that I like maximize-vertically
+    #     wired to its own shortcut, so here it is.
+    - key: maximize-vertically
+      # Mnemonically, the bar key makes sense (it's vertical)
+      #   val: "'<Primary><Shift><Mod4>bar'"
+      # but most of the other Ctrl-Shift-Cmd combos (above) use the keypad,
+      # and the divide symbol is similar to bar (and then if we wanted to
+      # map maximize-horizontally, we could use KP_Subtract). Also, per the
+      # "long way" stated above, KP_Divide is nearby KP_Home/7 and KP_Begin/5.
+      val: "'<Primary><Shift><Mod4>KP_Divide'"
+
     # 2021-01-30: I only just now added this task to setup Keyboard Shortcuts,
     # which makes me think I had not yet customized any of these settings until
     # today. But that also surprises me. So here's the list of settings not
