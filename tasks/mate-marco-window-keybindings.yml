@@ -6,39 +6,39 @@
 
     # MATE Menu > Keyboard Shortcuts
 
-    # Tile window to the north-east (top right) corner: Shift+Ctrl+Mod4+Page Up (keypad)
+    # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+Page Up (keypad 9)
     - key: tile-to-corner-ne
       val: "'<Primary><Shift><Mod4>KP_Page_Up'"
-    # Tile window to the north-west (top left) corner: Shift+Ctrl+Mod4+Home (keypad)
+    # Tile window to north-west (top left) corner: Shift+Ctrl+Mod4+Home (keypad 7)
     - key: tile-to-corner-nw
       val: "'<Primary><Shift><Mod4>KP_Home'"
-    # Tile window to the south-east (bottom right) corner: Shift+Ctrl+Mod4+Page Down (keypad)
+    # Tile window to south-east (bottom right) corner: Shift+Ctrl+Mod4+Page Down (keypad 3)
     - key: tile-to-corner-se
       val: "'<Primary><Shift><Mod4>KP_Next'"
-    # Tile window to the south-west (bottom left) corner: Shift+Ctrl+Mod4+End (keypad)
+    # Tile window to south-west (bottom left) corner: Shift+Ctrl+Mod4+End (keypad 1)
     - key: tile-to-corner-sw
       val: "'<Primary><Shift><Mod4>KP_End'"
 
-    # Tile window to the east (right) side of screen: Shift+Ctrl+Mod4+Right
+    # Tile window to east (right) side of screen: Shift+Ctrl+Mod4+Right
     - key: tile-to-side-e
       val: "'<Primary><Shift><Mod4>Right'"
-    # Tile window to the west (left) side of screen: Shift+Ctrl+Mod4+Left
+    # Tile window to west (left) side of screen: Shift+Ctrl+Mod4+Left
     - key: tile-to-side-w
       val: "'<Primary><Shift><Mod4>Left'"
 
-    # Move window to center of screen: Shift+Ctrl+Mod4+Begin (keypad)
+    # Move window to center of screen: Shift+Ctrl+Mod4+Begin (keypad 5)
     - key: move-to-center
       val: "'<Primary><Shift><Mod4>KP_Begin'"
-    # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Right (keypad)
+    # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Right (keypad 6)
     - key: move-to-side-e
       val: "'<Primary><Shift><Mod4>KP_Right'"
-    # Move window to north (top) side of screen: Shift+Ctrl+Mod4+Up (keypad)
+    # Move window to north (top) side of screen: Shift+Ctrl+Mod4+Up (keypad 8)
     - key: move-to-side-n
       val: "'<Primary><Shift><Mod4>KP_Up'"
-    # Move window to south (bottom) side of screen: Shift+Ctrl+Mod4+Down (keypad)
+    # Move window to south (bottom) side of screen: Shift+Ctrl+Mod4+Down (keypad 2)
     - key: move-to-side-s
       val: "'<Primary><Shift><Mod4>KP_Down'"
-    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Left (keypad)
+    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Left (keypad 4)
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4>KP_Left'"
 
