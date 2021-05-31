@@ -85,6 +85,12 @@
       # "long way" stated above, KP_Divide is nearby KP_Home/7 and KP_Begin/5.
       val: "'<Primary><Shift><Mod4>KP_Divide'"
 
+    # For parity, also because after adding maximize-vertically, I suddenly
+    # wanted this one, too, for use case: viewing more columns in spreadsheet,
+    # but not going fullscreen.
+    - key: maximize-horizontally
+      val: "'<Primary><Shift><Mod4>KP_Subtract'"
+
     # 2021-01-30: I only just now added this task to setup Keyboard Shortcuts,
     # which makes me think I had not yet customized any of these settings until
     # today. But that also surprises me. So here's the list of settings not
