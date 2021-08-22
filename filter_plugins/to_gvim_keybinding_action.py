@@ -42,7 +42,7 @@ class FilterModule(object):
 
 def to_gvim_keybinding_action(
     name_binding_actions,
-    # SYNC_ME: Syncs with Home Fries' ${HOMEFRIES_GVIM_PRIMARY:-SAMPI}.
+    # SYNC_ME: Syncs with Home Fries' ${GVIM_OPEN_SERVERNAME:-SAMPI}.
     servername='SAMPI',
     user_home='',
 ):

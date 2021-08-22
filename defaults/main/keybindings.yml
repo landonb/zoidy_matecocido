@@ -5,7 +5,7 @@ zoidy_matecocido_keybindings_bonus: []
 
 # YOU: Send file to the Gvim instance using its --servername.
 # (lb): 'SAMPI' is just the arbitrary term that I use.
-# 2021-02-21: See Home Fries environ: ${HOMEFRIES_GVIM_PRIMARY:-SAMPI}
+# 2021-02-21: See Home Fries environ: ${GVIM_OPEN_SERVERNAME:-SAMPI}
 zoidy_matecocido_gvim_servername: 'SAMPI'
 # YOU: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
