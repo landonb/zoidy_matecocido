@@ -274,7 +274,7 @@ zoidy_matecocido_keybindings_basic:
     # keys, and right hand on the upper-rightmost key
     # (or nearabouts)). I prefer the mnemonically one.
     binding: "'<Primary><Shift><Mod4>KP_Add'"
-    action: window-to-center
+    action: "'window-to-center'"
 
   # *** Focus dob terminal window: Super_L + d
 
