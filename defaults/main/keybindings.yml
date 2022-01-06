@@ -73,9 +73,11 @@ zoidy_matecocido_keybindings_basic:
 
   # *** New Chrome window: Super_L + y
 
+  # 2022-01-05: --profile-directory added to start with default user,
+  #             and not the last-used profile. Which can be annoying.
   - name: "'Chrome Browser'"
     binding: "'<Mod4>y'"
-    action: "'/opt/google/chrome/chrome'"
+    action: "'/opt/google/chrome/chrome --profile-directory=Default'"
 
   # *** New caja (file system) window: Super_L + f
 
