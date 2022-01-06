@@ -126,13 +126,13 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Mod4>p'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab: Super_L + x
 
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\' --profile-directory=Default\\\"'"
 
   # *** Open new tmux mate-terminal: Super_L + m
 
