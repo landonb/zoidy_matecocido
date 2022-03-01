@@ -251,6 +251,11 @@ zoidy_matecocido_keybindings_basic:
   #         - The normal date-plus-time, e.g., "2022-02-28 22:02",
   #           is good for adding date and time when using apps other
   #           than the terminal or Vim, say, Gmail.
+  #­­
+  # Dashed date-plus-time.
+  - name: "'Now(TTTtt-)'"
+    binding: "'<Primary><Mod4>minus'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d-%H-%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
   #
   # Normal date plus:time.
   # - Note: Using printf with date input with a space gets tricky, e.g.,
@@ -263,13 +268,8 @@ zoidy_matecocido_keybindings_basic:
   #         but I couldn't get that to work.
   #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
   - name: "'Now(TTTtt:)'"
-    binding: "'<Primary><Mod4>minus'"
+    binding: "'<Primary><Mod4>semicolon'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d %H:%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
-  #
-  # Dashed date-plus-time.
-  - name: "'Now(TTTtt-)'"
-    binding: "'<Primary><Shift><Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d-%H-%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
 
   # *** Pwgen21 to clippy: Super_L + Alt + p
 
