@@ -229,25 +229,47 @@ zoidy_matecocido_keybindings_basic:
 
   # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
   #
-  # (lb): I'd prefer just Shift-Cmd-minus, to keep it simple, but MATE does
-  #       not recognize Shift-Cmd-{key} any differently than plain Cmd-{key}.
-  #       - But it does recognize Shift-Ctrl-Cmd differently than Ctrl-Cmd!
-  #       - I find Shift-Ctrl-Cmd easier to type than Ctrl-Cmd (it's easier
-  #         to press Shift with my left hand ring finger than to keep that
-  #         finger off the keyboard), so I'm wiring *both* the modifier
-  #         alternatives to the same mapping.
-  #         MAYBE/2021-01-06 12:27: I might change my mind eventually;
-  #         I'm only today adding the first Cmd-plus-modifier mappings
-  #         (because I ran out of vanilla Cmd-key combinations), so it
-  #         remains to be seen how much I'll use this feature and what
-  #         what combination I'll find myself preferring.
-  - name: "'Now(TTTtt)'"
+  # (lb): I'd prefer just Super-Shift-minus for date with time, but MATE does
+  #       not recognize Super-*Shift*, e.g., Super-Shift-minus does nothing
+  #       for me (not even fallback on Super-minus).
+  #       - E.g.,:
+  #
+  #         - name: "'Now(TTTtt)'"
+  #           binding: "'<Shift><Mod4>minus'"
+  #           action: "'…/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
+  #
+  #         (I also tried '<Shift><Mod4>_' and '<Shift><Mod4>underscore'
+  #                          and '<Mod4>_' and        '<Mod4>underscore'
+  #          but none of these worked, either.)
+  #
+  #       - So we'll use Ctrl-Super-minus for the date-plus-time-to-clipboard
+  #         feature.
+  #       - And MATE *does* recognize the Shift in Shift-Ctrl-Super-minus,
+  #         so we can wire that to a modified date-plus-time.
+  #         - The all-dashed date-plus-time, e.g., "2022-02-28-22-02",
+  #           is good for filenames when you want to avoid spaces.
+  #         - The normal date-plus-time, e.g., "2022-02-28 22:02",
+  #           is good for adding date and time when using apps other
+  #           than the terminal or Vim, say, Gmail.
+  #
+  # Normal date plus:time.
+  # - Note: Using printf with date input with a space gets tricky, e.g.,
+  #           … bash -c \\\"printf \\$(date \\\'+%Y-%m-%d\\\') | xclip …
+  #         becomes
+  #           … bash -c \\\"printf \\$(date \\\'+%Y-%m-%d %H:%M\\\') | xclip …
+  #         but the printf input is not quoted, so the time of day is not xclipped.
+  #         So we'd need to quote the print input, e.g., something like
+  #           … bash -c \\\"printf \\\\\"\\$(date \\\'+%Y-%m-%d %H:%M\\\')\\\\\" | xclip …
+  #         but I couldn't get that to work.
+  #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
+  - name: "'Now(TTTtt:)'"
     binding: "'<Primary><Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
-  # FIXME/2021-02-20 17:09: Choose one or the other binding, and remote the other or the one.
-  - name: "'Now(TTTtt)'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d %H:%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
+  #
+  # Dashed date-plus-time.
+  - name: "'Now(TTTtt-)'"
     binding: "'<Primary><Shift><Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d-%H-%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
 
   # *** Pwgen21 to clippy: Super_L + Alt + p
 
