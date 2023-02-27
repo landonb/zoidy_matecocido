@@ -91,7 +91,7 @@ def to_gvim_keybinding_action(
         #           For now, not specified: \\\'\\\' \\\'\\\'.
         bash_cmd = (
             "'{user_home}/.local/bin/bash -c \\\""
-                "{user_home}/.homefries/bin/gvim-open-kindness "
+                "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
                     "\\\'{servername}\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\' "
                 "&& wmctrl -b add,sticky -r {servername}"
             "\\\"'"
