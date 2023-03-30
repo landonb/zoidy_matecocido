@@ -63,7 +63,7 @@ zoidy_matecocido_keybindings_basic:
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"( wmctrl -a \\\'Email & Calendar - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' ) || wmctrl -a \\\' - Gmail - \\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || wmctrl -a \\' - Gmail - \\'\\\"'"
 
   # *** New Chromium window: Super_L + t
 
@@ -126,13 +126,13 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Mod4>p'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Power Thesaurus - \\\' || sensible-browser --new-window \\\'https://www.powerthesaurus.org/\\\' --profile-directory=Default\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab: Super_L + x
 
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Regex Dictionary by Lou Hevly - \\\' || sensible-browser --new-window \\\'https://www.visca.com/regexdict/\\\' --profile-directory=Default\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
   # *** Open new tmux mate-terminal: Super_L + m
 
@@ -145,7 +145,7 @@ zoidy_matecocido_keybindings_basic:
     # - (lb): Unforunately, after ~/.profile updates LD_LIBRARY_PATH, something
     #   else resets it, so we have to include the path here (to user-local
     #   libevent and ncurses libraries).
-    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\\'\\\"'"
+    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
 
   # *** Focus Spotify application window: Super_L + s
 
@@ -163,7 +163,7 @@ zoidy_matecocido_keybindings_basic:
     # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
     #  binding: "'<Mod4>s'"
     binding: "'<Primary><Shift><Mod4>s'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Messenger - \\\' || ( wmctrl -a \\\'Chat & Social - \\\' && sleep 0.13 && xdotool key \\\'ctrl+Tab\\\' )\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
@@ -215,7 +215,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Slack'"
     binding: "'<Mod4>k'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'Slack |\\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Slack |\\'\\\"'"
 
   # *** Date.now()/datetime.now(): Super_L + j
 
@@ -225,7 +225,7 @@ zoidy_matecocido_keybindings_basic:
   # - Note: It's 'minus', not '-' (I.e., not: `binding: "'<Mod4>-'"`).
   - name: "'Now(TTT)'"
     binding: "'<Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d\\\') | xclip -selection c\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip -selection c\\\"'"
 
   # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
   #
@@ -236,7 +236,7 @@ zoidy_matecocido_keybindings_basic:
   #
   #         - name: "'Now(TTTtt)'"
   #           binding: "'<Shift><Mod4>minus'"
-  #           action: "'…/bash -c \\\"printf \\$(date \\\'+%Y-%m-%d-%H-%M\\\') | xclip -selection c\\\"'"
+  #           action: "'…/bash -c \\\"printf \\$(date \\'+%Y-%m-%d-%H-%M\\') | xclip -selection c\\\"'"
   #
   #         (I also tried '<Shift><Mod4>_' and '<Shift><Mod4>underscore'
   #                          and '<Mod4>_' and        '<Mod4>underscore'
@@ -255,21 +255,21 @@ zoidy_matecocido_keybindings_basic:
   # Dashed date-plus-time.
   - name: "'Now(TTTtt-)'"
     binding: "'<Primary><Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d-%H-%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
   #
   # Normal date plus:time.
   # - Note: Using printf with date input with a space gets tricky, e.g.,
-  #           … bash -c \\\"printf \\$(date \\\'+%Y-%m-%d\\\') | xclip …
+  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip …
   #         becomes
-  #           … bash -c \\\"printf \\$(date \\\'+%Y-%m-%d %H:%M\\\') | xclip …
+  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d %H:%M\\') | xclip …
   #         but the printf input is not quoted, so the time of day is not xclipped.
   #         So we'd need to quote the print input, e.g., something like
-  #           … bash -c \\\"printf \\\\\"\\$(date \\\'+%Y-%m-%d %H:%M\\\')\\\\\" | xclip …
+  #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | xclip …
   #         but I couldn't get that to work.
   #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
   - name: "'Now(TTTtt:)'"
     binding: "'<Primary><Mod4>semicolon'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\\'+%Y-%m-%d %H:%M\\\' | tr -d \\\'\\n\\\' | xclip -selection c\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
 
   # *** Pwgen21 to clippy: Super_L + Alt + p
 
@@ -309,5 +309,5 @@ zoidy_matecocido_keybindings_basic:
     # that tmux truncates it after 3 letters and prefixes a box drawing heavy
     # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     binding: "'<Mod4>d'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\\'┇ ham\\\' ; wmctrl -a \\\'dob edit\\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'┇ ham\\' ; wmctrl -a \\'dob edit\\'\\\"'"
 
