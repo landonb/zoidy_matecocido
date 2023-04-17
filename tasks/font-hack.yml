@@ -23,7 +23,7 @@
   apt: name=jq
 
 - name: Check for new version of Hack.
-  shell: "curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq -r '.tag_name'"
+  ansible.builtin.shell: "curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq -r '.tag_name'"
   register: LATEST_VERSION
   args:
     # else, ansible bugs us to use get_url:

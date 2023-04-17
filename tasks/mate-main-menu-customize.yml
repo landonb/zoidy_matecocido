@@ -14,7 +14,7 @@
     dest: "{{ zoidy_matecocido_mate_menu_icon_dst }}"
 
 - name: Stylize Mint Menu (in lower-left of MATE)
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # Default: applet-icon 'linuxmint-logo-filled-ring'

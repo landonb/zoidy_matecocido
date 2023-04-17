@@ -1,7 +1,7 @@
 ---
 
 - name: Disable MATE Automatic Media Handling (autorun)
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # caja > Edit > Preference > File Management Preferences > Media

@@ -1,7 +1,7 @@
 ---
 
 - name: Configure MATE caja application (basic)
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # caja > Edit > Preference > File Management Preferences
@@ -16,7 +16,7 @@
       val: "true"
 
 - name: Configure MATE caja application (advanced)
-  shell: dconf write {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
   loop:
 
     - key: "/org/mate/caja/window-state/start-with-location-bar"

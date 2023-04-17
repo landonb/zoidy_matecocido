@@ -27,7 +27,7 @@
 - fail: msg="DISABLED: FIXME: Broke until fixed."
 
 - name: Fix MATE Alt-Tab slugishness
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # The default mate-window-manager is 'marco-composite'.

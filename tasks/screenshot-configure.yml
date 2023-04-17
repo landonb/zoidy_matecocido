@@ -1,7 +1,7 @@
 ---
 
 - name: Configure MATE Take Screenshot application
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # Mint MATE Menu > Take Screenshot

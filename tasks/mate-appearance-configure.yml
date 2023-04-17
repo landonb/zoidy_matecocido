@@ -1,7 +1,7 @@
 ---
 
 - name: Fiddle MATE Appearance, Look of the Desktop
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # MATE Menu > Power Management Preferences
@@ -32,7 +32,7 @@
     # open Appearances from the Mint MATE menu, and customize the Window Border.
 
 - name: Fiddle MATE Appearance, Notifications
-  shell: dconf write {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
   loop:
 
     # The 'coco' notification theme does not look good with Mint-Y.

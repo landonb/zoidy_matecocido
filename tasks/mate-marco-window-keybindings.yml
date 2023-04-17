@@ -1,7 +1,7 @@
 ---
 
 - name: Set MATE Marco Keyboard Shortcuts
-  shell: gsettings set org.mate.Marco.window-keybindings {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set org.mate.Marco.window-keybindings {{ item.key }} {{ item.val }}
   loop:
 
     # MATE Menu > Keyboard Shortcuts

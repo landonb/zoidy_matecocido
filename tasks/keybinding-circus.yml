@@ -1,12 +1,12 @@
 ---
 
 - name: Clear Existing MATE Key Bindings
-  shell: dconf reset -f /org/mate/desktop/keybindings/
+  ansible.builtin.shell: dconf reset -f /org/mate/desktop/keybindings/
 
 - name: Customize MATE Key Bindings
   # debug:
   #   msg: "{{ index }} -- {{ item.name }} / {{ item.binding }} / {{ item.action }}"
-  shell: |
+  ansible.builtin.shell: |
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/name "{{ item.name }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/binding "{{ item.binding }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/action "{{ item.action }}" ; \

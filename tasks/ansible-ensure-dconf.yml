@@ -4,7 +4,7 @@
 # Install psutil for Ansible dconf module.
 - name: 'Install Python development packages'
   become: true
-  apt: name={{ item }}
+  ansible.builtin.apt: name={{ item }}
   loop:
     - python-psutil
     - python3-psutil

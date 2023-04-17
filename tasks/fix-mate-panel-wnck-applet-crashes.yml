@@ -1,7 +1,7 @@
 ---
 
 - name: Disable Window Manager Compositing (to fix Window List random crashes)
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # The default mate-window-manager

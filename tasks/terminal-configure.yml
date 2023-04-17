@@ -1,7 +1,7 @@
 ---
 
 - name: Configure MATE-Terminal Profile Preferences
-  dconf:
+  community.general.dconf:
     key: "/org/mate/terminal/profiles/default/{{ item.key }}"
     value: "{{ item.val }}"
     state: present
@@ -55,7 +55,7 @@
     #         val: "'#000000000000'"
 
 - name: Configure MATE-Terminal Keyboard Shortcuts
-  dconf:
+  community.general.dconf:
     key: "/org/mate/terminal/keybindings/{{ item.key }}"
     value: "{{ item.val }}"
     state: present

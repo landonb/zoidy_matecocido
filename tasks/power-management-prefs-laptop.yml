@@ -1,7 +1,7 @@
 ---
 
 - name: Fiddle About Laptop Power Settings
-  shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
     # MATE Menu > Power Management Preferences
