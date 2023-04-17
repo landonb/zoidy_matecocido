@@ -17,7 +17,7 @@
 - name: Install Meld
   become: true
   apt: name=meld
-  when: False  # See instead: zoidy_home-fries/tasks/app-meld.yml
+  when: False  # See instead: zoidy_apps_et_al/tasks/app-meld.yml
 
 - name: Configure Meld
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
