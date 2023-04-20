@@ -6,6 +6,7 @@
   become: true
   ansible.builtin.apt: name={{ item }}
   loop:
-    - python-psutil
+    # - python-psutil
+    # 2023-04-20: Already installed on Ubuntu 22.04/Linux Mint 21.2.
     - python3-psutil
 
