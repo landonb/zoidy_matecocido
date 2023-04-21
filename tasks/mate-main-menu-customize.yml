@@ -1,13 +1,16 @@
 ---
 
+# E.g., ~/.config/zoidy_matecocido/mate-menu-icon_triple-face-pips_21x21.png
 - name: Form MATE menu icon target path
   set_fact:
     zoidy_matecocido_mate_menu_icon_dst: "{{ zoidy_matecocido_config_dir }}/mate-menu-icon_{{ zoidy_matecocido_mate_menu_icon_22x | basename }}"
 
+# E.g., mkdir -p ~/.config/zoidy_matecocido
 - name: Ensure zoidy_matecocido config directory exists
   file: path={{ zoidy_matecocido_config_dir }} state=directory
   tags: always
 
+# Copies, e.g., ~/.zoidy/assets/mate-menu-knucklebones/triple-face-pips_21x21.png
 - name: Copy MATE menu icon image to user home application config directory
   copy:
     src: "{{ zoidy_matecocido_mate_menu_icon_22x }}"
@@ -17,24 +20,34 @@
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
-    # Default: applet-icon 'linuxmint-logo-filled-ring'
+    # Default Linux Mint 21.1: applet-icon "'linuxmint-logo-ring-symbolic'"
+    # - Def't Linux Mint 19.3: applet-icon "'linuxmint-logo-filled-ring'"
     - schema: com.linuxmint.mintmenu
       key: applet-icon
       val: "'{{ zoidy_matecocido_mate_menu_icon_dst }}'"
 
     # Default: applet-icon-size '22'
-    # com.linuxmint.mintmenu applet-icon-size '22'
+    # 
+    #  - schema: com.linuxmint.mintmenu
+    #    key: applet-icon-size
+    #    val: "22"
 
     # Default: applet-text "'Menu'"
     - schema: com.linuxmint.mintmenu
       key: applet-text
       val: "''"
 
-    # com.linuxmint.mintmenu custom-color '#DEDEDE'
 
-    # com.linuxmint.mintmenu custom-heading-color '#3C3C3C'
+    # As seen on Linux Mint 19.3, but not Linux Mint 21.1.
+    #  gsettings get com.linuxmint.mintmenu custom-color          # "'#DEDEDE'"
+    #  gsettings get com.linuxmint.mintmenu custom-heading-color  # "'#3C3C3C'"
 
-    # com.linuxmint.mintmenu default-applet-icon 'linuxmint-logo-filled-ring'
+    # Default Linux Mint 21.1: default-applet-icon "'linuxmint-logo-ring-symbolic'"
+    # - Def't Linux Mint 19.3: default-applet-icon "'linuxmint-logo-filled-ring'"
+    # 
+    #   - schema: com.linuxmint.mintmenu
+    #     key: default-applet-icon
+    #     val: "'linuxmint-logo-filled-ring'"
 
     # *** Make Mint MATE Menu Hot Key Harder to AcciDentPress
     # The default mapping to open the MATE Menu is the Windows/Super key
@@ -46,7 +59,10 @@
       val: "'<Super>Shift_L'"
 
     # Default: offset '0'
-    # com.linuxmint.mintmenu offset '0'
+    #
+    #  - schema: com.linuxmint.mintmenu
+    #    key: offset
+    #    val: "0"
 
     # Do not show (useless to me) list of places (caja shortcuts).
     # com.linuxmint.mintmenu plugins-list ['places', 'system_management', 'newpane', 'applications']
