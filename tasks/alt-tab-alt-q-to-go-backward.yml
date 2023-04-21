@@ -1,0 +1,7 @@
+---
+
+# Note that Alt-Shift-Tab still works.
+- name: Add marco Alt-q backwarks binding
+  ansible.builtin.command: >
+    gsettings set org.mate.Marco.global-keybindings switch-windows-backward '<Alt>q'
+

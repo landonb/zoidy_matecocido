@@ -35,6 +35,15 @@
         - background-hide_icons-go_black
   tags: background-hide_icons-go_black
 
+- name: Add Alt-q Alt-tab binding
+  include_role:
+    name: zoidy_matecocido
+    tasks_from: alt-tab-alt-q-to-go-backward
+    apply:
+      tags:
+        - alt-tab-alt-q-to-go-backward
+  tags: alt-tab-alt-q-to-go-backward
+
 - name: Load role to eliminate MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido

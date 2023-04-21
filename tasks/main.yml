@@ -13,6 +13,7 @@
     name: zoidy_matecocido
     tasks_from: all
   tags:
+    - alt-tab-alt-q-to-go-backward
     - alt-tab-eliminate-delay
     - ansible-ensure-dconf
     - background-hide_icons-go_black
