@@ -55,12 +55,18 @@
 
     # *** Make Mint MATE Menu Hot Key Harder to AcciDentPress
     # The default mapping to open the MATE Menu is the Windows/Super key
-    # ('<Super>'), but I fat-finger it sometimes when I don't mean to so
-    # add the shift key.
-    # Default: hot-key "'Shift_L'"
+    # ('<Super>'), but I often accidentally press Super when I don't intend
+    # to do so, so disabling.
+    # - 2023-04-21: I previously set this to "'<Super>Shift_L'", but I've
+    #   since nabbed that keybinding for a global hotkey — but I didn't
+    #   even notice that I had shadowed this binding. Which probably
+    #   means I don't ever access MATE menu via the keyboard shortcut.
+    #   - Really, I rarely open the MATE menu... so don't need a binding.
+    # Default: "'Shift_L'"
+    # Less hot: "'<Super>Shift_L'"
     - schema: com.linuxmint.mintmenu
       key: hot-key
-      val: "'<Super>Shift_L'"
+      val: "''"
 
     # Default: offset '0'
     #
