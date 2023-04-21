@@ -22,19 +22,10 @@
   #   ansible.builtin.command: "command -v jq"
   ansible.builtin.shell: "command -v jq"
 
+# SAVVY/2023-04-20 18:39: Still v3.003. (I don't really expect this to ever change.)
 - name: Check for new version of Hack.
   ansible.builtin.shell: "curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq -r '.tag_name'"
   register: LATEST_VERSION
-  args:
-    # else, ansible bugs us to use get_url:
-    warn: False
-
-#  if [[ "${LATEST_VERS}" != "${HACK_VERS}" ]]; then
-#    echo "A new version of Hack! ${LATEST_VERS}"
-#    # FIXME: Maybe adapt to their being a new version...
-#    echo "MANUALLY FIX THIS TO CONTINUE, LAWYER DOG!!"
-#    exit 1
-#  fi
 
 - debug: msg="Latest HACK∷ {{ LATEST_VERSION.stdout }}"
 
