@@ -17,7 +17,6 @@
     - alt-tab-eliminate-delay
     - ansible-ensure-dconf
     - background-hide_icons-go_black
-    - fix-mate-panel-wnck-applet-crashes
     - font-hack
     - keybinding-circus
     - reset-keybindings

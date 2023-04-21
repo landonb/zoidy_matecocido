@@ -34,6 +34,10 @@
 # as a bundled option, in a sense (though not sure what "compton"
 # means -- is it just non-compositing, or is it something more?).
 
+# WASON/2023-04-21: Circa 2019-10-22 I also used 'marco'
+#   "to fix Window List random crashes".
+# - Hopefully I won't have that issue with latest Mint.
+
 - name: Eliminate MATE Alt-Tab slugishness — Use marco
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
