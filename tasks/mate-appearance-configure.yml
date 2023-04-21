@@ -1,37 +1,62 @@
 ---
 
-- name: Fiddle MATE Appearance, Look of the Desktop
+- name: Customize MATE Appearance window look and feel
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
-    # MATE Menu > Power Management Preferences
+    # MATE Menu > Preferences > Appearance > Custom > Customize...
 
-    # Under dconf as /org/mate/desktop/interface, but
-    # under gsettings as org.mate.interface
-    - schema: org.mate.interface
-      key: icon-theme
-      val: "Mint-Y"
+    # Schema is under dconf as /org/mate/desktop/interface,
+    # and also under gsettings as org.mate.interface.
+    #
+    # dconf:
+    #
+    #   [org/mate/desktop/interface]
+    #   gtk-theme='Mint-Y-Dark'
+    #   icon-theme='Mint-Y-Dark'
+    #
+    #   [org/mate/desktop/peripherals/mouse]
+    #   cursor-theme='Bibata-Modern-Ice'
+    #
+    # gsettings:
+    #
+    #   org.mate.interface gtk-theme 'Mint-Y-Dark'
+    #   org.mate.interface icon-theme 'Mint-Y-Dark'
+    #   org.mate.peripherals-mouse cursor-theme 'Bibata-Modern-Ice'
 
+    # MATE Menu > Preferences > Appearance > Custom > Customize... > Controls
     - schema: org.mate.interface
       key: gtk-theme
-      val: "Mint-Y-Darker"
+      val: "Mint-Y-Dark"
 
-    # Change from too-bright white border (e.g., window titlebar) to darker.
-    # - With green close button circle-x (see also Mint-Y-Dark-Aqua, etc.).
-    - schema: org.mate.Marco.general
-      key: theme
-      val: "Mint-Y-Dark-Pink"
+    # MATE Menu > Preferences > Appearance > Custom > Customize... > Window Border
+    #
+    # ISOFF/2023-04-21: Don't set the default value, in case Mint changes
+    # default in the future, so you can demo new default.
+    #
+    # - schema: org.mate.Marco.general
+    #   key: theme
+    #   # 2023-04-21: The default.
+    #   val: "Mint-Y"
 
-    # WEIRD/2020-03-09 12:04: I changed another value to 'Mint-Y-Dark-Pink' at
-    # Mint MENU > Appearance Preferences > Customize Theme > Window Border, but
-    # I cannot find the corresponding key in neither gsettings nor dconf, nor
-    # under ~/.config/. Oh, well, maybe it was a holder from the 19.1 → 19.3
-    # upgrade? In any case, just be aware on next distro install:
-    # - HINT: If mate-terminal has no border (which makes it hard to tell where
-    # one window ends and another begins; and just looks bad in general), then
-    # open Appearances from the Mint MATE menu, and customize the Window Border.
+    # MATE Menu > Preferences > Appearance > Custom > Customize... > Icons
+    - schema: org.mate.interface
+      key: icon-theme
+      val: "Mint-Y-Dark"
 
-- name: Fiddle MATE Appearance, Notifications
+    # MATE Menu > Preferences > Appearance > Custom > Customize... > Pointer
+    #
+    # ISOFF/2023-04-21: Don't set the default value, in case Mint changes
+    # default in the future, so you can demo new default.
+    #
+    # - schema: org.mate.peripherals-mouse
+    #   key: cursor-theme
+    #   # 2023-04-21: The default. Whodda thought I'd enjoy a new cursor design.
+    #   val: "Bibata-Modern-Classic"
+
+# ***
+
+- name: Customize MATE notifications theme
   ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
   loop:
 
@@ -42,4 +67,7 @@
     # Leave default:
     #   - key: /org/mate/notification-daemon/popup-location
     #     val: "'top_right'"
+
+  # IZOFF/2023-04-20 19:07: Disabled. I like the 'coco' theme.
+  when: False
 
