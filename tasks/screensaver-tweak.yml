@@ -1,50 +1,94 @@
 ---
 
+# SAVVY: Set zoidy_matecocido_lock_screen_background to customize lock screen bg.
 - name: Form MATE desktop background target path
   set_fact:
-    zoidy_matecocido_desktop_backgd_dst: "{{ zoidy_matecocido_config_dir }}/mate-dtop-bkgd_{{ zoidy_matecocido_desktop_background | basename }}"
+    zoidy_matecocido_lock_screen_background_dst: "{{ zoidy_matecocido_config_dir }}/mate-dtop-bkgd_{{ zoidy_matecocido_lock_screen_background | basename }}"
 
 - name: Ensure zoidy_matecocido config directory exists
   file: path={{ zoidy_matecocido_config_dir }} state=directory
-  tags: always
+  when: zoidy_matecocido_lock_screen_background
 
 - name: Copy lock screen background image to user home config application directory
   copy:
-    src: "{{ zoidy_matecocido_desktop_background }}"
-    dest: "{{ zoidy_matecocido_desktop_backgd_dst }}"
+    src: "{{ zoidy_matecocido_lock_screen_background }}"
+    dest: "{{ zoidy_matecocido_lock_screen_background_dst }}"
+  when: zoidy_matecocido_lock_screen_background
+
+# ***
+
+- name: Disable Screensaver lock, and set idle timeout
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # *** Show screensaver after X minutes of idle
+
+    # MATE menu > Screensaver > Regard the computer as idle after: X minutes.
+    #
+    # SAVVY: You'll this option on the Screensaver Preferences dialog,
+    # but it's a session setting, a cousin of screensaver (i.e.,
+    # it's under org.mate.session, not org.mate.screensaver).
+    - schema: org.mate.session
+      key: idle-delay
+      # Default: 5
+      val: "7"
+
+    # MATE menu > Screensaver > Activate screensaver when computer is idle.
+    #
+    # SAVVY: You can disable screensaver idle activation with this setting.
+    #
+    #  - schema: org.mate.screensaver
+    #    key: idle-activation-enabled
+    #    # Default: "'true'"
+    #    val: "false"
+
+    # *** Don't lock screen on idle
+
+    # SAVVY: You can lock manually:
+    #   gnome-screensaver-command --lock
+    - schema: org.mate.screensaver
+      key: lock-enabled
+      # Default: "'true'"
+      val: "false"
+
+    # *** Select a screensaver theme (defaults None/blank)
+
+    #  - schema: org.mate.screensaver
+    #    key: themes
+    #    # - SAVVY/2023-04-21: Linux Mint 19.3 has dozens of screensaver themes,
+    #    #   such as a kaleiescope theme I like (though I appreciate no
+    #    #   screensaver the best), e.g.,
+    #    #     val: "\"['screensavers-gleidescope']\""
+    #    #   but Linux Mint 21.1 only has a few themes: Blank screen,
+    #    #   Random, Cosmos, Floating GNOME, Floating MATE, Pictures
+    #    #   folder, and Pop art squares.
+    #    # Defaults: "'@as []'"
+    #    val: "'@as []'"
+
+    #  - schema: org.mate.screensaver
+    #    key: mode
+    #    # Default: "'blank-only'"
+    #    #  val: "'single'"
+    #    val: "'blank-only'"
 
 - name: Disable MATE Screensaver, and Its Lock, and Set Lock Screen Background
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
+    # *** Choose a lock screen background image
+
+    # Circa 2019/Linux Mint 19.3, Mint would show its own background in lock.
+    # - ISOFF/2023-04-21: In Linux Mint 21.1, the default is None (a black
+    #   background) on lock, so disabling this.
+    # - DUNNO/2023-04-21: Huh, I don't see a way in the GUI to reset to None!
+    #
     - schema: org.mate.screensaver
-      key: idle-activation-enabled
-      # 2019-04-08: (lb): This was true, but perhaps should be opt-in.
-      val: "false"
-
-    - schema: org.mate.screensaver
-      key: lock-enabled
-      val: "false"
-
-    - schema: org.mate.screensaver
-      key: themes
-      val: '"[''screensavers-gleidescope'']"'
-
-    - schema: org.mate.screensaver
-      key: mode
-      val: "'single'"
-
-    # Because we disable lock-on-screensaver, we provide manual method,
-    #   gnome-screensaver-command --lock
-    # but that uses its own background, which defaults to Mint logo.
-    - schema: org.gnome.desktop.background
-      key: picture-uri
-      # NOTE: The file:// prefix is mandatory.
-      val: "'file://{{ zoidy_matecocido_desktop_backgd_dst }}'"
-
-    # You'll this option on the Screensaver Preferences dialog,
-    # but it's a session setting, a cousin of screensaver.
-    - schema: org.mate.session
-      key: idle-delay
-      val: "19"
+      key: picture-filename
+      # SAVVY/2023-04-21: The default location location does not exist.
+      # - Perhaps why it says 'None' in GUI and shows no lock screen bg?
+      #   - Indeed, if I reset to that path, GUI shows '(None)'.
+      #       val: "'/usr/share/backgrounds/mate/desktop/Stripes.png'"
+      # Default: "'/usr/share/backgrounds/mate/desktop/Stripes.png'"
+      # SAVVY: Always set this value, in case user wants to set to None.
+      val: "{% if zoidy_matecocido_lock_screen_background %}'{{ zoidy_matecocido_lock_screen_background_dst }}'{% else %}''{% endif %}"
 
