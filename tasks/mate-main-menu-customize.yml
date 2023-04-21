@@ -16,7 +16,7 @@
     src: "{{ zoidy_matecocido_mate_menu_icon_22x }}"
     dest: "{{ zoidy_matecocido_mate_menu_icon_dst }}"
 
-- name: Stylize Mint Menu (in lower-left of MATE)
+- name: Stylize Mint MATE Menu (in lower-left of panel)
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
