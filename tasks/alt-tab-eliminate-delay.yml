@@ -1,5 +1,21 @@
 ---
 
+# GOTIT/2023-04-21: Rendering thumbnails delays the Alt-tab popup
+# momentarily, which annoys me a little. And I don't get much value
+# from the thumbnails, so disabling.
+
+- name: Eliminate MATE Alt-Tab slugishness — Disable thumbnails
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    - schema: org.mate.Marco.general
+      key: compositing-fast-alt-tab
+      # Default:
+      #  val: 'false'
+      val: 'true'
+
+# ***
+
 # 2017-07-13: Alt-tab is very slow -- there's a secondish delay.
 #   Seems to be caused by "Compositing" in the Window Manager.
 #
@@ -55,6 +71,11 @@
       # Default:
       #  val: 'marco-composite'
       val: 'false'
+
+  # ISOFF/2023-04-21: Disable thumbnails to speed up Alt-tab popup display.
+  # - But keeping this task (disabled) for posterity, in case I want to
+  #   demo marco in the future.
+  when: False
 
 # ***
 
