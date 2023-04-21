@@ -35,16 +35,22 @@
         - background-hide_icons-go_black
   tags: background-hide_icons-go_black
 
-- name: Load role to Fix MATE Alt-Tab slugishness
+- name: Load role to eliminate MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido
-    tasks_from: deprecated-fix-alt-tab-delay
+    tasks_from: alt-tab-eliminate-delay
     apply:
       tags:
-        - deprecated-fix-alt-tab-delay.yml
-  tags: deprecated-fix-alt-tab-delay.yml
-  # DEPRECATED/2018-12-26: Delete deprecated task file after verifying
-  #   not needed. [[lb]: I..e, after setting up the other new machine.]
+        - alt-tab-eliminate-delay
+  tags: alt-tab-eliminate-delay
+  # IZOFF/2023-04-20: Alt-tab is still slow, but I might enjoy the thumbnails.
+  # - I wonder if it's as slow as it was many distros ago, because it doesn't
+  #   seem *unusable* like I think I remember it (I thought if I Alt-tab-tabbed
+  #   too quickly, it sometimes wouldn't work, but I'm not seeing that issue
+  #   currently; Alt-tab-tabbing still works, but you might not see the
+  #   Alt-tab popup until about the time you release your keypresses).
+  # IZOFF/2023-04-20: 'marco' has a tiny window drag hover zone, which is
+  # annoying. The default 'marco-composite' has a bigger, easier to use zone.
   when: False
 
 - name: Load role to Disable Window Manager Compositing (to fix Window List random crashes)

@@ -13,9 +13,9 @@
     name: zoidy_matecocido
     tasks_from: all
   tags:
+    - alt-tab-eliminate-delay
     - ansible-ensure-dconf
     - background-hide_icons-go_black
-    - deprecated-fix-alt-tab-delay
     - fix-mate-panel-wnck-applet-crashes
     - font-hack
     - keybinding-circus

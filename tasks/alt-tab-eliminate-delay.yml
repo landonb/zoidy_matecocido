@@ -1,0 +1,84 @@
+---
+
+# 2017-07-13: Alt-tab is very slow -- there's a secondish delay.
+#   Seems to be caused by "Compositing" in the Window Manager.
+#
+# https://askubuntu.com/questions/43875/how-do-i-adjust-the-alt-tab-speed
+#
+# SAVVY/2023-04-20: Alt-tab is still slow to popup (if you <Alt-tab> <tab>
+# quickly and release keypresses, you might only see the Alt-tab popup
+# briefly around the time you're releasing keys). But it doesn't seem
+# completely unusable...
+# - IZOFF/2023-04-20: I've currently disable this task from all.yml,
+#   to try using the default marco-composite window-manager, because
+#   delay might not be too annoying.
+#
+# IZOFF/2023-04-20: I found a deal-breaker: The window resize rollover
+# area is much bigger with 'marco-composite'.
+# - E.g., if you mouse over the right-side of the window, on 'marco',
+#   the cursor only changes to the drag icon when you're over the 5 or
+#   so pixels of the left window frame.
+#   - But on 'marco-composite', the drag area extends about 10 pixels
+#     past the edge of the window — which makes it much easier to grab.
+
+# CXREF: You can enable this setting via the GUI:
+#
+#   MATE Menu > Preferences > Desktop Settings > Windows > Window Manger
+
+# 2017-07-19: Aha! I was wondering why this isn't a problem on 12.04:
+# there's a checkbox for "Use compositing" that's unchecked, and Marco
+# and Compwiz are the only two window managers (so there's neither
+# marco-composite nor marco-compton).
+#
+# So in 14.04, compositing was added to the window manager option
+# as a bundled option, in a sense (though not sure what "compton"
+# means -- is it just non-compositing, or is it something more?).
+
+- name: Eliminate MATE Alt-Tab slugishness — Use marco
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # The default mate-window-manager is 'marco-composite'.
+    - schema: com.linuxmint.desktop
+      key: mate-window-manager
+      # Default:
+      #  val: 'marco-composite'
+      val: 'marco'
+
+    # The default compositing-manager is 'true'.
+    - schema: org.mate.Marco.general
+      key: compositing-manager
+      # Default:
+      #  val: 'marco-composite'
+      val: 'false'
+
+# ***
+
+- ansible.builtin.debug:
+    msg: "BWARE: 'marco' change not applied until logon again (or change setting via MATE Menu > Preferences > Desktop Settings > Windows > Window Manger)"
+
+# CXREF: As seen in the GUI sources:
+#   killall ccsm
+#   cat /usr/share/linuxmint/mintdesktop/mint.dconf | dconf load /org/compiz/profiles/mint/
+#   window-manager-launcher
+# https://github.com/linuxmint/mintdesktop/blob/master/usr/bin/compiz-reset-profile
+#
+# BROKE: This borks things, like Alt-tab not responding, mate-panel (except
+# for MATE menu) not responding, and window buttons gone missing.
+- name: Restart marco
+  #  ansible.builtin.command: window-manager-launcher
+  # XDG_CURRENT_DESKTOP not set within Ansible environment.
+  ansible.builtin.shell: XDG_CURRENT_DESKTOP=MATE window-manager-launcher
+  register: cmd_result
+  when: False
+
+- ansible.builtin.debug: msg="{{ cmd_result }}"
+  when: False
+
+# Other approaches I tried (very few hits on web search, and these
+# are the scraps I found):
+# - Logs you out:
+#     sudo service lightdm restart
+# - Wreaks weird havoc (but works, sorta):
+#     marco --replace
+
