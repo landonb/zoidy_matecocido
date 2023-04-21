@@ -74,31 +74,99 @@
     #    key: offset
     #    val: "0"
 
+# ***
+
+# Tweak the MATE menu contents (remove stuff you don't use, etc.).
+#
+# - BWARE/2023-04-21: One drawback: This moves the "Quit" button
+#   higher up, so that it's not just above the MATE menu button
+#   when you click it. But rather, you now need to mouse up a
+#   ways to click it.
+#   - KCALM: I use a global keybinding to lock the screen,
+#     and I rarely shutdown, so not gonna care. Keep calm.
+#   - BWAIT: But wait, given that I don't open this menu
+#     very often, maybe I'll leave the defaults so the Quit
+#     button is closer by mouse to the MATE menu button you
+#     clicked.
+
+- name: Stylize Mint MATE Menu contents
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
     # Do not show (useless to me) list of places (caja shortcuts).
-    # com.linuxmint.mintmenu plugins-list ['places', 'system_management', 'newpane', 'applications']
+    # - This removes the Places list (Computer, Home Folder, Network, Desktop, Trash)
+    #   from the top-left of the main MATE menu popup.
+    #   - It also causes the popup to be shorter.
+    #
+    # - Default: plugins-list "\"['places', 'system_management', 'newpane', 'applications']\""
     - schema: com.linuxmint.mintmenu
       key: plugins-list
+      # val: "\"['places', 'system_management', 'newpane', 'applications']\""
       val: "\"['system_management', 'newpane', 'applications']\""
 
+    # If start-with-favorites is true, Mint MATE menu always shows
+    # Favorites instead of All applications.
+    # - When start-with-favorites is false, it restores previous view.
+    #
+    # Default: start-with-favorites "false"
     - schema: com.linuxmint.mintmenu
       key: start-with-favorites
-      val: "true"
+      val: "false"
 
-    - schema: com.linuxmint.mintmenu
-      key: theme-name
-      val: "Mint-Y-Darker-Blue"
+    # At some point (early Linux Mint 19.3 testing perhaps, but not recently),
+    # I set a theme, not sure why: theme-name "'Mint-Y-Darker-Blue'"
+    # - Default: theme-name "'default'"
+    #
+    #  - schema: com.linuxmint.mintmenu
+    #    key: theme-name
+    #    val: "'default'"
 
     # ***
 
+    # CXREF:
+    #   https://github.com/linuxmint/mintmenu/blob/master/usr/lib/linuxmint/mintMenu/plugins/system_management.py
+
+    # Because we remove Places from the MATE menu, as well as
+    # Package Manager and Software manager from the System
+    # section (both on the left side of the MATE menu), it
+    # decreases the popup height.
+    # - Here we set a height so that the "All applications"
+    #   Applications list shows up without a scroll bar.
+    #
+    # Default: 180
     - schema: com.linuxmint.mintmenu.plugins.system_management
       key: height
-      val: "600"
+      # val: "180"
+      val: "543"
 
+    # Per system_management.py, 'height' ignored unless 'allow-scrollbar'.
+    # - Default: allow-scrollbar "'false'"
+    # - DUNNO/2023-04-21: When this is false, I still see MATE menu scrollbars.
+    - schema: com.linuxmint.mintmenu.plugins.system_management
+      key: allow-scrollbar
+      # val: "'false'"
+      val: "'true'"
+
+    # ***
+
+    # Hide MATE menu > Package Manager option (on left, under System).
+    #
+    # Default: true
     - schema: com.linuxmint.mintmenu.plugins.system_management
       key: show-package-manager
+      # val: "true"
       val: "false"
 
+    # Hide MATE menu > Software Manager option (on left, under System).
+    #
+    # Default: true
     - schema: com.linuxmint.mintmenu.plugins.system_management
       key: show-software-manager
+      # val: "true"
       val: "false"
+
+  # ISOFF/2023-04-21: See comments above. While I appreciate a cleaner
+  # (more empty) Mint menu, I also appreciate the Quit button at the
+  # bottom of the left sidebar, just above the Mint menu panel button.
+  when: False
 
