@@ -32,11 +32,15 @@
     #    key: applet-icon-size
     #    val: "22"
 
-    # Default: applet-text "'Menu'"
-    - schema: com.linuxmint.mintmenu
-      key: applet-text
-      val: "''"
-
+    # Default Linux Mint 21.1: applet-text "''"
+    # - But on hover shows "Linux Mint 21.1 Vera"
+    #   - Oh, huh, this setting affects the text to the right of the icon
+    #     in the panel. It doesn't change the popup text.
+    # - Def't Linux Mint 19.3: applet-text "'Menu'"
+    #
+    #  - schema: com.linuxmint.mintmenu
+    #    key: applet-text
+    #    val: "''"
 
     # As seen on Linux Mint 19.3, but not Linux Mint 21.1.
     #  gsettings get com.linuxmint.mintmenu custom-color          # "'#DEDEDE'"
