@@ -1,6 +1,6 @@
 ---
 
-- name: Configure MATE caja application (basic)
+- name: Configure MATE caja application — dconf settings
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
@@ -8,17 +8,18 @@
 
     - schema: org.mate.caja.preferences
       key: default-folder-viewer
-      # Default default-folder-viewer 'icon-view'
+      # Default: "'icon-view'"
       val: "'list-view'"
 
     - schema: org.mate.caja.preferences
       key: show-hidden-files
+      # Default: "false"
       val: "true"
 
-- name: Configure MATE caja application (advanced)
-  ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
-  loop:
-
-    - key: "/org/mate/caja/window-state/start-with-location-bar"
+    # See also dconf option:
+    #   dconf read /org/mate/caja/preferences/always-use-location-entry
+    - schema: org.mate.caja.preferences
+      key: always-use-location-entry
+      # Default: "false"
       val: "true"
 
