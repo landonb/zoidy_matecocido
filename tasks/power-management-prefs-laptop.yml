@@ -11,14 +11,21 @@
       key: action-critical-battery
       val: "shutdown"
 
-    # On AC Power: When laptop lid is closed: Blank screen
+    # On AC Power: When laptop lid is closed: Blank screen (which locks it)
     - schema: org.mate.power-manager
       key: button-lid-ac
-      val: "blank"
-      # 2020-09-01: Except for external monitor when lid closed, then:
-      #  val: "nothing"
+      # 2020-09-01: When using an external monitor, do nothing
+      # when the lid is closed (don't lock the session).
+      # - If you want to lock the screen when laptop lid is closed,
+      #   "blank" the screen instead:
+      #     val: "blank"
+      # MAYBE/2023-04-21: Make this settable from group_vars, possibly
+      #                   tied to ansible_hostname.
+      val: "nothing"
 
-    # On Battery Power: When laptop lid is closed: Blank screen
+    # On Battery Power: When laptop lid is closed: Blank screen.
+    # - Note that the screen should still turn off, but session
+    #   won't be locked.
     - schema: org.mate.power-manager
       key: button-lid-battery
       val: "blank"
