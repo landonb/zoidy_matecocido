@@ -16,11 +16,11 @@
 
 # *** Alert user if newer version.
 
-# FIXME/2018-12-23: Run this and other curl's, or check GitHubs, for latest versions (of things).
-
 - name: 'Ensure ‘jq’ is available'
-  become: true
-  apt: name=jq
+  # SAVVY/2023-04-20: `command` is not found by 'command' module,
+  # because it's a shell construct. I.e., cannot call:
+  #   ansible.builtin.command: "command -v jq"
+  ansible.builtin.shell: "command -v jq"
 
 - name: Check for new version of Hack.
   ansible.builtin.shell: "curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq -r '.tag_name'"
