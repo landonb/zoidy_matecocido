@@ -4,7 +4,13 @@
   ansible.builtin.shell: gsettings set org.mate.Marco.window-keybindings {{ item.key }} {{ item.val }}
   loop:
 
-    # MATE Menu > Keyboard Shortcuts
+    # CXREF: MATE Menu > Keyboard Shortcuts.
+
+    # SAVVY: Mod4 is the Super key.
+
+    # SAVVY: These all default to "'disabled'".
+
+    # *** Tile and move commands
 
     # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+Page Up (keypad 9)
     - key: tile-to-corner-ne
@@ -41,6 +47,8 @@
     # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Left (keypad 4)
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4>KP_Left'"
+
+    # *** Other window commands
 
     # Maximize window vertically
     # Use Case: Use as part of a sequence to resize and center a window.

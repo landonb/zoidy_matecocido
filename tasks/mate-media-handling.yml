@@ -6,19 +6,35 @@
 
     # caja > Edit > Preference > File Management Preferences > Media
 
+    # Automount media, but don't launch anything from it.
+    #
+    #  - schema: org.mate.media-handling
+    #    key: automount
+    #    # Default: "true"
+    #    val: "true"
+
     - schema: org.mate.media-handling
       key: automount-open
+      # Default: "true"
       val: "false"
 
     - schema: org.mate.media-handling
       key: autorun-never
+      # Default: "false"
       val: "true"
 
     - schema: org.mate.media-handling
       key: autorun-x-content-ignore
+      # Default: "'@as []'"
       val: "\"['x-content/audio-cdda', 'x-content/video-dvd', 'x-content/audio-player', 'x-content/image-dcf', 'x-content/software']\""
+
+    # - schema: org.mate.media-handling
+    #   key: autorun-x-content-open-folder
+    #   # Default: "'@as []'"
+    #   val: "'@as []'"
 
     - schema: org.mate.media-handling
       key: autorun-x-content-start-app
+      # Default: "\"['x-content/software']\""
       val: "'@as []'"
 
