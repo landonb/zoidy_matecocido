@@ -82,6 +82,11 @@
     #    # Default: absent.
     #    val: "hidden"
 
+# mate-terminal loads GUI settings changes immediately, but not backdoor
+# dconf updates.
+- debug:
+    msg: "CHORE: You must exit all terminals to effectualize mate-terminal changes"
+
 - name: Configure MATE-Terminal Keyboard Shortcuts
   community.general.dconf:
     key: "/org/mate/terminal/keybindings/{{ item.key }}"
@@ -355,7 +360,5 @@
     # - key: "zoom-out"
     #   val: "'disabled'"
 
-  # ***
-
-- debug: msg="NOTE! You must logon again for changes to take effect!"
+# Unlike Profile Preferences, Keyboard Bindings changes effective immediately.
 
