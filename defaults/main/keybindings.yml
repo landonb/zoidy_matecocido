@@ -15,7 +15,7 @@ zoidy_matecocido_keybindings_basic:
   # *** Keybindings defined below:
   #
   #   Super_L + a + Shift + Ctrl  Focus window and tab: Gmail Inbox
-  #              ["  """  "  "" — for parity w/ macOS Karabiner-Elements binding]
+  #              ['  '''  '  '' — for parity w/ macOS Karabiner-Elements binding]
   #
   #   Super_L + t   New Chromium Browser tab
   #
