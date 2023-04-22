@@ -87,11 +87,36 @@
 - debug:
     msg: "CHORE: You must exit all terminals to effectualize mate-terminal changes"
 
+# *** Configure keyboard shortcuts
+
+# CXREF: mate-terminal > Edit > Keyboard Shortcuts...
+
+# CPYST: Use dconf-reset to revert to defaults.
+#
+#   dconf reset /org/mate/terminal/keybindings/<key>
+#
+# In Linux Mint 21.1, /org/mate/terminal/keybindings/ is absent by default,
+# so you could also reset the whole directory:
+#
+#   dconf reset -f /org/mate/terminal/keybindings/
+
+# KLUGE/2023-04-22: There's a regression in dconf v6.5.0. Avoid it:
+#
+#   ansible-galaxy collection install 'community.general:!=6.5.0'
+#
+# CXREF:
+#
+#   https://github.com/ansible-collections/community.general/commit/a5765143f1b172396749f8ab54a466b8f3e2be74
+
 - name: Configure MATE-Terminal Keyboard Shortcuts
-  community.general.dconf:
-    key: "/org/mate/terminal/keybindings/{{ item.key }}"
-    value: "{{ item.val }}"
-    state: present
+  # LATER/2023-04-22: FIXME: Revert to dconf once upstream fix is released.
+  #
+  # community.general.dconf:
+  #   key: "/org/mate/terminal/keybindings/{{ item.key }}"
+  #   value: "{{ item.val }}"
+  #   state: present
+  ansible.builtin.shell: >
+    dconf write "/org/mate/terminal/keybindings/{{ item.key }}" "{{ item.val }}"
   loop:
 
     # *** GUI shows 2 [✓] checkbox options atop the keys list
