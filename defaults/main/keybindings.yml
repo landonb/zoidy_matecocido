@@ -10,6 +10,8 @@ zoidy_matecocido_gvim_servername: 'SAMPI'
 # YOU: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
 
+# CXREF: zoidy_matecocido_keybindings_bonus
+#        zoidy_matecocido_keybindings_gvims
 zoidy_matecocido_keybindings_basic:
 
   # *** Keybindings defined below:
