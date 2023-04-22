@@ -7,52 +7,80 @@
     state: present
   loop:
 
-    # Default: background-color='#FFFFFFFFDDDD'
+    # *** White on black theme.
+
+    # Note when you go through the GUI, you'll use the color picker,
+    # and you'll also see this change in the conf:
+    #
+    #   [org/gtk/settings/color-chooser]
+    #   selected-color=(true, 0.0, 0.0, 0.0, 1.0)
+    #
+    #     →
+    #
+    #   custom-colors=[(1.0, 1.0, 0.8666666666666667, 1.0)]
+    #   selected-color=(true, 1.0, 1.0, 1.0, 1.0)
+
+    # - CXREF: mate-terminal > Edit > Colors > Background color
     - key: "background-color"
+      # Default: "'#FFFFFFFFDDDD'"    
       val: "'#000000000000'"
 
+    # - CXREF: mate-terminal > Edit > Colors > Text color
     - key: "foreground-color"
+      # Default: "'#000000000000'"    
       val: "'#FFFFFFFFFFFF'"
 
+    # - CXREF: mate-terminal > Edit > Colors > ✗ Use colors from system theme
     - key: "use-theme-colors"
+      # Defaults enabled, but no setting.
       val: "false"
 
-    # Default: background-darkness=0.90000000000000002
-    - key: "background-darkness"
-      val: "1.0"
+    # No longer necessary in Linux Mint 21.1:
+    #
+    #  - key: "background-darkness"
+    #    # Default: absent.
+    #    val: "1.0"
 
-    # Default: background-type='transparent'
-    - key: "background-type"
-      val: "'solid'"
+    # Circa 2019/Linux Mint 19.3, defaults "'transparent'";
+    # in Linux Mint 21.1 defaults "'solid'" but this setting
+    # absent.
+    #
+    #  - key: "background-type"
+    #    val: "'solid'"
 
+    # *** Hack font
+
+    # Default "Monospace Regular 12", but no setting.
+    # - CXREF: mate-terminal > Edit > General > Font
     - key: "font"
-      val: "'Hack 10'"
+      # Default: absent.
+      # - See also:
+      #     val: "'Hack 10'"
+      val: "'Hack Nerd Font 10'"
 
+    # - CXREF: mate-terminal > Edit > General > ✗ Use the system fixed width font
     - key: "use-system-font"
+      # Default: absent.
       val: "false"
 
+    # *** Other settings
+
+    # Defaults enabled, but no setting.
+    # - CXREF: mate-terminal > Edit > Profile Preferences > General
+    #            > ✗ Show menubar by default in new terminals
     - key: "default-show-menubar"
+      # Default: absent.
       val: "false"
 
-    - key: "scrollbar-position"
-      val: "hidden"
+    # *** ISOFF: Hide scrollbar
 
-    # Other values whose defaults work without being twiddled:
+    # Defaults enabled, but Linux Mint 21.1 scrollbars are less distracting
+    # than they were (to me) in Linux Mint 19.3. So no longer hiding.
+    # - CXREF: mate-terminal > Edit > Scrolling > Scrollbar is: ✓ Disabled
     #
-    #   - key: "visible-name"
-    #         val: "'Default'"
-    #
-    #       - key: "palette"
-    #         val: "'#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'"
-    #
-    #       - key: "silent-bell"
-    #         val: "true"
-    #
-    #       - key: "scrollback-unlimited"
-    #         val: "true"
-    #
-    #       - key: "bold-color"
-    #         val: "'#000000000000'"
+    #  - key: "scrollbar-position"
+    #    # Default: absent.
+    #    val: "hidden"
 
 - name: Configure MATE-Terminal Keyboard Shortcuts
   community.general.dconf:
