@@ -94,23 +94,18 @@
     state: present
   loop:
 
-    # HINT:
-    #
-    #       dconf reset /org/mate/terminal/keybindings/KEY
-
-    # Audit *all the bindings*!
-    # - (lb): This list is exhaustive, AFAIK!
-
-    # *** [✓] checkboxes, above the Shortcut keys.
+    # *** GUI shows 2 [✓] checkbox options atop the keys list
 
     # [✓] Enable menu access keys (such as Alt+F to open the File menu)
     #
     #     /org/mate/terminal/global/use-mnemonics=true
     #
-    # (lb): I've already got Gvim Alt-f wired to its File menu.
-    # - And I don't use Alt-f from terminal.
+    # (lb): I don't use Alt-f from terminal.
     # - And it's not a readline binding.
-    # - So it's fine to leave this enabled.
+    # - So it's fine to leave this enabled (though I never use it,
+    #   because I don't use the mate-terminal menu bar in normal
+    #   usage (only when hacking on this Ansible task); and this
+    #   binding is a no-op when menubar is hidden, anyway).
 
     # [✓] Enable the menu shortcut key (F10 by default)
     #
@@ -121,8 +116,13 @@
     # - So pressing F10 is a convention, to appease keyboarders whom lack an
     #   Alt key, perhaps (much like pressing ESC is a convention for starting
     #   an Alt-key press without using the Alt key).
+    # - 2023-04-22: When menubar is hidden, F10 sends '~' character.
 
-    # *** EDIT
+    # *** Keyboard Shortcuts > Shortcut keys
+
+    # This is an exhaustive list of *all the bindings*.
+
+    # **** Shortcut keys > Edit
 
     # Copy, Paste, and Select All are currently keepers.
     # - I use these still — brainy still wired this way.
@@ -142,7 +142,7 @@
     # - key: "select-all"
     #   val: "'<Primary><Shift>a'"
 
-    # *** FILE
+    # **** Shortcut keys > File
 
     # "Close Tab"
     # Default: Shift+Ctrl+W
@@ -158,7 +158,7 @@
     #   val: "'<Primary><Shift>q'"
 
     # # "New Profile"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "new-profile"
     #   val: "'disabled'"
 
@@ -168,13 +168,17 @@
       val: "'disabled'"
 
     # (lb): 2020-02-11: Leave this'un?
+    # - 2023-04-22: I don't use it (I usually use a global <Cmd-m> keybinding
+    #   instead), but the binding also doesn't conflict with anything... then
+    #   again, if disable it, you could know for sure whether you use it or not.
     #
     # # "New Window"
     # # Default: Shift+Ctrl+N
     # - key: "new-window"
-    #   val: "'<Primary><Shift>n'"
+    #   # val: "'<Primary><Shift>n'"
+    #   val: "'disabled'"
 
-    # *** HELP
+    # **** Shortcut keys > Help
 
     # (lb): Fairly helpless.
     #
@@ -183,13 +187,13 @@
     - key: "help"
       val: "'disabled'"
 
-    # *** SEARCH
+    # **** Shortcut keys > Search
 
     # (lb): I'm torn on these -- part of me wants to disable these,
     # because I should be using tmux buffer search! But I don't *always*
-    # tmux, though I'm leanving more-so towards always tmuxxing recently.
-    # So, I dunno, let's disable the Find bindings; I so rarely use, I
-    # can go to the mate-terminal menubar when (if ever again) I need.
+    # tmux, though I'm leaning more-so towards always tmuxxing recently.
+    # So, I dunno, let's disable the Find bindings; I so rarely use 'em,
+    # and you can search from the mate-terminal menubar if you must.
 
     # "Find"
     # Default: Shift+Ctrl+F
@@ -206,10 +210,10 @@
     - key: "search-find-previous"
       val: "'disabled'"
 
-    # *** TABS
+    # **** Shortcut keys > Tabs
 
     # # "Detach Tab"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "detach-tab"
     #   val: "'disabled'"
 
@@ -288,29 +292,29 @@
       val: "'disabled'"
 
     # # "Switch to Tab 11"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "switch-to-tab-11"
     #   val: "'disabled'"
 
     # # "Switch to Tab 12"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "switch-to-tab-12"
     #   val: "'disabled'"
 
-    # *** TERMINAL
+    # **** Shortcut keys > Terminal
 
     # # "Reset"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "reset"
     #   val: "'disabled'"
 
     # # "Reset and Clear
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "reset-and-clear"
     #   val: "'disabled'"
 
     # # "Set Title"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "set-terminal-title"
     #   val: "'disabled'"
 
@@ -324,7 +328,7 @@
     - key: "prev-profile"
       val: "'disabled'"
 
-    # *** VIEW
+    # **** Shortcut keys > View 
 
     # (lb): 2020-02-11: Leave this'un?
     #
@@ -334,15 +338,15 @@
     #   val: "'disabled'"
 
     # # "Hide and Show menubar"
-    # # Default: Disabled
+    # # Default: disabled
     # - key: "toggle-menubar"
     #   val: "'disabled'"
 
     # (lb): I don't think I ever use zoom controls
-    # except when I boxing glove zoom in or zoom out
+    # except when I boxing-glove zoom in or zoom out
     # by accident and need to then deliberately Ctrl+0
     # to restore the normal (no) zoom size.
-    # - 2020-02-18 12:59: On second thought, they're
+    # - 2020-02-18: On second thought, they're
     #   useful when presenting!!
 
     # # "Normal Size
