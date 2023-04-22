@@ -93,11 +93,17 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
 
-  # *** Invert Screen Colors (ew!): Super_L + g
+  # *** Invert Screen Colors (ew!): Super_L + i
 
-  - name: "'Invert Screen Colors'"
-    binding: "'<Mod4>i'"
-    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors.bin\\\"'"
+  # ISOFF/2023-04-22: No longer works:
+  #   $ ~/.local/bin/xrandr-invert-colors
+  #   `RANDR Query Version' returned error -1
+  #   error while init
+  # - But don't care.
+  #
+  #  - name: "'Invert Screen Colors'"
+  #    binding: "'<Mod4>i'"
+  #    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors\\\"'"
 
   # *** Focum gVim window: Super_L + `
 
