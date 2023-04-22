@@ -296,25 +296,29 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Resize and center active window: Ctrl + Shift + Super_L + KeyPad+
   #
-  # MEH: This binding using a script from an external dependency:
-  #        https://github.com/landonb/reputed-tiler
-  #      whose installation I have not wired from this Ansible playbook.
-  # SETUP: Get the reputed-tiler repo and install somewhere on PATH,
-  #        E.g., I installed it to ~/.local/bin/window-to-center via:
-  #          PREFIX=${HOME}/.local make link
-  - name: "window-to-center"
-    # Where do you want it? Considering the existing
-    # Ctrl-Shift-Cmd-* keyboard shortcuts managed by
-    #   tasks/mate-marco-window-keybindings.yml
-    # probably KP_Add is the best choice mnemonically
-    # (stretch the window vertically and horizontally
-    # from the center of the screen toward the edges)
-    # although KP_Subtract seems like the easiest key
-    # to press (left hand on the lower-leftmost three
-    # keys, and right hand on the upper-rightmost key
-    # (or nearabouts)). I prefer the mnemonically one.
-    binding: "'<Primary><Shift><Mod4>KP_Add'"
-    action: "'window-to-center'"
+  # ISOFF/2023-04-22: CXREF: See instead <Ctrl-Shift-Cmd-Numpad_5>'s 'move-to-center':
+  #   ~/.kit/ansible/roles/zoidy_matecocido/tasks/mate-marco-window-keybindings.yml
+  # - Also, reputed-tiler is retired-unsupported.
+  #
+  # # MEH: This binding using a script from an external dependency:
+  # #        https://github.com/landonb/reputed-tiler
+  # #      whose installation I have not wired from this Ansible playbook.
+  # # SETUP: Get the reputed-tiler repo and install somewhere on PATH,
+  # #        E.g., I installed it to ~/.local/bin/window-to-center via:
+  # #          PREFIX=${HOME}/.local make link
+  # - name: "window-to-center"
+  #   # Where do you want it? Considering the existing
+  #   # Ctrl-Shift-Cmd-* keyboard shortcuts managed by
+  #   #   tasks/mate-marco-window-keybindings.yml
+  #   # probably KP_Add is the best choice mnemonically
+  #   # (stretch the window vertically and horizontally
+  #   # from the center of the screen toward the edges)
+  #   # although KP_Subtract seems like the easiest key
+  #   # to press (left hand on the lower-leftmost three
+  #   # keys, and right hand on the upper-rightmost key
+  #   # (or nearabouts)). I prefer the mnemonically one.
+  #   binding: "'<Primary><Shift><Mod4>KP_Add'"
+  #   action: "'window-to-center'"
 
   # *** Focus dob terminal window: Super_L + d
 
