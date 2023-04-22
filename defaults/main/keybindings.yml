@@ -48,7 +48,7 @@ zoidy_matecocido_keybindings_basic:
   #      Also Ctrl + Super_L + minus, and
   #   Shift + Ctrl + Super_L + minus, to feed YYYY-MM-DD-TT-tt into clippy.
   #
-  #   Ctrl + Super_L + p   pwgen21 → clipboard
+  #   Ctrl + Super_L + p   pwgen23 → clipboard
   #
   #   Ctrl + Shift + Super_L + KeyPad+   Resize and center active window
   #
@@ -287,12 +287,14 @@ zoidy_matecocido_keybindings_basic:
     #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip -selection c\""
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
 
-  # *** Pwgen21 to clippy: Super_L + Alt + p
+  # *** pwgen23 to clippy: Super_L + Alt + p
 
   # Using printf to avoid the newline.
   - name: "'pwgen|xclip'"
     binding: "'<Alt><Mod4>p'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(pwgen -n 21 -s -N 1 -y) | xclip -selection c\\\"'"
+    # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
+    #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
 
   # *** Resize and center active window: Ctrl + Shift + Super_L + KeyPad+
   #
