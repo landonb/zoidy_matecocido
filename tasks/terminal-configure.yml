@@ -109,14 +109,10 @@
 #   https://github.com/ansible-collections/community.general/commit/a5765143f1b172396749f8ab54a466b8f3e2be74
 
 - name: Configure MATE-Terminal Keyboard Shortcuts
-  # LATER/2023-04-22: FIXME: Revert to dconf once upstream fix is released.
-  #
-  # community.general.dconf:
-  #   key: "/org/mate/terminal/keybindings/{{ item.key }}"
-  #   value: "{{ item.val }}"
-  #   state: present
-  ansible.builtin.shell: >
-    dconf write "/org/mate/terminal/keybindings/{{ item.key }}" "{{ item.val }}"
+  community.general.dconf:
+    key: "/org/mate/terminal/keybindings/{{ item.key }}"
+    value: "{{ item.val }}"
+    state: present
   loop:
 
     # *** GUI shows 2 [✓] checkbox options atop the keys list
