@@ -17,7 +17,7 @@
     - alt-tab-eliminate-delay
     - ansible-ensure-dconf
     - background-hide_icons-go_black
-    - font-hack
+    - font-hack-nerd-font
     - keybinding-circus
     - reset-keybindings
     - mate-appearance-configure

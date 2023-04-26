@@ -55,17 +55,14 @@
 
 # The Hack font is used by: meld-configure, and terminal-configure.
 # (And preffered by Dubs Vim <https://github.com/landonb/dubs-vim>.)
-- name: Load role to Install Font “Hack”
-  include_role:
+- name: Load role to Install Font “Hack Nerd Font”
+  ansible.builtin.include_role:
     name: zoidy_matecocido
-    tasks_from: font-hack
+    tasks_from: font-hack-nerd-font
     apply:
       tags:
-        - font-hack
-        - meld-configure
-        # 2020-02-07: Disabling for now, b/c make terminal-configure require -K.
-        # - terminal-configure
-  tags: font-hack, meld-configure, terminal-configure
+        - font-hack-nerd-font
+  tags: font-hack-nerd-font
 
 - name: Load role to Customize MATE Key Bindings
   include_role:
