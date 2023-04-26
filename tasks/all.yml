@@ -54,7 +54,7 @@
   tags: alt-tab-eliminate-delay
 
 # The Hack font is used by: meld-configure, and terminal-configure.
-# (And preffered by Dubs Vim <https://github.com/landonb/dubs-vim>.)
+# (And preferred by Dubs Vim <https://github.com/landonb/dubs-vim>.)
 - name: Load role to Install Font “Hack Nerd Font”
   ansible.builtin.include_role:
     name: zoidy_matecocido
