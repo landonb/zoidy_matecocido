@@ -50,6 +50,7 @@
     # Tile window to west (left) side of screen: Shift+Ctrl+Mod4+Left
     - key: tile-to-side-w
       val: "'<Primary><Shift><Mod4>Left'"
+    # SAVVY: No vertical tiling, e.g., neither tile-to-side-n nor tile-to-side-s.
 
     # *** Other window commands
 
