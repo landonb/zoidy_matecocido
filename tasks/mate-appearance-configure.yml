@@ -38,11 +38,16 @@
     #   key: theme
     #   # 2023-04-21: The default.
     #   val: "Mint-Y"
+    #   # 2023-04-28: Mint-Y-Dark-Pink a little more compact, but title off-center.
+    #   #  val: "Mint-Y-Dark-Pink"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Icons
     - schema: org.mate.interface
       key: icon-theme
       val: "Mint-Y-Dark"
+      # 2023-04-28: I liked having pink close and window control buttons,
+      # but doesn't quite look as good default theme.
+      #  val: "Mint-Y-Dark-Pink"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Pointer
     #
