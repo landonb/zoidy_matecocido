@@ -52,6 +52,13 @@
       val: "'<Primary><Shift><Mod4>Left'"
     # SAVVY: No vertical tiling, e.g., neither tile-to-side-n nor tile-to-side-s.
 
+    # After tiling, restore previous window size and position: Ctrl-Shift-Cmd-/
+    # - MATE Menu > Keyboard Shortcuts > Window Management > Restore window
+    - key: unmaximize
+      # Defaults:
+      #   val: "'<Alt>F5'"
+      val: "'<Primary><Shift><Mod4>question'"
+
     # *** Other window commands
 
     # Maximize window vertically
@@ -149,5 +156,4 @@
     #   toggle-maximized '<Alt>F10'
     #   toggle-on-all-workspaces 'disabled'
     #   toggle-shaded 'disabled'
-    #   unmaximize '<Alt>F5'
 
