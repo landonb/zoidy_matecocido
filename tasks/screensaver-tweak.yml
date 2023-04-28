@@ -2,15 +2,15 @@
 
 # SAVVY: Set zoidy_matecocido_lock_screen_background to customize lock screen bg.
 - name: Form MATE desktop background target path
-  set_fact:
+  ansible.builtin.set_fact:
     zoidy_matecocido_lock_screen_background_dst: "{{ zoidy_matecocido_config_dir }}/mate-dtop-bkgd_{{ zoidy_matecocido_lock_screen_background | basename }}"
 
 - name: Ensure zoidy_matecocido config directory exists
-  file: path={{ zoidy_matecocido_config_dir }} state=directory
+  ansible.builtin.file: path={{ zoidy_matecocido_config_dir }} state=directory
   when: zoidy_matecocido_lock_screen_background
 
 - name: Copy lock screen background image to user home config application directory
-  copy:
+  ansible.builtin.copy:
     src: "{{ zoidy_matecocido_lock_screen_background }}"
     dest: "{{ zoidy_matecocido_lock_screen_background_dst }}"
   when: zoidy_matecocido_lock_screen_background

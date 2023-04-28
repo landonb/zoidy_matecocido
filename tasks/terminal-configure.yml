@@ -84,7 +84,7 @@
 
 # mate-terminal loads GUI settings changes immediately, but not backdoor
 # dconf updates.
-- debug:
+- ansible.builtin.debug:
     msg: "CHORE: You must exit all terminals to effectualize mate-terminal changes"
 
 # *** Configure keyboard shortcuts

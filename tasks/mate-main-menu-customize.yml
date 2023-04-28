@@ -2,17 +2,17 @@
 
 # E.g., ~/.config/zoidy_matecocido/mate-menu-icon_triple-face-pips_21x21.png
 - name: Form MATE menu icon target path
-  set_fact:
+  ansible.builtin.set_fact:
     zoidy_matecocido_mate_menu_icon_dst: "{{ zoidy_matecocido_config_dir }}/mate-menu-icon_{{ zoidy_matecocido_mate_menu_icon_22x | basename }}"
 
 # E.g., mkdir -p ~/.config/zoidy_matecocido
 - name: Ensure zoidy_matecocido config directory exists
-  file: path={{ zoidy_matecocido_config_dir }} state=directory
+  ansible.builtin.file: path={{ zoidy_matecocido_config_dir }} state=directory
   tags: always
 
 # Copies, e.g., ~/.zoidy/assets/mate-menu-knucklebones/triple-face-pips_21x21.png
 - name: Copy MATE menu icon image to user home application config directory
-  copy:
+  ansible.builtin.copy:
     src: "{{ zoidy_matecocido_mate_menu_icon_22x }}"
     dest: "{{ zoidy_matecocido_mate_menu_icon_dst }}"
 

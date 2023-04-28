@@ -3,7 +3,7 @@
 # *** Ensure dirs.
 
 - name: Ensure the working directory exists
-  file: path={{ zoidy_matecocido_working_dir }} state=directory
+  ansible.builtin.file: path={{ zoidy_matecocido_working_dir }} state=directory
 
 # *** Record start states.
 
@@ -27,21 +27,21 @@
 # *** Make changes.
 
 - name: Load role to Hide Desktop icons
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: background-hide_icons-go_black
     apply: { tags: always }
   tags: background-hide_icons-go_black
 
 - name: Add Alt-q Alt-tab binding
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: alt-tab-alt-q-to-go-backward
     apply: { tags: always }
   tags: alt-tab-alt-q-to-go-backward
 
 - name: Load role to eliminate MATE Alt-Tab slugishness
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: alt-tab-eliminate-delay
     apply: { tags: always }
@@ -57,42 +57,42 @@
   tags: font-hack-nerd-font
 
 - name: Load role to Customize MATE Key Bindings
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: keybinding-circus
     apply: { tags: always }
   tags: keybinding-circus, reset-keybindings
 
 - name: Load role to Customize MATE Appearance
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-appearance-configure
     apply: { tags: always }
   tags: mate-appearance-configure
 
 - name: Load role to Customize MATE Menu
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-main-menu-customize
     apply: { tags: always }
   tags: mate-main-menu-customize
 
 - name: Load role to Customize MATE Marco Window-Keybindings
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-marco-window-keybindings
     apply: { tags: always }
   tags: mate-marco-window-keybindings
 
 - name: Load role to Configure caja File Browser
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-caja-preferences
     apply: { tags: always }
   tags: mate-caja-preferences
 
 - name: Load role to Configure caja Media Handling
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-media-handling
     apply: { tags: always }
@@ -110,7 +110,7 @@
 # (lb): It does not hurt to configure these setting on a Desktop,
 # but for completeness, we'll restrict this task to Laptop hosts.
 - name: Load role to Fiddle About Laptop Power Settings
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: power-management-prefs-laptop
     apply: { tags: always }
@@ -120,14 +120,14 @@
 # ***
 
 - name: Load role to Configure MATE Take Screenshot
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: screenshot-configure
     apply: { tags: always }
   tags: screenshot-configure
 
 - name: Load role to Disable screensaver, and its lock
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: screensaver-tweak
     apply: { tags: always }
@@ -136,7 +136,7 @@
 # ***
 
 - name: Load role to ensure Ansible dconf module available
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: ansible-ensure-dconf
     apply: { tags: always }
@@ -146,7 +146,7 @@
   tags: ansible-ensure-dconf
 
 - name: Load role to Configure mate-terminal
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: terminal-configure
     apply: { tags: always }

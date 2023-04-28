@@ -9,7 +9,7 @@
 #   https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 
 - name: Load tasks dispatcher for ‘zoidy_matecocido’
-  include_role:
+  ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: all
   tags:

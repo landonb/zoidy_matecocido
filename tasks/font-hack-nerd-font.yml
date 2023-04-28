@@ -22,7 +22,7 @@
 #   Is there a fallback font? I don't really know how fonts work, and
 #   where the OS pulls emoji characters from.
 
-- set_fact:
+- ansible.builtin.set_fact:
     # 2022-09-21:
     #  HACK_NERD_FONT_VERS: 'v2.2.2'
     # 2023-04-25:
@@ -50,26 +50,26 @@
   ansible.builtin.shell: "curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r '.tag_name'"
   register: LATEST_VERSION
 
-- debug: msg="Latest HACK NERD FONT∷ {{ LATEST_VERSION.stdout }}"
+- ansible.builtin.debug: msg="Latest HACK NERD FONT∷ {{ LATEST_VERSION.stdout }}"
 
-- fail: msg="Update HACK NERD FONT! / Latest∷ {{ LATEST_VERSION.stdout }} / Current∷ {{ HACK_NERD_FONT_VERS }}"
+- ansible.builtin.fail: msg="Update HACK NERD FONT! / Latest∷ {{ LATEST_VERSION.stdout }} / Current∷ {{ HACK_NERD_FONT_VERS }}"
   when: HACK_NERD_FONT_VERS != LATEST_VERSION.stdout
 
 # *** Do the work.
 
 - name: Ensure ~/.downloads directory exists
-  file: path={{ zoidy_homefries_downloads_dir }} state=directory
+  ansible.builtin.file: path={{ zoidy_homefries_downloads_dir }} state=directory
 
 - name: Fetch the Hack Nerd Font font release
-  get_url:
+  ansible.builtin.get_url:
     url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ HACK_NERD_FONT_VERS }}/{{ HACK_NERD_FONT_FILE }}.zip"
     dest: "{{ zoidy_homefries_downloads_dir }}/"
 
 - name: Ensure user home font directory directory exists
-  file: path="{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/" state=directory
+  ansible.builtin.file: path="{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/" state=directory
 
 - name: Unarchive the Hack Nerd Font font release archive (Install Font- HACK NERD FONT!)
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: yes
     src: "{{ zoidy_homefries_downloads_dir }}/{{ HACK_NERD_FONT_FILE }}.zip"
     dest: "{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/"
