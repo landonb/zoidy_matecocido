@@ -77,12 +77,32 @@
     apply: { tags: always }
   tags: mate-main-menu-customize
 
-- name: Load role to Customize MATE Marco Window-Keybindings
+- name: Load role to Customize MATE Marco Window-Keybindings (non-numpad bindings)
   ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: mate-marco-window-keybindings
     apply: { tags: always }
   tags: mate-marco-window-keybindings
+
+- name: Load role to Customize MATE Marco Window-Keybindings (numpad complements)
+  ansible.builtin.include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-marco-window-keybindings-numpad
+    apply: { tags: always }
+  # ISOFF/2023-04-28: Run only on `... --tags mate-marco-window-keybindings-numpad`.
+  # - Note we cannot use a 'never' tag, which won't support using the role tag,
+  #   e.g., `ansible-playbook ... --tags zoidy_matecocido` would still run this
+  #   task.
+  #   - This depends on your site.yml, but author's (~/.zoidy/site.yml) specifies:
+  #       roles:
+  #       - role: zoidy_matecocido
+  #         tags: zoidy_matecocido
+  #     Thus `tags: mate-marco-window-keybindings-numpad, never` is useless
+  #     here, because Ansible adds 'zoidy_matecocido' tag to all role tasks,
+  #     and then all tasks match, regardles of 'never'.
+  #   - Hence a kludgy `when` tests whether user really specified tag or not.
+  tags: mate-marco-window-keybindings-numpad
+  when: "'mate-marco-window-keybindings-numpad' in ansible_run_tags"
 
 - name: Load role to Configure caja File Browser
   ansible.builtin.include_role:
