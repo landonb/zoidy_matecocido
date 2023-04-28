@@ -30,27 +30,21 @@
   include_role:
     name: zoidy_matecocido
     tasks_from: background-hide_icons-go_black
-    apply:
-      tags:
-        - background-hide_icons-go_black
+    apply: { tags: always }
   tags: background-hide_icons-go_black
 
 - name: Add Alt-q Alt-tab binding
   include_role:
     name: zoidy_matecocido
     tasks_from: alt-tab-alt-q-to-go-backward
-    apply:
-      tags:
-        - alt-tab-alt-q-to-go-backward
+    apply: { tags: always }
   tags: alt-tab-alt-q-to-go-backward
 
 - name: Load role to eliminate MATE Alt-Tab slugishness
   include_role:
     name: zoidy_matecocido
     tasks_from: alt-tab-eliminate-delay
-    apply:
-      tags:
-        - alt-tab-eliminate-delay
+    apply: { tags: always }
   tags: alt-tab-eliminate-delay
 
 # Hack font is used by: terminal-configure.
@@ -59,64 +53,49 @@
   ansible.builtin.include_role:
     name: zoidy_matecocido
     tasks_from: font-hack-nerd-font
-    apply:
-      tags:
-        - font-hack-nerd-font
+    apply: { tags: always }
   tags: font-hack-nerd-font
 
 - name: Load role to Customize MATE Key Bindings
   include_role:
     name: zoidy_matecocido
     tasks_from: keybinding-circus
-    apply:
-      tags:
-        - keybinding-circus
-        - reset-keybindings
+    apply: { tags: always }
   tags: keybinding-circus, reset-keybindings
 
 - name: Load role to Customize MATE Appearance
   include_role:
     name: zoidy_matecocido
     tasks_from: mate-appearance-configure
-    apply:
-      tags:
-        - mate-appearance-configure
+    apply: { tags: always }
   tags: mate-appearance-configure
 
 - name: Load role to Customize MATE Menu
   include_role:
     name: zoidy_matecocido
     tasks_from: mate-main-menu-customize
-    apply:
-      tags:
-        - mate-main-menu-customize
+    apply: { tags: always }
   tags: mate-main-menu-customize
 
 - name: Load role to Customize MATE Marco Window-Keybindings
   include_role:
     name: zoidy_matecocido
     tasks_from: mate-marco-window-keybindings
-    apply:
-      tags:
-        - mate-marco-window-keybindings
+    apply: { tags: always }
   tags: mate-marco-window-keybindings
 
 - name: Load role to Configure caja File Browser
   include_role:
     name: zoidy_matecocido
     tasks_from: mate-caja-preferences
-    apply:
-      tags:
-        - mate-caja-preferences
+    apply: { tags: always }
   tags: mate-caja-preferences
 
 - name: Load role to Configure caja Media Handling
   include_role:
     name: zoidy_matecocido
     tasks_from: mate-media-handling
-    apply:
-      tags:
-        - mate-media-handling
+    apply: { tags: always }
   tags: mate-media-handling
 
 # ***
@@ -134,9 +113,7 @@
   include_role:
     name: zoidy_matecocido
     tasks_from: power-management-prefs-laptop
-    apply:
-      tags:
-        - power-management-prefs-laptop
+    apply: { tags: always }
   tags: power-management-prefs-laptop
   when: chassis_type.stdout == 'Notebook'
 
@@ -146,18 +123,14 @@
   include_role:
     name: zoidy_matecocido
     tasks_from: screenshot-configure
-    apply:
-      tags:
-        - screenshot-configure
+    apply: { tags: always }
   tags: screenshot-configure
 
 - name: Load role to Disable screensaver, and its lock
   include_role:
     name: zoidy_matecocido
     tasks_from: screensaver-tweak
-    apply:
-      tags:
-        - screensaver-tweak
+    apply: { tags: always }
   tags: screensaver-tweak
 
 # ***
@@ -166,9 +139,7 @@
   include_role:
     name: zoidy_matecocido
     tasks_from: ansible-ensure-dconf
-    apply:
-      tags:
-        - ansible-ensure-dconf
+    apply: { tags: always }
   # This task requires -K privileges, otherwise we could add
   # terminal-configure tag match to avoid failing on user if
   # `dconf` unavailable when --tags terminal-configure used.
@@ -178,9 +149,7 @@
   include_role:
     name: zoidy_matecocido
     tasks_from: terminal-configure
-    apply:
-      tags:
-        - terminal-configure
+    apply: { tags: always }
   tags: terminal-configure
 
 # ======================================================================= #
