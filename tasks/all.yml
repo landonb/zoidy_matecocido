@@ -169,10 +169,6 @@
     apply:
       tags:
         - ansible-ensure-dconf
-        # 2020-02-07: The terminal-configure task uses dconf module,
-        #             but doesn't require sudo/-K, unless we want to
-        #             call ansible-ensure-dconf...
-        # - terminal-configure
   # This task requires -K privileges, otherwise we could add
   # terminal-configure tag match to avoid failing on user if
   # `dconf` unavailable when --tags terminal-configure used.
