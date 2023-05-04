@@ -47,8 +47,8 @@ zoidy_matecocido_keybindings_basic:
   #
   #   Super_L + -   Make *now* date (YYYY-MM-DD) pasteable (send to clipboard buffer).
   #
-  #      Also Ctrl + Super_L + minus, and
-  #   Shift + Ctrl + Super_L + minus, to feed YYYY-MM-DD-TT-tt into clippy.
+  #      Also Ctrl + minus, and
+  #   Shift + Ctrl + minus, to feed YYYY-MM-DD-TT-tt into clippy.
   #
   #   Ctrl + Super_L + p   pwgen23 → clipboard
   #
