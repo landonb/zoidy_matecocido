@@ -17,35 +17,44 @@
 
     # *** Move commands
 
-    # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Right (keypad 6)
+    # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Alt+Right (-Alt: tile-to-side-e)
     - key: move-to-side-e
       val: "'<Primary><Shift><Mod4><Alt>Right'"
-    # Move window to north (top) side of screen: Shift+Ctrl+Mod4+Up (keypad 8)
+    # Move window to north (top) side of screen: Shift+Ctrl+Mod4+Up
     - key: move-to-side-n
       val: "'<Primary><Shift><Mod4>Up'"
-    # Move window to south (bottom) side of screen: Shift+Ctrl+Mod4+Down (keypad 2)
+    # Move window to south (bottom) side of screen: Shift+Ctrl+Mod4+Down
     - key: move-to-side-s
       val: "'<Primary><Shift><Mod4>Down'"
-    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Left (keypad 4)
+    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Alt+Left (-Alt: tile-to-side-w)
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4><Alt>Left'"
 
-    # Move window to center of screen: Shift+Ctrl+Mod4+Begin (keypad 5)
+    # Move window to center of screen: Shift+Ctrl+Mod4+.(Period(GreaterThan))
+    # - Mnemonic: '>' is above '.', dot, centered.
+    # - DUNNO: This doesn't always work. E.g., works after tile-corner-to-nw,
+    #   but not after any of the other 3 tile-corner-to motions.
+    #   - Though you'll find that unmaximize works after most commands,
+    #     including tile-corner-to-*, and also centers the center (at
+    #     least horizontally; if you run unmaximize after either
+    #     move-to-side-n or move-to-side-s, nothing happens, and the
+    #     window remains centered horizontally and still snapped
+    #     vertically to the top or bottom).
     - key: move-to-center
       val: "'<Primary><Shift><Mod4>greater'"
 
     # *** Tile commands
 
-    # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+Page Up (keypad 9)
+    # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+PageUp
     - key: tile-to-corner-ne
       val: "'<Primary><Shift><Mod4>Page_Up'"
-    # Tile window to north-west (top left) corner: Shift+Ctrl+Mod4+Home (keypad 7)
+    # Tile window to north-west (top left) corner: Shift+Ctrl+Mod4+Home
     - key: tile-to-corner-nw
       val: "'<Primary><Shift><Mod4>Home'"
-    # Tile window to south-east (bottom right) corner: Shift+Ctrl+Mod4+Page Down (keypad 3)
+    # Tile window to south-east (bottom right) corner: Shift+Ctrl+Mod4+PageDown
     - key: tile-to-corner-se
       val: "'<Primary><Shift><Mod4>Page_Down'"
-    # Tile window to south-west (bottom left) corner: Shift+Ctrl+Mod4+End (keypad 1)
+    # Tile window to south-west (bottom left) corner: Shift+Ctrl+Mod4+End
     - key: tile-to-corner-sw
       val: "'<Primary><Shift><Mod4>End'"
 
@@ -57,7 +66,7 @@
       val: "'<Primary><Shift><Mod4>Left'"
     # SAVVY: No vertical tiling, e.g., neither tile-to-side-n nor tile-to-side-s.
 
-    # After tiling, restore previous window size and position: Ctrl-Shift-Cmd-/
+    # After tiling, restore previous window size and position: Ctrl-Shift-Cmd-/(ForwardSlash(QuestionMark))
     # - MATE Menu > Keyboard Shortcuts > Window Management > Restore window
     - key: unmaximize
       # Defaults:
@@ -66,7 +75,8 @@
 
     # *** Other window commands
 
-    # Maximize window vertically
+    # Maximize window vertically: Shift+Ctrl+Mod4+|(BackwardSlash(Bar))
+    #
     # Use Case: Use as part of a sequence to resize and center a window.
     # - Inspiration: There's a great app for Darwin (macOS), Rectangle, that
     #   exposes a bunch of window commands to which you can assign shortcuts.
@@ -101,14 +111,11 @@
     #   - Nonetheless, I still might find that I like maximize-vertically
     #     wired to its own shortcut, so here it is.
     - key: maximize-vertically
-      # Mnemonically, the bar key makes sense (it's vertical)
-      #   val: "'<Primary><Shift><Mod4>bar'"
-      # but most of the other Ctrl-Shift-Cmd combos (above) use the keypad,
-      # and the divide symbol is similar to bar (and then if we wanted to
-      # map maximize-horizontally, we could use KP_Subtract). Also, per the
-      # "long way" stated above, KP_Divide is nearby KP_Home/7 and KP_Begin/5.
+      # Mnemonically, the bar key makes sense (it's vertical).
       val: "'<Primary><Shift><Mod4>bar'"
 
+    # Maximize window horizontally: Shift+Ctrl+Mod4+_(Dash(Underscore))
+    #
     # For parity, also because after adding maximize-vertically, I suddenly
     # wanted this one, too, for use case: viewing more columns in spreadsheet,
     # but not going fullscreen.
