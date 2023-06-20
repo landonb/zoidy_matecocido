@@ -30,10 +30,6 @@
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4>KP_Left'"
 
-    # Move window to center of screen: Shift+Ctrl+Mod4+Begin (keypad 5)
-    - key: move-to-center
-      val: "'<Primary><Shift><Mod4>KP_Begin'"
-
     # *** Tile commands
 
     # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+Page Up (keypad 9)
@@ -56,6 +52,12 @@
     - key: tile-to-side-w
       val: "'<Primary><Shift><Mod4>Left'"
     # SAVVY: No vertical tiling, e.g., neither tile-to-side-n nor tile-to-side-s.
+
+    # ***
+
+    # Move window to center of screen: Shift+Ctrl+Mod4+Begin (keypad 5)
+    - key: move-to-center
+      val: "'<Primary><Shift><Mod4>KP_Begin'"
 
     # After tiling, restore previous window size and position: Ctrl-Shift-Cmd-/
     # - MATE Menu > Keyboard Shortcuts > Window Management > Restore window

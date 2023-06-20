@@ -30,19 +30,6 @@
     - key: move-to-side-w
       val: "'<Primary><Shift><Mod4><Alt>Left'"
 
-    # Move window to center of screen: Shift+Ctrl+Mod4+.(Period(GreaterThan))
-    # - Mnemonic: '>' is above '.', dot, centered.
-    # - DUNNO: This doesn't always work. E.g., works after tile-corner-to-nw,
-    #   but not after any of the other 3 tile-corner-to motions.
-    #   - Though you'll find that unmaximize works after most commands,
-    #     including tile-corner-to-*, and also centers the center (at
-    #     least horizontally; if you run unmaximize after either
-    #     move-to-side-n or move-to-side-s, nothing happens, and the
-    #     window remains centered horizontally and still snapped
-    #     vertically to the top or bottom).
-    - key: move-to-center
-      val: "'<Primary><Shift><Mod4>greater'"
-
     # *** Tile commands
 
     # Tile window to north-east (top right) corner: Shift+Ctrl+Mod4+PageUp
@@ -65,6 +52,21 @@
     - key: tile-to-side-w
       val: "'<Primary><Shift><Mod4>Left'"
     # SAVVY: No vertical tiling, e.g., neither tile-to-side-n nor tile-to-side-s.
+
+    # ***
+
+    # Move window to center of screen: Shift+Ctrl+Mod4+.(Period(GreaterThan))
+    # - Mnemonic: '>' is above '.', dot, centered.
+    # - DUNNO: This doesn't always work. E.g., works after tile-corner-to-nw,
+    #   but not after any of the other 3 tile-corner-to motions.
+    #   - Though you'll find that unmaximize works after most commands,
+    #     including tile-corner-to-*, and also centers the center (at
+    #     least horizontally; if you run unmaximize after either
+    #     move-to-side-n or move-to-side-s, nothing happens, and the
+    #     window remains centered horizontally and still snapped
+    #     vertically to the top or bottom).
+    - key: move-to-center
+      val: "'<Primary><Shift><Mod4>greater'"
 
     # After tiling, restore previous window size and position: Ctrl-Shift-Cmd-/(ForwardSlash(QuestionMark))
     # - MATE Menu > Keyboard Shortcuts > Window Management > Restore window
