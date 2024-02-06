@@ -39,7 +39,7 @@
 
 # CXREF: You can enable this setting via the GUI:
 #
-#   MATE Menu > Preferences > Desktop Settings > Windows > Window Manger
+#   MATE Menu > Preferences > Desktop Settings > Windows > Window Manager
 
 # 2017-07-19: Aha! I was wondering why this isn't a problem on 12.04:
 # there's a checkbox for "Use compositing" that's unchecked, and Marco
@@ -80,7 +80,7 @@
 # ***
 
 - ansible.builtin.debug:
-    msg: "BWARE: 'marco' change not applied until logon again (or change setting via MATE Menu > Preferences > Desktop Settings > Windows > Window Manger)"
+    msg: "BWARE: 'marco' change not applied until logon again (or change setting via MATE Menu > Preferences > Desktop Settings > Windows > Window Manager)"
 
 # CXREF: As seen in the GUI sources:
 #   killall ccsm
