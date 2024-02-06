@@ -1,5 +1,20 @@
 ---
 
+# Ensure ~/.local/bin/bash exists, which the keybindings use rather than,
+# e.g., /bin/bash. This is useful if you want to use a custom Bash.
+- name: Stat ~/.local/bin/bash
+  ansible.builtin.stat: path="{{ ansible_env.HOME }}/.local/bin/bash"
+  register: local_bin_bash_f
+
+- name: Symlink ~/.local/bin/bash if not exists
+  ansible.builtin.file:
+    src: "/bin/bash"
+    dest: "{{ ansible_env.HOME }}/.local/bin/bash"
+    state: link
+  when: not local_bin_bash_f.stat.exists
+
+# ***
+
 # Reset keybindings to their default state: absent.
 - name: Clear Existing MATE Key Bindings
   ansible.builtin.shell: dconf reset -f /org/mate/desktop/keybindings/
