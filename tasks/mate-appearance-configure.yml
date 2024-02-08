@@ -27,7 +27,10 @@
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Controls
     - schema: org.mate.interface
       key: gtk-theme
-      val: "Mint-Y-Dark"
+      # 2024-02-07 16:29: Mint-Y-Dark is legacy now, and not installed by default.
+      # - See: `sudo apt install mint-themes-legacy`
+      #     val: "Mint-Y-Dark"
+      val: "Mint-L-Dark"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Window Border
     #
@@ -37,14 +40,20 @@
     # - schema: org.mate.Marco.general
     #   key: theme
     #   # 2023-04-21: The default.
-    #   val: "Mint-Y"
+    #   val: "Mint-L"
     #   # 2023-04-28: Mint-Y-Dark-Pink a little more compact, but title off-center.
     #   #  val: "Mint-Y-Dark-Pink"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Icons
     - schema: org.mate.interface
       key: icon-theme
-      val: "Mint-Y-Dark"
+      # 2024-02-07 16:29: Mint-Y-Dark is legacy now, and not installed by default.
+      # - See: `sudo apt install mint-themes-legacy`
+      #     val: "Mint-Y-Dark"
+      # - The Yaru icons are interesting, but they use more circular launcher
+      #   icons. I prefer the more square (rounded corners) that Mint-L uses.
+      #     val: "Yaru-sage-dark"
+      val: "Mint-L"
       # 2023-04-28: I liked having pink close and window control buttons,
       # but doesn't quite look as good default theme.
       #  val: "Mint-Y-Dark-Pink"
