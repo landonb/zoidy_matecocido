@@ -33,16 +33,22 @@
       val: "Mint-L-Dark"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Window Border
-    #
-    # ISOFF/2023-04-21: Don't set the default value, in case Mint changes
-    # default in the future, so you can demo new default.
-    #
-    # - schema: org.mate.Marco.general
-    #   key: theme
-    #   # 2023-04-21: The default.
-    #   val: "Mint-L"
-    #   # 2023-04-28: Mint-Y-Dark-Pink a little more compact, but title off-center.
-    #   #  val: "Mint-Y-Dark-Pink"
+    # - Note that "Mint-L-Dark" doesn't draw a window border, which makes it non-
+    #   obvious what output belongs to which terminal when you have multiple
+    #   overlapping terminal windows.
+    # - Note the schema is not capitalized in dconf, i.e., "org/mate/marco/general".
+    - schema: org.mate.Marco.general
+      key: theme
+      # - The Mint-L-Dark centers the title in the titlebar, between the left
+      #   and right sides of the window, whereas the other Mint-L-Dark-* themes
+      #   render the title a little leftward, between the left side of the window
+      #   and the first window (control) button on the right-side of the window.
+      # - The Mint-L-Dark-* themes appear different in two ways from Mint-L-Dark:
+      #   - They affect the color of the active window's close button (but I
+      #     don't see any other color highlights).
+      #   - They draw a window border (so you can distinguish between, e.g.,
+      #     multiple overlapping terminal window output).
+      val: "Mint-L-Dark-Grey"
 
     # MATE Menu > Preferences > Appearance > Custom > Customize... > Icons
     - schema: org.mate.interface
