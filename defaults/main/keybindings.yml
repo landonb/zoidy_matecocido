@@ -270,7 +270,26 @@ zoidy_matecocido_keybindings_basic:
   #­­
   # Dashed date-plus-time.
   - name: "'Now(TTTtt-)'"
-    binding: "'<Primary><Mod4>minus'"
+    # Ideally, this binding would incorporate the dash key to help you
+    # remember where it's bound (the mnemonic being that the press the
+    # dash key to seed the clipboard with the dashed datetime). But we
+    # are using Ctrl-Cmd-- for the window shrink command binding instead.
+    # - Though really we'd want to use Shift-Ctrl-Cmd-- for window shrink,
+    #   because all the other MATE window shortcuts use the Shift-Ctrl-Cmd
+    #   prefix (see: tasks/mate-marco-window-keybindings.yml). But MATE
+    #   ignores <Primary><Shift><Mod4>minus, whether set via dconf or set
+    #   via the Keyboard Shortcuts GUI. So unless we find a different
+    #   Shift-Ctrl-Cmd binding for window shrink (and a related binding
+    #   for window grow, which is currently wired to Ctrl-Cmd-+), we'll
+    #   use a different binding for this dashed datetime binding.
+    # SOSAD/2024-03-17: These bindings do not work, whether set via dconf
+    # or set via MATE's Keyboard Shortcuts GUI:
+    #   binding: "'<Shift><Mod4>underscore'"
+    #   binding: "'<Primary><Shift><Mod4>colon'"
+    #   binding: "'<Primary><Shift><Mod4>semicolon'"
+    # - So we'll pick Ctrl-Cmd-' which is next to a related binding, Ctrl-Cmd-;
+    #   (and hopefully you'll remember where it's at).
+    binding: "'<Primary><Mod4>apostrophe'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
   #
   # Normal date plus:time.
