@@ -114,7 +114,8 @@
     #     wired to its own shortcut, so here it is.
     - key: maximize-vertically
       # Mnemonically, the bar key makes sense (it's vertical).
-      val: "'<Primary><Shift><Mod4>bar'"
+      #  val: "'<Primary><Shift><Mod4>bar'"
+      val: "'<Primary><Shift><Mod4>V'"
 
     # Maximize window horizontally: Shift+Ctrl+Mod4+_(Dash(Underscore))
     #
@@ -122,7 +123,8 @@
     # wanted this one, too, for use case: viewing more columns in spreadsheet,
     # but not going fullscreen.
     - key: maximize-horizontally
-      val: "'<Primary><Shift><Mod4>underscore'"
+      #  val: "'<Primary><Shift><Mod4>underscore'"
+      val: "'<Primary><Shift><Mod4>H'"
 
     # 2021-01-30: I only just now added this task to setup Keyboard Shortcuts,
     # which makes me think I had not yet customized any of these settings until
