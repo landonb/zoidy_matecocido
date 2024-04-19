@@ -109,8 +109,9 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focum gVim window: Super_L + `
 
-  # Bring gVim to the foreground (based on Home Fries' `fs` alias,
-  # when uses the SAMPI --servername convention).
+  # Bring gVim to the foreground.
+  # - Looks for --servername "SAMPI", a convention used by
+  #   Home Fries' `fs` alias; and by `sensible-open`.
   - name: "'gVim [fs]'"
     binding: "'<Mod4>grave'"
     action: "'xdotool search --name SAMPI windowactivate'"
