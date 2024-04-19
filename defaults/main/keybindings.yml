@@ -111,24 +111,8 @@ zoidy_matecocido_keybindings_basic:
 
   # Bring gVim to the foreground (based on Home Fries' `fs` alias,
   # when uses the SAMPI --servername convention).
-  #
-  #  - name: "'gVim [fs]'"
-  #    binding: "'<Mod4>Escape'"
-  #    action: "'xdotool search --name SAMPI windowactivate'"
-  #
-  # 2023-04-22: I've had it at Cmd-` for years...
   - name: "'gVim [fs]'"
     binding: "'<Mod4>grave'"
-    action: "'xdotool search --name SAMPI windowactivate'"
-  #
-  # *** Focus gVim window: Super_L + TAB
-  #
-  # 2023-04-22: ... but Super_L+Tab, which is one Levenshtein unit from
-  # Alt+Tab, might be more appealing.
-  # - I added this option 2019-01-12 but couldn't tell you which binding
-  #   I use more often (or exclusively?).
-  - name: "'gVim [fs]'"
-    binding: "'<Mod4>Tab'"
     action: "'xdotool search --name SAMPI windowactivate'"
 
   # [lb]: Use --new-window for the obvious reason of not changing any
