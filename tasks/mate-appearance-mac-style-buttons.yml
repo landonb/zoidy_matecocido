@@ -1,0 +1,27 @@
+---
+
+# If you cannot change *them*, change *yourself*. (Pretty terrible advice
+# usually.)
+#
+# - The author would rather change macOS buttons to match MATE, but in
+#   lieu of Apple ever allowing such a change (they never would), we
+#   can try bending our brains to use macOS-style buttons layout in
+#   Linux, so that it's the same in both environments.
+
+- name: Configure Marco window buttons layout like macOS
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    - schema: org.mate.Marco.general
+      key: button-layout
+      # Default:
+      #  val: ':minimize,maximize,close'
+      val: 'close,minimize,maximize:'
+
+# ***
+
+# CXREF: See comments elsewhere re: trying to *Restart marco* (and failing):
+#   ~/.kit/ansible/roles/zoidy_matecocido/tasks/alt-tab-eliminate-delay.yml
+- ansible.builtin.debug:
+    msg: "BWARE: 'marco' change not applied until logon again (or change setting via MATE Menu > Preferences > Desktop Settings > Windows > Marco settings)"
+

@@ -70,6 +70,13 @@
     apply: { tags: always }
   tags: mate-appearance-configure
 
+- name: Load tasks to configure Marco window buttons layout like macOS
+  ansible.builtin.include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-appearance-mac-style-buttons
+    apply: { tags: always }
+  tags: mate-appearance-mac-style-buttons
+
 - name: Load tasks to Customize MATE Menu
   ansible.builtin.include_role:
     name: zoidy_matecocido
