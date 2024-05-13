@@ -89,6 +89,7 @@ def to_gvim_keybinding_action(
     def hydrate_action(file_path):
         # OPTIONAL: We could enable row and line jumping, too.
         #           For now, not specified: \\\'\\\' \\\'\\\'.
+        # CXREF: ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
         bash_cmd = (
             "'{user_home}/.local/bin/bash -c \\\""
                 "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
