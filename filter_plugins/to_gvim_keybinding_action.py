@@ -42,8 +42,7 @@ class FilterModule(object):
 
 def to_gvim_keybinding_action(
     name_binding_actions,
-    # SYNC_ME: Syncs with Home Fries' ${GVIM_OPEN_SERVERNAME:-SAMPI}.
-    servername='SAMPI',
+    servername='',
     user_home='',
 ):
     """"""
@@ -90,17 +89,39 @@ def to_gvim_keybinding_action(
         # OPTIONAL: We could enable row and line jumping, too.
         #           For now, not specified: \\\'\\\' \\\'\\\'.
         # CXREF: ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
-        bash_cmd = (
-            "'{user_home}/.local/bin/bash -c \\\""
-                "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                    "\\\'{servername}\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\' "
-                "&& wmctrl -b add,sticky -r {servername}"
-            "\\\"'"
-        ).format(
-            user_home=user_home,
-            file_path=file_path,
-            servername=servername,
-        )
+        #
+        # SAVVY/2024-06-06: Recently, gvim-open-kindness will pick the
+        # active Gvim servername, if one is running, which makes it
+        # easier for user to change their preferred servername without
+        # having to repair all the keybindings. So prefer not setting.
+        # - TL/DR: Prefer *not* setting servername.
+        # - But I'm leaving this code b/c I can't remember if the
+        #   `wmctrl` calls was meaningful. Perhaps on old MATE, or
+        #   maybe gvim-open-kindness now does it? (I havent' checked.)
+        #   - So while I assume the `wmctrl` is redundant or unnecessary
+        #     now, keep it *just in case*.
+        if servername:
+            bash_cmd = (
+                "'{user_home}/.local/bin/bash -c \\\""
+                    "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
+                        "\\\'{servername}\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\' "
+                    "&& wmctrl -b add,sticky -r {servername}"
+                "\\\"'"
+            ).format(
+                user_home=user_home,
+                file_path=file_path,
+                servername=servername,
+            )
+        else:
+            bash_cmd = (
+                "'{user_home}/.local/bin/bash -c \\\""
+                    "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
+                        "\\\'\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\'"
+                "\\\"'"
+            ).format(
+                user_home=user_home,
+                file_path=file_path,
+            )
         return bash_cmd
 
     return _to_gvim_keybinding_action()

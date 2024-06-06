@@ -26,12 +26,14 @@
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/name "{{ item.name }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/binding "{{ item.binding }}" ; \
     dconf write /org/mate/desktop/keybindings/custom{{ index }}/action "{{ item.action }}" ; \
+  # ISOFF/2024-06-06: Don't apply servername, but let gvim-open-kindness figure it out.
+  #   | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
   loop: "{{
     []
     + zoidy_matecocido_keybindings_basic
     + zoidy_matecocido_keybindings_bonus
     + zoidy_matecocido_keybindings_gvims
-      | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
+      | to_gvim_keybinding_action('', ansible_env.HOME)
   }}"
   loop_control:
     index_var: index
