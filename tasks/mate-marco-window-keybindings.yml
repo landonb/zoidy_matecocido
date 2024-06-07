@@ -17,6 +17,37 @@
 
     # *** Move commands
 
+    # ISOFF/2024-06-06: Since when?! move-to-side-e sends window offscreen.
+    #
+    # - Consider external monitor upper-left, and laptop screen bottom-right,
+    #   e.g., 2560x1440 UL display, 1920x1080 BR display:
+    #
+    #         +-------------------------+------------------+
+    #         |                         | \ / \ / \ / \ /  |
+    #         |        <External        |  <Offscreen UR>  |
+    #         |         Monitor>        | / \ / \ / \ / \  |
+    #         +-------------------------+------------------+
+    #         | \ / \ / \ / \ / \ / \ / |                  |
+    #         |  Χ  <Offscreen LL>   Χ  |     <Laptop      |
+    #         | / \ / \ / \ / \ / \ / \ |     Display>     |
+    #         +-------------------------+------------------+
+    #
+    #   - Then move-to-side-e on the frontmost window
+    #     in <External Monitor> sends it to <Offscreen UR>.
+    #
+    #     - Though for some reason move-to-side-n and move-to-side-s
+    #       keeps the window within <External Monitor>.
+    #
+    # - We could disable these two bindings.
+    #
+    #   - ALTLY: Assign with <Alt> key, and assign bindings without
+    #     <Alt> key to tile-to-side-e and tile-to-side-w, as a
+    #     compromise.
+    #
+    #   - But note tile-to-side-e|w causes issues with Chrome New Window,
+    #     as noted below... so really both move-to-side-e|w and
+    #     tile-to-side-e|w have their weaknesses (bugs?).
+    #
     # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Alt+Right (-Alt: tile-to-side-e)
     - key: move-to-side-e
       val: "'<Primary><Shift><Mod4><Alt>Right'"
@@ -46,6 +77,18 @@
     - key: tile-to-corner-sw
       val: "'<Primary><Shift><Mod4>End'"
 
+    # 2024-04-18: When I tile a Chrome window left or right, then Ctrl-n
+    # to open a new Chrome window, it opens to the right of my monitor view,
+    # i.e., to the logical/virtual desktop screen to the right (I use an
+    # external monitor anchored top-left to 0,0, and the bottom-right of
+    # this monitor is logically connected to the top-left of the laptop
+    # display. So whatever is to the right of the external display is
+    # where new Chrome windows open when the active window is tiled.
+    # Which is rather annoying! It makes me not want to use tiling.)
+    # - ODDLY: The issue does not happen when using corner tiling.
+    #   - So maybe just disable tile-e|-w.
+    #   - This is means the move-to-side-* prefix is now all the same.
+    #
     # Tile window to east (right) side of screen: Shift+Ctrl+Mod4+Right
     - key: tile-to-side-e
       val: "'<Primary><Shift><Mod4>Right'"
