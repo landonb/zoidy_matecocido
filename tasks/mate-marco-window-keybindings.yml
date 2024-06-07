@@ -20,15 +20,16 @@
     # Move window to east (right) side of screen: Shift+Ctrl+Mod4+Alt+Right (-Alt: tile-to-side-e)
     - key: move-to-side-e
       val: "'<Primary><Shift><Mod4><Alt>Right'"
+    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Alt+Left (-Alt: tile-to-side-w)
+    - key: move-to-side-w
+      val: "'<Primary><Shift><Mod4><Alt>Left'"
+    #
     # Move window to north (top) side of screen: Shift+Ctrl+Mod4+Up
     - key: move-to-side-n
       val: "'<Primary><Shift><Mod4>Up'"
     # Move window to south (bottom) side of screen: Shift+Ctrl+Mod4+Down
     - key: move-to-side-s
       val: "'<Primary><Shift><Mod4>Down'"
-    # Move window to west (left) side of screen: Shift+Ctrl+Mod4+Alt+Left (-Alt: tile-to-side-w)
-    - key: move-to-side-w
-      val: "'<Primary><Shift><Mod4><Alt>Left'"
 
     # *** Tile commands
 
