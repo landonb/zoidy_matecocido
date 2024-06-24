@@ -153,7 +153,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Kick Out The Jams [Spotify]'"
     # Brings the Spotify application window to the front.
-    binding: "'<Mod4>1'"
+    binding: "'<Primary><Shift><Mod4>x'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
     action: "'{{ ansible_env.HOME }}/.homefries/bin/keybinding-focus-spotify'"
@@ -302,6 +302,58 @@ zoidy_matecocido_keybindings_basic:
     # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
     #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
+
+  # ***
+
+  # Front window with number prefix, e.g., "1. <title>", "2. <title>", etc.
+  #
+  # - Author uses to quickly access terminal windows.
+  #
+  #   Home-fries finds a unique window number from 1-9 for each terminal
+  #   window opened and prefixes it to the PS1 titlebar title.
+  #
+  #   - CXREF:
+  #
+  #     ~/.kit/sh/home-fries/lib/term/show-command-name-in-window-title.sh
+
+  # Note that `wmctrl -a '1. '` does not work (the trailing space).
+  # - But `wmctrl -a '1.'` or `wmctrl -a '1. <some-text>'` works.
+
+  - name: "'Window 1. to front'"
+    binding: "'<Mod4>1'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'1.\\'\\\"'"
+
+  - name: "'Window 2. to front'"
+    binding: "'<Mod4>2'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'2.\\'\\\"'"
+
+  - name: "'Window 3. to front'"
+    binding: "'<Mod4>3'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'3.\\'\\\"'"
+
+  - name: "'Window 4. to front'"
+    binding: "'<Mod4>4'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'4.\\'\\\"'"
+
+  - name: "'Window 5. to front'"
+    binding: "'<Mod4>5'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'5.\\'\\\"'"
+
+  - name: "'Window 6. to front'"
+    binding: "'<Mod4>6'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'6.\\'\\\"'"
+
+  - name: "'Window 7. to front'"
+    binding: "'<Mod4>7'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'7.\\'\\\"'"
+
+  - name: "'Window 8. to front'"
+    binding: "'<Mod4>8'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'8.\\'\\\"'"
+
+  - name: "'Window 9. to front'"
+    binding: "'<Mod4>9'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'9.\\'\\\"'"
 
   # *** Resize and center active window: Ctrl + Shift + Super_L + KeyPad+
   #
