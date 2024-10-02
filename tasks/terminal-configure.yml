@@ -82,6 +82,13 @@
     #    # Default: absent.
     #    val: "hidden"
 
+    # *** Copy-on-select
+
+    # PUTON: "It's a put on": Enabling for @Charon Alacritty parity.
+    - key: "copy-selection"
+      # Default: absent.
+      val: "true"
+
 # mate-terminal loads GUI settings changes immediately, but not backdoor
 # dconf updates.
 - ansible.builtin.debug:
