@@ -1,0 +1,33 @@
+---
+
+- name: Customize MATE Keyboard Preferences
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # MATE Menu > Preferences > Keyboard > Keyboard Preferences > General
+    # - Default: 30
+    # - Make it a little faster, seems sluggish
+    # - E.g.,
+    #     gsettings get org.mate.peripherals-keyboard rate
+    #     gsettings set org.mate.peripherals-keyboard rate 60
+    - schema: org.mate.peripherals-keyboard
+      key: rate
+      val: "60"
+
+
+# ***
+
+- name: Customize MATE Keyboard Preferences
+  ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
+  loop:
+
+    # MATE Menu > Preferences > Keyboard > Keyboard Preferences > General
+    # - E.g.,
+    #     dconf read /org/mate/desktop/peripherals/keyboard/rate
+    #     dconf write /org/mate/desktop/peripherals/keyboard/rate 60
+    - key: "/org/mate/desktop/peripherals/keyboard/rate"
+      val: '60'
+
+  # We only need to set gsettings or dconf
+  when: False
+

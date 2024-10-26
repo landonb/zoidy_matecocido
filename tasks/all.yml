@@ -118,6 +118,13 @@
     apply: { tags: always }
   tags: mate-caja-preferences
 
+- name: Load tasks to Customize MATE Keyboard Preferences
+  ansible.builtin.include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-keyboard-preferences
+    apply: { tags: always }
+  tags: mate-keyboard-preferences
+
 - name: Load tasks to Configure caja Media Handling
   ansible.builtin.include_role:
     name: zoidy_matecocido
