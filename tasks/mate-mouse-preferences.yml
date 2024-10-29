@@ -1,0 +1,117 @@
+---
+
+# MATE Menu > Preferences > Mouse > Mouse Preferences > Mouse
+#
+# - Pointer Speed > Acceleration > Slow (1.0) ... Fast (10.0)
+#
+#   - "The speed at which your mouse pointer moves on your
+#      screen when you move your mouse."
+#
+#   - Defaults to -1.0 (in gsettings; absent in dconf).
+#
+#     - Though appears no way to reset to default -1 value.
+#
+#     - REFER: See also discussion on MATE mouse prefs:
+#       https://ubuntu-mate.community/t/mouse-settings-are-misleading/26328
+#
+# - Pointer Speed > Sensitivity > Low (1) ... High (10)
+#
+#   - "How sensitive your mouse pointer is to movements of your mouse."
+#
+#     - Aka "Acceleration Threshold" (see REFER, above).
+#
+#   - Defaults to -1 (in gsettings; absent in dconf).
+#
+# - Pointer Speed > Acceleration Profile > Default | Adaptive | Flat
+#
+#   - Not documented?
+#
+#   - BWARE: Using "Flat" w/ Slow & Low makes the mouse *crawl*!
+#
+# THOTS: The defaults (-1.0 & 1) make mouse movement a little *too* fast
+# (for author's Logitech M317, and taste). But then Slow & Low (1.0 & 1)
+# seems too slow. (And Slow & High (1.0 & 10) feels the same as Slow &
+# Low).
+#
+# - Dragging slider and demoing, I landed at 2.6849315068493151 as a
+#   decent acceleration. Which is close to some (rounded) contants:
+#   - 2.62206: Lemniscate constant (ϖ)
+#   - 2.66514: Gelfond–Schneider constant (2^√2)
+#   - 2.68545: Khinchin's constant (K0)
+#   - 2.71828: Euler's no., limiting diff btw harmonic series and natural log
+
+# See also Pointer Cursor Theme.
+#
+# - Defaults to Bibata-Modern-Classic, which is quite nice, IMHO. /2023-04-21
+#
+#   - So don't change. And if MATE changes pointer theme in the future,
+#     we'll be sure to see the new default and can then decide to revert
+#     to Bibata, if so inclined.
+#
+# MATE Menu > Preferences > Appearance > Custom > Customize... > Pointer
+#
+# - gsettings:
+#
+#   - schema: org.mate.peripherals-mouse
+#     key: cursor-theme
+#     val: "Bibata-Modern-Classic"
+#
+# - dconf:
+#
+#   - key: "/org/mate/desktop/peripherals/mouse/cursor-theme"
+#     val: "Bibata-Modern-Classic"
+
+# ***
+
+- name: Customize MATE Mouse Preferences (gsettings)
+  ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
+  loop:
+
+    # - E.g.,
+    #     gsettings get org.mate.peripherals-mouse motion-acceleration
+    #     gsettings set org.mate.peripherals-mouse motion-acceleration 2.68545
+    - schema: org.mate.peripherals-mouse
+      key: motion-acceleration
+      val: "2.68545"
+
+    # - E.g.,
+    #     gsettings get org.mate.peripherals-mouse motion-threshold
+    #     gsettings set org.mate.peripherals-mouse motion-threshold 1
+    - schema: org.mate.peripherals-mouse
+      key: motion-threshold
+      val: "1"
+
+    # - E.g.,
+    #     gsettings get org.mate.peripherals-mouse accel-profile
+    #     gsettings set org.mate.peripherals-mouse accel-profile default
+    - schema: org.mate.peripherals-mouse
+      key: accel-profile
+      val: "default"
+
+# ***
+
+- name: Customize MATE Mount Preferences (dconf)
+  ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
+  loop:
+
+    # - E.g.,
+    #     dconf read /org/mate/desktop/peripherals/mouse/motion-acceleration
+    #     dconf write /org/mate/desktop/peripherals/mouse/motion-acceleration 2.68545
+    - key: "/org/mate/desktop/peripherals/mouse/motion-acceleration"
+      val: "2.68545"
+
+    # - E.g.,
+    #     dconf read /org/mate/desktop/peripherals/mouse/motion-acceleration
+    #     dconf write /org/mate/desktop/peripherals/mouse/motion-acceleration 1
+    - key: "/org/mate/desktop/peripherals/mouse/motion-threshold"
+      val: "1"
+
+    # - E.g.,
+    #     dconf read /org/mate/desktop/peripherals/mouse/accel-profile
+    #     dconf write /org/mate/desktop/peripherals/mouse/accel-profile "default"
+    - key: "/org/mate/desktop/peripherals/mouse/accel-profile"
+      val: "default"
+
+  # We only need to set gsettings or dconf
+  when: False
+

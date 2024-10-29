@@ -132,6 +132,13 @@
     apply: { tags: always }
   tags: mate-media-handling
 
+- name: Load tasks to Customize MATE Mouse Preferences
+  ansible.builtin.include_role:
+    name: zoidy_matecocido
+    tasks_from: mate-mouse-preferences
+    apply: { tags: always }
+  tags: mate-mouse-preferences
+
 # ***
 
 - name: Determine if host is “Desktop” or “Laptop”

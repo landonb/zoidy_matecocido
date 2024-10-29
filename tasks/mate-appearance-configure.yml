@@ -64,16 +64,6 @@
       # but doesn't quite look as good default theme.
       #  val: "Mint-Y-Dark-Pink"
 
-    # MATE Menu > Preferences > Appearance > Custom > Customize... > Pointer
-    #
-    # ISOFF/2023-04-21: Don't set the default value, in case Mint changes
-    # default in the future, so you can demo new default.
-    #
-    # - schema: org.mate.peripherals-mouse
-    #   key: cursor-theme
-    #   # 2023-04-21: The default. Whodda thought I'd enjoy a new cursor design.
-    #   val: "Bibata-Modern-Classic"
-
 # ***
 
 - name: Customize MATE notifications theme
