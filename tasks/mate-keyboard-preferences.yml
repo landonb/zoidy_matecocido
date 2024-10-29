@@ -1,6 +1,6 @@
 ---
 
-- name: Customize MATE Keyboard Preferences
+- name: Customize MATE Keyboard Preferences (gsettings)
   ansible.builtin.shell: gsettings set {{ item.schema }} {{ item.key }} {{ item.val }}
   loop:
 
@@ -17,7 +17,7 @@
 
 # ***
 
-- name: Customize MATE Keyboard Preferences
+- name: Customize MATE Keyboard Preferences (dconf)
   ansible.builtin.shell: dconf write {{ item.key }} {{ item.val }}
   loop:
 
