@@ -32,9 +32,6 @@
 # (for author's Logitech M317, and taste). But then Slow & Low (1.0 & 1)
 # seems too slow. (And Slow & High (1.0 & 10) feels the same as Slow &
 # Low).
-#
-# - Dragging slider and demoing, I first landed at 2.6849315068493151 as a
-#   decent acceleration. But later bumped a titch, to 3.6854499999999994.
 
 # See also Pointer Cursor Theme.
 #
@@ -65,10 +62,10 @@
 
     # - E.g.,
     #     gsettings get org.mate.peripherals-mouse motion-acceleration
-    #     gsettings set org.mate.peripherals-mouse motion-acceleration 3.68545
+    #     gsettings set org.mate.peripherals-mouse motion-acceleration 2.80822
     - schema: org.mate.peripherals-mouse
       key: motion-acceleration
-      val: "3.68545"
+      val: "{{ zoidy_matecocido_mouse_acceleration }}"
 
     # - E.g.,
     #     gsettings get org.mate.peripherals-mouse motion-threshold
@@ -92,9 +89,9 @@
 
     # - E.g.,
     #     dconf read /org/mate/desktop/peripherals/mouse/motion-acceleration
-    #     dconf write /org/mate/desktop/peripherals/mouse/motion-acceleration 3.68545
+    #     dconf write /org/mate/desktop/peripherals/mouse/motion-acceleration 2.80822
     - key: "/org/mate/desktop/peripherals/mouse/motion-acceleration"
-      val: "3.68545"
+      val: "{{ zoidy_matecocido_mouse_acceleration }}"
 
     # - E.g.,
     #     dconf read /org/mate/desktop/peripherals/mouse/motion-acceleration

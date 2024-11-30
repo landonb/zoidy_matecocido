@@ -24,3 +24,11 @@ zoidy_matecocido_mate_menu_icon_22x: "/usr/share/icons/Mint-X/categories/24/appl
 # zoidy_matecocido_lock_screen_background: "/usr/share/backgrounds/linuxmint/default_background.jpg"
 zoidy_matecocido_lock_screen_background: ""
 
+# MATE Menu > Preferences > Mouse > Mouse Preferences > Mouse
+# - Pointer Speed > Acceleration > Slow (1.0) ... Fast (10.0)
+# Used by: tasks/mate-mouse-preferences.yml
+# - Author considers this a reasonable value, not too fast, not too slow.
+#   But it's a Goldilocks value, tastes may vary. (And it might depend on
+#   your mouse hardware, too. Author uses Logitech M317.)
+zoidy_matecocido_mouse_acceleration: "2.80822"
+
