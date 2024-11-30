@@ -223,8 +223,9 @@ zoidy_matecocido_keybindings_basic:
   # *** Focus Slack: Super_L + k
   #           ↑   ↑
 
+  # BNDNG: <Shift-Ctrl-Cmd-F>
   - name: "'Slack'"
-    binding: "'<Mod4>k'"
+    binding: "'<Shift><Primary><Mod4>f'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Slack |\\'\\\"'"
 
   # *** Date.now()/datetime.now(): Super_L + j
