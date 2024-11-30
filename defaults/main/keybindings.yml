@@ -97,6 +97,12 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
 
+  # SAVVY: Familiar macOS binding
+  # BNDNG: <Cmd-M>
+  - name: "'Minimize (Iconify) Topmost Window'"
+    binding: "'<Mod4>m'"
+    action: "'sh -c \\\"xdotool windowminimize \\$(xdotool getactivewindow)\\\"'"
+
   # *** Invert Screen Colors (ew!): Super_L + i
 
   # ISOFF/2023-04-22: No longer works:
@@ -141,7 +147,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'tmux Window'"
     # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
-    binding: "'<Mod4>m'"
+    binding: "'<Shift><Mod4>m'"
     # - See the app-tmux.yml task, which builds and installs tmux to ~/.local/bin.
     # - See also ~/.profile, which updates PATH to include ~/.local/bin, so we can
     #   simply call `tmux` here, and not have to specify the full path.
