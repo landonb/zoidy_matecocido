@@ -378,6 +378,14 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>9'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'9.\\' || wmctrl -a \\'9․\\'\\\"'"
 
+  # ***
+
+  - name: "'New mate-terminal window'"
+    binding: "'<Mod4>0'"
+    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"DUBS_ALWAYS_ON_VISIBLE=false HOMEFRIES_CD=$(readlink ~/.waffle/work/user-current-project) mate-terminal --geometry=130x48+402+89 -e /home/landonb/.local/bin/bash\\\"'"
+
+  # ****
+
   # *** Resize and center active window: Ctrl + Shift + Super_L + KeyPad+
   #
   # ISOFF/2023-04-22: CXREF: See instead <Ctrl-Shift-Cmd-Numpad_5>'s 'move-to-center':
