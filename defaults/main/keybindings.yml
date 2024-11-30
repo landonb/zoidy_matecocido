@@ -66,7 +66,7 @@ zoidy_matecocido_keybindings_basic:
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || wmctrl -a \\' - Gmail - \\'\\\"'"
+    action: "'sh -c \\\"( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || wmctrl -a \\' - Gmail - \\'\\\"'"
 
   # *** New Chrome window: Super_L + y
 
@@ -135,13 +135,13 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Mod4>p'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab: Super_L + x
 
   - name: "'Regex Dictionary [tab]'"
     binding: "'<Mod4>x'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
   # *** Open new tmux mate-terminal: Super_L + m
 
@@ -173,7 +173,7 @@ zoidy_matecocido_keybindings_basic:
     # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
     #  binding: "'<Mod4>s'"
     binding: "'<Primary><Shift><Mod4>s'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
@@ -226,7 +226,7 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Shift-Ctrl-Cmd-F>
   - name: "'Slack'"
     binding: "'<Shift><Primary><Mod4>f'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'Slack |\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'Slack |\\'\\\"'"
 
   # *** Date.now()/datetime.now(): Super_L + j
 
@@ -236,7 +236,7 @@ zoidy_matecocido_keybindings_basic:
   # - Note: It's 'minus', not '-' (I.e., not: `binding: "'<Mod4>-'"`).
   - name: "'Now(TTT)'"
     binding: "'<Mod4>minus'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip -selection c\\\"'"
+    action: "'sh -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip -selection c\\\"'"
 
   # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
   #
@@ -285,7 +285,7 @@ zoidy_matecocido_keybindings_basic:
     # - So we'll pick Ctrl-Cmd-' which is next to a related binding, Ctrl-Cmd-;
     #   (and hopefully you'll remember where it's at).
     binding: "'<Primary><Mod4>apostrophe'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
   #
   # Normal date plus:time.
   # - Note: Using printf with date input with a space gets tricky, e.g.,
@@ -301,7 +301,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Primary><Mod4>semicolon'"
     # How it looks on dconf-dump:
     #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip -selection c\""
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
 
   # *** pwgen23 to clippy: Super_L + Alt + p
 
@@ -310,7 +310,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Alt><Mod4>p'"
     # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
     #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"printf \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
+    action: "'sh -c \\\"printf \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
 
   # ***
 
@@ -344,39 +344,39 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Window 1. to front'"
     binding: "'<Mod4>1'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'1.\\' || wmctrl -a \\'1․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'1.\\' || wmctrl -a \\'1․\\'\\\"'"
 
   - name: "'Window 2. to front'"
     binding: "'<Mod4>2'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'2.\\' || wmctrl -a \\'2․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'2.\\' || wmctrl -a \\'2․\\'\\\"'"
 
   - name: "'Window 3. to front'"
     binding: "'<Mod4>3'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'3.\\' || wmctrl -a \\'3․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'3.\\' || wmctrl -a \\'3․\\'\\\"'"
 
   - name: "'Window 4. to front'"
     binding: "'<Mod4>4'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'4.\\' || wmctrl -a \\'4․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'4.\\' || wmctrl -a \\'4․\\'\\\"'"
 
   - name: "'Window 5. to front'"
     binding: "'<Mod4>5'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'5.\\' || wmctrl -a \\'5․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'5.\\' || wmctrl -a \\'5․\\'\\\"'"
 
   - name: "'Window 6. to front'"
     binding: "'<Mod4>6'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'6.\\' || wmctrl -a \\'6․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'6.\\' || wmctrl -a \\'6․\\'\\\"'"
 
   - name: "'Window 7. to front'"
     binding: "'<Mod4>7'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'7.\\' || wmctrl -a \\'7․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'7.\\' || wmctrl -a \\'7․\\'\\\"'"
 
   - name: "'Window 8. to front'"
     binding: "'<Mod4>8'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'8.\\' || wmctrl -a \\'8․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'8.\\' || wmctrl -a \\'8․\\'\\\"'"
 
   - name: "'Window 9. to front'"
     binding: "'<Mod4>9'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'9.\\' || wmctrl -a \\'9․\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'9.\\' || wmctrl -a \\'9․\\'\\\"'"
 
   # ***
 
@@ -421,5 +421,5 @@ zoidy_matecocido_keybindings_basic:
     # that tmux truncates it after 3 letters and prefixes a box drawing heavy
     # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     binding: "'<Mod4>d'"
-    action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"wmctrl -a \\'┇ ham\\' ; wmctrl -a \\'dob edit\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'┇ ham\\' ; wmctrl -a \\'dob edit\\'\\\"'"
 
