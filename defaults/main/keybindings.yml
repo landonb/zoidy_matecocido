@@ -70,7 +70,7 @@ zoidy_matecocido_keybindings_basic:
   - name: "'[Personal] Gmail'"
     # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
     #  binding: "'<Mod4>a'"
-    binding: "'<Primary><Shift><Mod4>a'"
+    binding: "'<Shift><Primary><Mod4>a'"
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
@@ -178,7 +178,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
-    binding: "'<Primary><Shift><Mod4>s'"
+    binding: "'<Shift><Primary><Mod4>s'"
     action: "'sh -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
@@ -278,7 +278,7 @@ zoidy_matecocido_keybindings_basic:
     # - Though really we'd want to use Shift-Ctrl-Cmd-- for window shrink,
     #   because all the other MATE window shortcuts use the Shift-Ctrl-Cmd
     #   prefix (see: tasks/mate-marco-window-keybindings.yml). But MATE
-    #   ignores <Primary><Shift><Mod4>minus, whether set via dconf or set
+    #   ignores <Shift><Primary><Mod4>minus, whether set via dconf or set
     #   via the Keyboard Shortcuts GUI. So unless we find a different
     #   Shift-Ctrl-Cmd binding for window shrink (and a related binding
     #   for window grow, which is currently wired to Ctrl-Cmd-+), we'll
@@ -286,8 +286,8 @@ zoidy_matecocido_keybindings_basic:
     # SOSAD/2024-03-17: These bindings do not work, whether set via dconf
     # or set via MATE's Keyboard Shortcuts GUI:
     #   binding: "'<Shift><Mod4>underscore'"
-    #   binding: "'<Primary><Shift><Mod4>colon'"
-    #   binding: "'<Primary><Shift><Mod4>semicolon'"
+    #   binding: "'<Shift><Primary><Mod4>colon'"
+    #   binding: "'<Shift><Primary><Mod4>semicolon'"
     # - So we'll pick Ctrl-Cmd-' which is next to a related binding, Ctrl-Cmd-;
     #   (and hopefully you'll remember where it's at).
     binding: "'<Primary><Mod4>apostrophe'"
@@ -415,7 +415,7 @@ zoidy_matecocido_keybindings_basic:
   #   # to press (left hand on the lower-leftmost three
   #   # keys, and right hand on the upper-rightmost key
   #   # (or nearabouts)). I prefer the mnemonically one.
-  #   binding: "'<Primary><Shift><Mod4>KP_Add'"
+  #   binding: "'<Shift><Primary><Mod4>KP_Add'"
   #   action: "'window-to-center'"
 
   # *** Focus dob terminal window: Super_L + d
