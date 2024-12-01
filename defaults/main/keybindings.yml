@@ -8,6 +8,17 @@
 #
 #   dconf dump /org/mate/desktop/keybindings/
 
+# ALERT: The window toggle accelerators depend on DepoXy scripts:
+#
+#   https://github.com/DepoXy/depoxy#🍯
+#
+#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-spotify
+#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-window
+#
+# and are expected to be found locally under:
+#
+#   ~/.depoxy/ambers/bin
+
 # USAGE: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
@@ -146,7 +157,7 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Shift><Primary><Mod4>p'"
-    action: "'sh -c \\\"wmctrl -a \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab: Super_L + x
 
@@ -155,7 +166,7 @@ zoidy_matecocido_keybindings_basic:
     #   binding: "'<Shift><Primary><Mod4>8'"
     #   binding: "'<Shift><Primary><Mod4>asterisk'"
     binding: "'<Shift><Primary><Alt>p'"
-    action: "'sh -c \\\"wmctrl -a \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
   # *** Open new tmux mate-terminal: Super_L + m
 
@@ -185,7 +196,7 @@ zoidy_matecocido_keybindings_basic:
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
     binding: "'<Shift><Primary><Mod4>s'"
-    action: "'sh -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://www.messenger.com/\\' --profile-directory=Default\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
@@ -356,39 +367,39 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'Window 1. to front'"
     binding: "'<Mod4>1'"
-    action: "'sh -c \\\"wmctrl -a \\'1.\\' || wmctrl -a \\'1․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'1.\\' \\'1․\\''"
 
   - name: "'Window 2. to front'"
     binding: "'<Mod4>2'"
-    action: "'sh -c \\\"wmctrl -a \\'2.\\' || wmctrl -a \\'2․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'2.\\' \\'2․\\''"
 
   - name: "'Window 3. to front'"
     binding: "'<Mod4>3'"
-    action: "'sh -c \\\"wmctrl -a \\'3.\\' || wmctrl -a \\'3․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'3.\\' \\'3․\\''"
 
   - name: "'Window 4. to front'"
     binding: "'<Mod4>4'"
-    action: "'sh -c \\\"wmctrl -a \\'4.\\' || wmctrl -a \\'4․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'4.\\' \\'4․\\''"
 
   - name: "'Window 5. to front'"
     binding: "'<Mod4>5'"
-    action: "'sh -c \\\"wmctrl -a \\'5.\\' || wmctrl -a \\'5․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'5.\\' \\'5․\\''"
 
   - name: "'Window 6. to front'"
     binding: "'<Mod4>6'"
-    action: "'sh -c \\\"wmctrl -a \\'6.\\' || wmctrl -a \\'6․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'6.\\' \\'6․\\''"
 
   - name: "'Window 7. to front'"
     binding: "'<Mod4>7'"
-    action: "'sh -c \\\"wmctrl -a \\'7.\\' || wmctrl -a \\'7․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'7.\\' \\'7․\\''"
 
   - name: "'Window 8. to front'"
     binding: "'<Mod4>8'"
-    action: "'sh -c \\\"wmctrl -a \\'8.\\' || wmctrl -a \\'8․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'8.\\' \\'8․\\''"
 
   - name: "'Window 9. to front'"
     binding: "'<Mod4>9'"
-    action: "'sh -c \\\"wmctrl -a \\'9.\\' || wmctrl -a \\'9․\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'9.\\' \\'9․\\''"
 
   # ***
 
@@ -433,5 +444,5 @@ zoidy_matecocido_keybindings_basic:
     # that tmux truncates it after 3 letters and prefixes a box drawing heavy
     # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     binding: "'<Mod4>d'"
-    action: "'sh -c \\\"wmctrl -a \\'┇ ham\\' ; wmctrl -a \\'dob edit\\'\\\"'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'┇ ham\\' \\'dob edit\\''"
 
