@@ -38,60 +38,61 @@ zoidy_matecocido_keybindings_gvims: []
 #        zoidy_matecocido_keybindings_gvims
 zoidy_matecocido_keybindings_basic:
 
-  # *** Keybindings defined below:
+  # *** Keybindings defined below (where BTF: Bring-to-front):
   #
-  #   Super_L + a + Shift + Ctrl  Focus window and tab: Gmail Inbox
-  #              ['  '''  '  '' — for parity w/ macOS Karabiner-Elements binding]
+  #   <Shift-Ctrl-Cmd-A>  Open/BTF/Minimize browser tab: Gmail Inbox
   #
-  #   Super_L + t   New Chrome Browser window
+  #   <Cmd-T>             New Chrome Browser window
   #
-  #   Super_L + y   New Chromium Browser window
+  #   <Cmd-Y>             New Chromium Browser window
   #
-  #   Super_L + f   Open File Manager (caja)
+  #   <Cmd-F>             Open File Manager (caja)
   #
-  #   Super_L + g   Float Topmost Window [~center on a 1920x1080]
+  #   <Cmd-G>             Float Topmost Window [~center on a 1920x1080]
   #
-  #   Super_L + i   Invert Screen Colors
+  #   <Cmd-M>             Minimize (Iconify) Topmost Window
   #
-  #   Super_L + `      Bring gVim [fs] to front
-  #   Super_L + [TAB]  Bring gVim [fs] to front
+  #   <Cmd-`>             Bring gVim to front (with servername
+  #                       matching zoidy_matecocido_gvim_servername)
   #
-  #   Super_L + p   Open or BTF browser tab: PowerThesaurus
+  #   <Shift-Ctrl-Cmd-P>  Open/BTF/Minimize browser tab: PowerThesaurus
   #
-  #   Super_L + x   Open or BTF browser tab: Regex Dictionary
+  #   <Shift-Ctrl-Alt-P>  Open/BTF/Minimize browser tab: Regex Dictionary
   #
-  #   Super_L + m   Run tmux in mate-terminal window
+  #   <Shift-Ctrl-Cmd-X>  Open/BTF/Minimize app: Spotify
   #
-  #   Super_L + 1   Bring "Spotify" window to front [think !, like music]
+  #   <Shift-Ctrl-Cmd-S>  Open/BTF/Minimize browser tab: Messenger
   #
-  #   Super_L + s   Bring "Messenger" window to front (Does not open new tab)
-  #   + Shift + Ctrl [for parity w/ macOS Karabiner-Elements binding]
+  #   <Shift-Ctrl-Cmd-F>  Open/BTF/Minimize app: Slack
   #
-  #   Super_L + k   Bring "Slack" application window to front
+  #   <Cmd-minus>         Copy *now* date ("YYYY-MM-DD") to clipboard
   #
-  #   Super_L + -   Make *now* date (YYYY-MM-DD) pasteable (send to clipboard buffer).
+  #   <Ctrl-Cmd-apostrophe> Copy "YYYY-MM-DD-TT-tt" to clipboard
   #
-  #      Also Ctrl + minus, and
-  #   Shift + Ctrl + minus, to feed YYYY-MM-DD-TT-tt into clippy.
+  #   <Ctrl-Cmd-semicolon>  Copy "YYYY-MM-DD TT:tt" to clipboard
   #
-  #   Ctrl + Super_L + p   pwgen23 → clipboard
+  #   <Cmd-Alt-P>         Generate and copy 23-character password to clipboard
+  #                         `pwgen23` → clipboard
   #
-  #   Ctrl + Shift + Super_L + KeyPad+   Resize and center active window
+  #   <Cmd-1> .. <Cmd-0>  BTF/Minimize terminal window titled "1." .. "9."
   #
-  #   Super_L + d   dob it
+  #   <Cmd-0>             Open new mate-terminal window
+  #
+  #   <Shift-Cmd-M>       Run tmux in mate-terminal window
+  #
+  #   <Cmd-D>             BTF/Minimize Dob window
 
-  # *** Focus Email window/tab: Super_L + a
+  # *** Focus Email window/tab
 
+  # BNDNG: <Shift-Ctrl-Cmd-A>
   - name: "'[Personal] Gmail'"
-    # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
-    #  binding: "'<Mod4>a'"
     binding: "'<Shift><Primary><Mod4>a'"
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
     action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'{{ zoidy_matecocido_personal_email }}\\' \\'Google Calendar - \\' || ( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://mail.google.com/mail/u/0/#inbox\\' --profile-directory=Default\\\"'"
 
-  # *** New Chrome window: Super_L + y
+  # *** New Chrome window
 
   # 2022-01-05: --profile-directory added to start with default user,
   #             and not the last-used profile. Which can be annoying.
@@ -100,22 +101,25 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>t'"
     action: "'/opt/google/chrome/chrome --profile-directory=Default'"
 
-  # *** New Chromium window: Super_L + t
+  # *** New Chromium window
 
+  # BNDNG: <Cmd-Y>
   - name: "'Chromium Browser'"
     binding: "'<Mod4>y'"
     # 2023-04-22: Name simplified in Linux Mint 21.1, vs. 19.3's:
     #  action: "'/usr/bin/chromium-browser'"
     action: "'/usr/bin/chromium'"
 
-  # *** New caja (file system) window: Super_L + f
+  # *** New caja (file system) window
 
+  # BNDNG: <Cmd-F>
   - name: "'File Manager'"
     binding: "'<Mod4>f'"
     action: "'caja {{ ansible_env.HOME }}/Downloads'"
 
-  # *** Float topmost window: Super_L + g
+  # *** Float topmost window
 
+  # BNDNG: <Cmd-G>
   - name: "'Float Topmost Window'"
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
@@ -126,7 +130,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>m'"
     action: "'sh -c \\\"xdotool windowminimize \\$(xdotool getactivewindow)\\\"'"
 
-  # *** Invert Screen Colors (ew!): Super_L + i
+  # *** Invert Screen Colors (ew!)
 
   # ISOFF/2023-04-22: No longer works:
   #   $ ~/.local/bin/xrandr-invert-colors
@@ -134,15 +138,17 @@ zoidy_matecocido_keybindings_basic:
   #   error while init
   # - But don't care.
   #
+  #  # BNDNG: <Cmd-I>
   #  - name: "'Invert Screen Colors'"
   #    binding: "'<Mod4>i'"
   #    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors\\\"'"
 
-  # *** Focum gVim window: Super_L + `
+  # *** Focum gVim window
 
   # Bring gVim to the foreground.
   # - Looks for --servername "SAMPI", a convention used by
   #   Home Fries' `fs` alias; and by `sensible-open`.
+  # BNDNG: <Cmd-`> (<Cmd-backtick>)
   - name: "'gVim [fs]'"
     binding: "'<Mod4>grave'"
     action: "'xdotool search --name {{ zoidy_matecocido_gvim_servername }} windowactivate'"
@@ -154,14 +160,16 @@ zoidy_matecocido_keybindings_basic:
   # yourself, which happens if we call `sensible-browser` without the
   # option).
 
-  # *** Focus or Open PowerThesaurus browser tab: Super_L + p
+  # *** Focus or Open PowerThesaurus browser tab
 
+  # BNDNG: <Shift-Ctrl-Cmd-P>
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Shift><Primary><Mod4>p'"
     action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
-  # *** Focus or Open RegexDictionary browser tab: Super_L + x
+  # *** Focus or Open RegexDictionary browser tab
 
+  # BNDNG: <Shift-Ctrl-Alt-P>
   - name: "'Regex Dictionary [tab]'"
     # These don't work:
     #   binding: "'<Shift><Primary><Mod4>8'"
@@ -169,7 +177,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Alt>p'"
     action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
-  # *** Focus Spotify application window: Super_L + s
+  # *** Focus Spotify application window
 
   # BNDNG: <Shift-Ctrl-Cmd-X>
   - name: "'Kick Out The Jams [Spotify]'"
@@ -179,8 +187,9 @@ zoidy_matecocido_keybindings_basic:
     # and dollar signs in dconf entries is frustrating, just shell out!
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-spotify'"
 
-  # *** Focus Facebook Messenger browser tab: Super_L + d
+  # *** Focus Facebook Messenger browser tab
 
+  # BNDNG: <Shift-Ctrl-Cmd-S>
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
     binding: "'<Shift><Primary><Mod4>s'"
@@ -231,7 +240,7 @@ zoidy_matecocido_keybindings_basic:
     #   Or maybe 0.13, I think I had one 0.1 slip through.
 
   #           ↓   ↓
-  # *** Focus Slack: Shift + Super_L + Cmd + F
+  # *** Focus Slack
   #           ↑   ↑
 
   # BNDNG: <Shift-Ctrl-Cmd-F>
@@ -239,12 +248,13 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>f'"
     action: "'sh -c \\\"wmctrl -a \\'| Slack\\' || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-slack\\'\\\"'"
 
-  # *** Date.now()/datetime.now(): Super_L + j
+  # *** Date.now()/datetime.now()
 
   # Put YYYY-MM-DD into clipboard register using Cmd+-.
   #
   # - Note: Use printf to avoid newline injection.
   # - Note: It's 'minus', not '-' (I.e., not: `binding: "'<Mod4>-'"`).
+  # BNDNG: <Cmd--> (<Cmd-minus>)
   - name: "'Now(TTT)'"
     binding: "'<Mod4>minus'"
     action: "'sh -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip -selection c\\\"'"
@@ -275,6 +285,7 @@ zoidy_matecocido_keybindings_basic:
   #           than the terminal or Vim, say, Gmail.
   #­­
   # Dashed date-plus-time.
+  # BNDNG: <Ctrl-Cmd-'> (<Ctrl-Cmd-apostrophe>)
   - name: "'Now(TTTtt-)'"
     # Ideally, this binding would incorporate the dash key to help you
     # remember where it's bound (the mnemonic being that the press the
@@ -308,15 +319,17 @@ zoidy_matecocido_keybindings_basic:
   #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | xclip …
   #         but I couldn't get that to work.
   #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
+  # BNDNG: <Ctrl-Cmd-;> (<Ctrl-Cmd-semicolon>)
   - name: "'Now(TTTtt:)'"
     binding: "'<Primary><Mod4>semicolon'"
     # How it looks on dconf-dump:
     #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip -selection c\""
     action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
 
-  # *** pwgen23 to clippy: Super_L + Alt + p
+  # *** pwgen23 to clippy
 
   # Using printf to avoid the newline.
+  # BNDNG: <Cmd-Alt-P>
   - name: "'pwgen|xclip'"
     binding: "'<Alt><Mod4>p'"
     # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
@@ -353,52 +366,63 @@ zoidy_matecocido_keybindings_basic:
   #
   #     ~/.kit/sh/home-fries/lib/term/perhaps-always-on-visible-desktop.sh
 
+  # BNDNG: <Cmd-1>
   - name: "'Window 1. to front'"
     binding: "'<Mod4>1'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'1.\\' \\'1․\\''"
 
+  # BNDNG: <Cmd-2>
   - name: "'Window 2. to front'"
     binding: "'<Mod4>2'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'2.\\' \\'2․\\''"
 
+  # BNDNG: <Cmd-3>
   - name: "'Window 3. to front'"
     binding: "'<Mod4>3'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'3.\\' \\'3․\\''"
 
+  # BNDNG: <Cmd-4>
   - name: "'Window 4. to front'"
     binding: "'<Mod4>4'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'4.\\' \\'4․\\''"
 
+  # BNDNG: <Cmd-5>
   - name: "'Window 5. to front'"
     binding: "'<Mod4>5'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'5.\\' \\'5․\\''"
 
+  # BNDNG: <Cmd-6>
   - name: "'Window 6. to front'"
     binding: "'<Mod4>6'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'6.\\' \\'6․\\''"
 
+  # BNDNG: <Cmd-7>
   - name: "'Window 7. to front'"
     binding: "'<Mod4>7'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'7.\\' \\'7․\\''"
 
+  # BNDNG: <Cmd-8>
   - name: "'Window 8. to front'"
     binding: "'<Mod4>8'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'8.\\' \\'8․\\''"
 
+  # BNDNG: <Cmd-9>
   - name: "'Window 9. to front'"
     binding: "'<Mod4>9'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'9.\\' \\'9․\\''"
 
   # ***
 
+  # BNDNG: <Cmd-0>
   - name: "'New mate-terminal window'"
     binding: "'<Mod4>0'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"DUBS_ALWAYS_ON_VISIBLE=false HOMEFRIES_CD=$(readlink ~/.waffle/work/user-current-project) mate-terminal --geometry=130x48+402+89 -e /home/landonb/.local/bin/bash\\\"'"
 
   # ****
 
-  # *** Open new tmux mate-terminal: Super_L + m
+  # *** Open new tmux mate-terminal
 
+  # BNDNG: <Shift-Cmd-M>
   - name: "'tmux Window'"
     # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
     binding: "'<Shift><Mod4>m'"
@@ -412,7 +436,7 @@ zoidy_matecocido_keybindings_basic:
 
   # ****
 
-  # *** Resize and center active window: Ctrl + Shift + Super_L + KeyPad+
+  # *** Resize and center active window
   #
   # ISOFF/2023-04-22: CXREF: See instead <Ctrl-Shift-Cmd-Numpad_5>'s 'move-to-center':
   #   ~/.kit/ansible/roles/zoidy_matecocido/tasks/mate-marco-window-keybindings.yml
@@ -438,8 +462,9 @@ zoidy_matecocido_keybindings_basic:
   #   binding: "'<Shift><Primary><Mod4>KP_Add'"
   #   action: "'window-to-center'"
 
-  # *** Focus dob terminal window: Super_L + d
+  # *** Focus dob terminal window
 
+  # BNDNG: <Cmd-D>
   - name: "'dob sweet [dob]'"
     # Brings dob to the front.
     # CONVENTION: Assumes you're running the `dob edit` command, or that you
