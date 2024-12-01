@@ -16,6 +16,9 @@ zoidy_matecocido_keybindings_bonus: []
 # 2021-02-21: See Home Fries environ: ${GVIM_OPEN_SERVERNAME:-SAMPI}
 zoidy_matecocido_gvim_servername: 'SAMPI'
 
+# USAGE: Set your personal email addy in your playbook's group_vars/.
+zoidy_matecocido_personal_email: 'user@gmail.com'
+
 # USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
 
@@ -74,7 +77,7 @@ zoidy_matecocido_keybindings_basic:
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
-    action: "'sh -c \\\"( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || wmctrl -a \\' - Gmail - \\'\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'{{ zoidy_matecocido_personal_email }}\\' \\'Google Calendar - \\' || ( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://mail.google.com/mail/u/0/#inbox\\' --profile-directory=Default\\\"'"
 
   # *** New Chrome window: Super_L + y
 
