@@ -145,13 +145,16 @@ zoidy_matecocido_keybindings_basic:
   # *** Focus or Open PowerThesaurus browser tab: Super_L + p
 
   - name: "'PowerThesaurus [tab]'"
-    binding: "'<Mod4>p'"
+    binding: "'<Shift><Primary><Mod4>p'"
     action: "'sh -c \\\"wmctrl -a \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab: Super_L + x
 
   - name: "'Regex Dictionary [tab]'"
-    binding: "'<Mod4>x'"
+    # These don't work:
+    #   binding: "'<Shift><Primary><Mod4>8'"
+    #   binding: "'<Shift><Primary><Mod4>asterisk'"
+    binding: "'<Shift><Primary><Alt>p'"
     action: "'sh -c \\\"wmctrl -a \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
   # *** Open new tmux mate-terminal: Super_L + m
