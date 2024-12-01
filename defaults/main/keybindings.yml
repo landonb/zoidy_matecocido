@@ -12,6 +12,7 @@
 #
 #   https://github.com/DepoXy/depoxy#🍯
 #
+#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-slack
 #     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-spotify
 #     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-window
 #
@@ -249,7 +250,7 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Shift-Ctrl-Cmd-F>
   - name: "'Slack'"
     binding: "'<Shift><Primary><Mod4>f'"
-    action: "'sh -c \\\"wmctrl -a \\'Slack |\\'\\\"'"
+    action: "'sh -c \\\"wmctrl -a \\'| Slack\\' || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-slack\\'\\\"'"
 
   # *** Date.now()/datetime.now(): Super_L + j
 
