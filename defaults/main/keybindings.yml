@@ -331,7 +331,7 @@ zoidy_matecocido_keybindings_basic:
   # Using printf to avoid the newline.
   # BNDNG: <Cmd-Alt-P>
   - name: "'pwgen|xclip'"
-    binding: "'<Alt><Mod4>p'"
+    binding: "'<Mod4><Alt>p'"
     # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
     #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
     action: "'sh -c \\\"printf \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
