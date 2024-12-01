@@ -1,5 +1,9 @@
 ---
 
+# SAVVY/2024-11-30 16:30: Inspect actual bindings:
+#
+#   dconf dump /org/mate/desktop/keybindings/
+
 # YOU: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
