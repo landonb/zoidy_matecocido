@@ -169,19 +169,6 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Alt>p'"
     action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
-  # *** Open new tmux mate-terminal: Super_L + m
-
-  - name: "'tmux Window'"
-    # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
-    binding: "'<Shift><Mod4>m'"
-    # - See the app-tmux.yml task, which builds and installs tmux to ~/.local/bin.
-    # - See also ~/.profile, which updates PATH to include ~/.local/bin, so we can
-    #   simply call `tmux` here, and not have to specify the full path.
-    # - (lb): Unforunately, after ~/.profile updates LD_LIBRARY_PATH, something
-    #   else resets it, so we have to include the path here (to user-local
-    #   libevent and ncurses libraries).
-    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
-
   # *** Focus Spotify application window: Super_L + s
 
   # BNDNG: <Shift-Ctrl-Cmd-X>
@@ -407,6 +394,21 @@ zoidy_matecocido_keybindings_basic:
   - name: "'New mate-terminal window'"
     binding: "'<Mod4>0'"
     action: "'{{ ansible_env.HOME }}/.local/bin/bash -c \\\"DUBS_ALWAYS_ON_VISIBLE=false HOMEFRIES_CD=$(readlink ~/.waffle/work/user-current-project) mate-terminal --geometry=130x48+402+89 -e /home/landonb/.local/bin/bash\\\"'"
+
+  # ****
+
+  # *** Open new tmux mate-terminal: Super_L + m
+
+  - name: "'tmux Window'"
+    # BOO: I tried "'<Mod4>/'" "'<Mod4>\\/'" "'<Mod4>.'" but nothing!
+    binding: "'<Shift><Mod4>m'"
+    # - See the app-tmux.yml task, which builds and installs tmux to ~/.local/bin.
+    # - See also ~/.profile, which updates PATH to include ~/.local/bin, so we can
+    #   simply call `tmux` here, and not have to specify the full path.
+    # - (lb): Unforunately, after ~/.profile updates LD_LIBRARY_PATH, something
+    #   else resets it, so we have to include the path here (to user-local
+    #   libevent and ncurses libraries).
+    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
 
   # ****
 
