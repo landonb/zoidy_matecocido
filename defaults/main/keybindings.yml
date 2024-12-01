@@ -8,15 +8,15 @@
 #
 #   dconf dump /org/mate/desktop/keybindings/
 
-# YOU: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
+# USAGE: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
-# YOU: Send file to the Gvim instance using its --servername.
+# USAGE: Send file to the Gvim instance using its --servername.
 # (lb): 'SAMPI' is just the arbitrary term that I use.
 # 2021-02-21: See Home Fries environ: ${GVIM_OPEN_SERVERNAME:-SAMPI}
 zoidy_matecocido_gvim_servername: 'SAMPI'
 
-# YOU: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
+# USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
 
 # CXREF: zoidy_matecocido_keybindings_bonus
@@ -178,8 +178,6 @@ zoidy_matecocido_keybindings_basic:
 
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
-    # 2021-02-10: Trying for parity w/ macOS Karabiner-Elements [KE] binding.
-    #  binding: "'<Mod4>s'"
     binding: "'<Primary><Shift><Mod4>s'"
     action: "'sh -c \\\"wmctrl -a \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
@@ -228,7 +226,7 @@ zoidy_matecocido_keybindings_basic:
     #   Or maybe 0.13, I think I had one 0.1 slip through.
 
   #           ↓   ↓
-  # *** Focus Slack: Super_L + k
+  # *** Focus Slack: Shift + Super_L + Cmd + F
   #           ↑   ↑
 
   # BNDNG: <Shift-Ctrl-Cmd-F>
