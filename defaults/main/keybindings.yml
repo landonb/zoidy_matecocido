@@ -347,7 +347,7 @@ zoidy_matecocido_keybindings_basic:
   #
   #   - CXREF:
   #
-  #     ~/.kit/sh/home-fries/lib/term/show-command-name-in-window-title.sh
+  #     ~/.kit/sh/sh-humble-prompt/lib/show-command-name-in-window-title.sh
 
   # Note that `wmctrl -a '1. '` does not work (the trailing space).
   # - But `wmctrl -a '1.'` or `wmctrl -a '1. <some-text>'` works.
