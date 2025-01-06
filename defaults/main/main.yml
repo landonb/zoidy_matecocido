@@ -3,7 +3,7 @@
 
 # ***
 
-now_date: "{{ lookup('pipe', 'date +\"%Y_%m_%d_T%H:%M:%S\"') }}"
+now_date: "{{ lookup('ansible.builtin.pipe', 'date +\"%Y_%m_%d_T%H:%M:%S\"') }}"
 
 # DEVS: You'll find files on the host under:
 #   ~/.local/share/zoidy_matecocido/
