@@ -15,7 +15,7 @@ __metaclass__ = type
 #  from ansible.errors import AnsibleFilterError
 
 ANSIBLE_METADATA = {
-    'metadata_version': '0.1',
+    'metadata_version': '1.0.0',
     'status': ['preview'],
     'supported_by': 'community'
 }
