@@ -1,27 +1,199 @@
 ---
 
+# REFER: Various methods to identify the current desktop environment.
+# https://unix.stackexchange.com/questions/116539/how-to-detect-the-desktop-environment-in-a-bash-script/645761#645761
+# https://specifications.freedesktop.org/desktop-entry-spec/latest/
+#   https://specifications.freedesktop.org/desktop-entry-spec/latest/recognized-keys.html
+# https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#desktop=
+#
+# E.g., when logged on to the desktop environment (these are empty otherwise):
+#
+#   $ echo $XDG_CURRENT_DESKTOP
+#   GNOME
+#
+#   $ echo $XDG_SESSION_DESKTOP
+#   gnome
+#
+#   # Deprecated.
+#   $ echo $DESKTOP_SESSION
+#   gnome
+#
+#   $ sudo apt install wmctrl && wmctrl -m
+#   Name: GNOME Shell
+#   Class: N/A
+#   PID: N/A
+#   Window manager's "showing the desktop" mode: OFF
+#
+#   # Though not over SSH:
+#   @ssh $ wmctrl -m
+#   Cannot open display.
+#
+# - CALSO: If not logged on to the DE, you gotta guess, e.g.:
+#
+#   ls -la /usr/bin/*-session
+#   test -e /usr/bin/gnome-session
+#   test -e /usr/bin/mate-session
+#
+#   $ ps -A | egrep -i "(gnome|kde|mate|cinnamon)\-session"
+#   102966 tty2     00:00:00 gnome-session-b
+#   103004 ?        00:00:00 gnome-session-c
+#   103019 ?        00:00:00 gnome-session-b
+
+- ansible.builtin.debug: msg="XDG_CURRENT_DESKTOP∷ {{ XDG_CURRENT_DESKTOP }}"
+  when: XDG_CURRENT_DESKTOP is defined and XDG_CURRENT_DESKTOP != ""
+
+- name: Suss Desktop Environment (DE) — check XDG_CURRENT_DESKTOP (local)
+  register: current_de_confident
+  ansible.builtin.shell: |
+    # Colon-separated list, uppercased.
+    currdes="$(echo "{{ XDG_CURRENT_DESKTOP }}" | tr [:lower:] [:upper:])"
+
+    IFS=:; for denv in ${currdes}; do
+      if [ "${denv}" = "GNOME" ]; then
+        echo "GNOME"
+      elif [ "${denv}" = "MATE" ]; then
+        echo "MATE"
+      else
+
+        continue
+      fi
+
+      break
+    done
+  # This is only True when user sets explicitly, e.g.,
+  #   ansible-playbook -e XDG_CURRENT_DESKTOP=foo ...
+  when: XDG_CURRENT_DESKTOP is defined and XDG_CURRENT_DESKTOP != ""
+
+- ansible.builtin.debug: msg="current_de_confident∷ {{
+    current_de_confident.stdout is defined and current_de_confident.stdout }}"
+
+# When running over SSH, XDG_CURRENT_DESKTOP won't be set.
+- name: Suss Desktop Environment (DE) — check XDG_CURRENT_DESKTOP (remote)
+  register: current_de_guess
+  ansible.builtin.shell: |
+    n_identified=0
+
+    for path in \
+      /usr/bin/gnome-session \
+      /usr/bin/mate-session \
+    ; do
+      if [ -x "${path}" ]; then
+        n_identified=$((n_identified + 1))
+      fi
+    done
+
+    if [ ${n_identified} -gt 1 ]; then
+      >&2 echo "ERROR: More than one desktop environment identified"
+      >&2 echo "- HINT: Use environ to specify manually, e.g.:"
+      >&2 echo "    ansible-playbook -e XDG_CURRENT_DESKTOP=GNOME ..."
+      >&2 echo "  Or:"
+      >&2 echo "    ansible-playbook -e XDG_CURRENT_DESKTOP=MATE ..."
+
+      return 1
+    elif [ ${n_identified} -eq 0 ]; then
+      >&2 echo "ERROR: Unidentifed desktop environment: Neither GNOME nor MATE"
+
+      return 1
+    fi
+
+    if [ -x /usr/bin/gnome-session ]; then
+      echo "GNOME"
+    elif [ -x /usr/bin/mate-session ]; then
+      echo "MATE"
+    fi
+  when: XDG_CURRENT_DESKTOP is not defined or XDG_CURRENT_DESKTOP == ""
+
+- ansible.builtin.debug: msg="current_de_guess∷ {{
+    current_de_guess.stdout is defined and current_de_guess.stdout }}"
+
+- name: Suss Desktop Environment (DE) — set fact — current_de
+  ansible.builtin.set_fact:
+    current_de: "{{
+      (current_de_confident.stdout is defined and current_de_confident.stdout)
+      or (current_de_guess.stdout is defined and current_de_guess.stdout)
+    }}"
+# Using default()  doesn't work in previous set_fact, or alone, e.g.:
+#   - name: Suss Desktop Environment (DE) — set fact — current_de
+#     ansible.builtin.set_fact:
+#       current_de: "{{ current_de | default('UNSUPPORTED') }}"
+# So check truthiness instead:
+- name: Suss Desktop Environment (DE) — set fact — current_de
+  ansible.builtin.set_fact:
+    current_de: 'UNSUPPORTED'
+  when: not current_de
+
+- name: Set XDG_CURRENT_DESKTOP default
+  ansible.builtin.set_fact:
+    XDG_CURRENT_DESKTOP: 'UNDEFINED'
+  when: XDG_CURRENT_DESKTOP is not defined
+
+- name: Suss Desktop Environment (DE) — set facts — GNOME
+  ansible.builtin.set_fact:
+    dconf_path: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    dconf_cmd_key: "command"
+  when: current_de == 'GNOME'
+
+- name: Suss Desktop Environment (DE) — set facts — MATE
+  ansible.builtin.set_fact:
+    dconf_path: "/org/mate/desktop/keybindings"
+    dconf_cmd_key: "action"
+  when: current_de == 'MATE'
+
+- ansible.builtin.fail:
+    msg: "Unrecognized Desktop Environment: XDG_CURRENT_DESKTOP ~ {{ current_de }} ({{ XDG_CURRENT_DESKTOP }})"
+  when: dconf_path is not defined
+
 # ***
 
 # Reset keybindings to their default state: absent.
 - name: Clear Existing MATE Key Bindings
-  ansible.builtin.shell: dconf reset -f /org/mate/desktop/keybindings/
+  ansible.builtin.shell: dconf reset -f {{ dconf_path }}/
 
-- name: Customize MATE Key Bindings
+- name: Customize DE Key Bindings
+  ansible.builtin.set_fact:
+    zoidy_matecocido_keybindings: "{{
+      []
+      + zoidy_matecocido_keybindings_basic
+      + zoidy_matecocido_keybindings_bonus
+      + zoidy_matecocido_keybindings_gvims
+        | to_gvim_keybinding_action('', ansible_env.HOME)
+    }}"
+
+- name: Customize DE Key Bindings
   # debug:
   #   msg: "{{ index }} -- {{ item.name }} / {{ item.binding }} / {{ item.action }}"
   ansible.builtin.shell: |
-    dconf write /org/mate/desktop/keybindings/custom{{ index }}/name "{{ item.name }}" ; \
-    dconf write /org/mate/desktop/keybindings/custom{{ index }}/binding "{{ item.binding }}" ; \
-    dconf write /org/mate/desktop/keybindings/custom{{ index }}/action "{{ item.action }}" ; \
+    dconf write {{ dconf_path }}/custom{{ index }}/name "{{ item.name }}" ; \
+    dconf write {{ dconf_path }}/custom{{ index }}/binding "{{
+      item.binding | replace('<Mod4>', '<Super>') | replace('<Primary>', '<Control>')}}" ; \
+    dconf write {{ dconf_path }}/custom{{ index }}/{{ dconf_cmd_key }} "{{ item.action }}" ; \
   # ISOFF/2024-06-06: Don't apply servername, but let gvim-open-kindness figure it out.
   #   | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
-  loop: "{{
-    []
-    + zoidy_matecocido_keybindings_basic
-    + zoidy_matecocido_keybindings_bonus
-    + zoidy_matecocido_keybindings_gvims
-      | to_gvim_keybinding_action('', ansible_env.HOME)
-  }}"
+  loop: "{{ zoidy_matecocido_keybindings }}"
   loop_control:
     index_var: index
+
+# Write array of dconf keys to:
+#   /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+# THANX: For the `| head | tr` idea that made the seq-echo obvious.
+#   https://aamnah.com/notes/bash-scripting/dconf-append-list-avoid-duplicates/
+- name: Customize GNOME Key Bindings 
+  register: keyb_entries
+  ansible.builtin.shell: |
+    entries=""
+    n_keybs={{ zoidy_matecocido_keybindings | length - 1 }}
+    if [ ${n_keybs} -gt 0 ]; then
+      entries="$( \
+        for index in $(seq 0 ${n_keybs}); do
+          echo "'{{ dconf_path }}/custom${index}/'"
+        done \
+        | head -c-1 | tr "\n" ","
+      )"
+      echo dconf write "{{ dconf_path }}" "[${entries}]"
+      dconf write "{{ dconf_path }}" "[${entries}]"
+    fi
+  when: current_de == 'GNOME'
+
+- ansible.builtin.debug: msg="keyb_entries∷ {{
+    keyb_entries.stdout is defined and keyb_entries.stdout }}"
 
