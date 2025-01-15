@@ -197,3 +197,12 @@
 - ansible.builtin.debug: msg="keyb_entries∷ {{
     keyb_entries.stdout is defined and keyb_entries.stdout }}"
 
+- name: Disable built-in GNOME <Super-1>..<Super-9> Key Bindings
+  register: keyb_entries
+  ansible.builtin.shell: |
+    for index in $(seq 1 9); do
+      echo dconf write "/org/gnome/shell/keybindings/switch-to-application-${index}" "@as []"
+      dconf write "/org/gnome/shell/keybindings/switch-to-application-${index}" "@as []"
+    done
+  when: current_de == 'GNOME'
+
