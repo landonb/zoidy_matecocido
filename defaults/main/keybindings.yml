@@ -52,6 +52,8 @@ zoidy_matecocido_keybindings_basic:
   #
   #   <Cmd-M>             Minimize (Iconify) Topmost Window
   #
+  #   <Ctrl-Cmd-Q>        Lock Desktop
+  #
   #   <Cmd-`>             Bring gVim to front (with servername
   #                       matching zoidy_matecocido_gvim_servername)
   #
@@ -129,6 +131,11 @@ zoidy_matecocido_keybindings_basic:
   - name: "'Minimize (Iconify) Topmost Window'"
     binding: "'<Mod4>m'"
     action: "'sh -c \\\"xdotool windowminimize \\$(xdotool getactivewindow)\\\"'"
+  # SAVVY: Familiar macOS binding
+  # BNDNG: <Ctrl-Cmd-Q>
+  - name: "'Lock Desktop'"
+    binding: "'<Primary><Mod4>q'"
+    action: "'sh -c \\\"mate-screensaver-command --lock\\\"'"
 
   # *** Invert Screen Colors (ew!)
 
