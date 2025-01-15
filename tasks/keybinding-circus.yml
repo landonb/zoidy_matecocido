@@ -159,6 +159,42 @@
         | to_gvim_keybinding_action('', ansible_env.HOME)
     }}"
 
+# - ansible.builtin.debug: msg="zoidy_matecocido_keybindings∷ {{ zoidy_matecocido_keybindings }}"
+
+# REFER: Jinja2/Ansible: Use map('combine') to add default key-value to list of dictionaries.
+# THANX: This loop-to-add-default-key-value structure by β.εηοιτ.βε:
+#   https://stackoverflow.com/a/72309536
+# https://stackoverflow.com/questions/72308808/inserting-default-values-into-list-of-dicts-in-ansible
+- name: Add default Keybinding definition key-values
+  ansible.builtin.set_fact:
+    zym_keybindings_defaults: >-
+      {{
+        zym_keybindings_defaults | default([]) + [
+          defaults_only | combine(item)
+        ]
+      }}
+  loop: "{{ zoidy_matecocido_keybindings }}"
+  vars:
+    defaults_only:
+      name: ""
+      binding: ""
+      action: ""
+      env: "ALL"
+
+# - ansible.builtin.debug: msg="zym_keybindings_defaults∷ {{ zym_keybindings_defaults }}"
+
+# REFER: https://jinja.palletsprojects.com/en/stable/templates/#jinja-filters.selectattr
+# THANX: For the selectattr(..., 'search', '('~var1~'|'~var2~')') tip,
+# answered by β.εηοιτ.βε (see also THANX above):
+#   https://stackoverflow.com/questions/77948875/how-to-use-selectattr-with-search-on-multiple-strings#comment137420831_77948875
+# - REFER/2025-01-15: `~` is string concatenation [and this might be
+#   author's first usage in any Ansible config].
+- name: Filter Keybinding definitions
+  ansible.builtin.set_fact:
+    zym_keybindings_de_specific: "{{ zym_keybindings_defaults | selectattr('env', 'search', '('~current_de~'|ALL)') }}"
+
+# - ansible.builtin.debug: msg="zym_keybindings_de_specific∷ {{ zym_keybindings_de_specific }}"
+
 - name: Customize DE Key Bindings
   # debug:
   #   msg: "{{ index }} -- {{ item.name }} / {{ item.binding }} / {{ item.action }}"
@@ -169,7 +205,7 @@
     dconf write {{ dconf_path }}/custom{{ index }}/{{ dconf_cmd_key }} "{{ item.action }}" ; \
   # ISOFF/2024-06-06: Don't apply servername, but let gvim-open-kindness figure it out.
   #   | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
-  loop: "{{ zoidy_matecocido_keybindings }}"
+  loop: "{{ zym_keybindings_de_specific }}"
   loop_control:
     index_var: index
 
@@ -177,11 +213,11 @@
 #   /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
 # THANX: For the `| head | tr` idea that made the seq-echo obvious.
 #   https://aamnah.com/notes/bash-scripting/dconf-append-list-avoid-duplicates/
-- name: Customize GNOME Key Bindings 
+- name: Update GNOME Keybinding TOC index
   register: keyb_entries
   ansible.builtin.shell: |
     entries=""
-    n_keybs={{ zoidy_matecocido_keybindings | length - 1 }}
+    n_keybs={{ zym_keybindings_de_specific | length - 1 }}
     if [ ${n_keybs} -gt 0 ]; then
       entries="$( \
         for index in $(seq 0 ${n_keybs}); do

@@ -127,15 +127,31 @@ zoidy_matecocido_keybindings_basic:
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
 
   # SAVVY: Familiar macOS binding
+  #
+  # - SAVVY: GNOME Shell includes <Cmd-H> by default, which Hides,
+  #   which is effectively the same as Minimize (GNOME Shell doesn't
+  #   implement a Hidden state different from Minimize like macOS does).
+  #   - Just saying, <Cmd-M> and <Cmd-H> are equivalent on GNOME Shell.
+  # BNDNG: <Cmd-M>
+  - name: "'Minimize (Iconify) Topmost Window'"
+    binding: "'<Mod4>m'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/minimize-focused'"
+    env: "GNOME"
+  #
   # BNDNG: <Cmd-M>
   - name: "'Minimize (Iconify) Topmost Window'"
     binding: "'<Mod4>m'"
     action: "'sh -c \\\"xdotool windowminimize \\$(xdotool getactivewindow)\\\"'"
+    env: "MATE"
+
   # SAVVY: Familiar macOS binding
   # BNDNG: <Ctrl-Cmd-Q>
+  # - SAVVY: In GNOME Shell, the lock screen keybinding as at
+  #     /org/gnome/settings-daemon/plugins/media-keys/screensaver
   - name: "'Lock Desktop'"
     binding: "'<Primary><Mod4>q'"
     action: "'sh -c \\\"mate-screensaver-command --lock\\\"'"
+    env: "MATE"
 
   # *** Invert Screen Colors (ew!)
 
