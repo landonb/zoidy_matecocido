@@ -149,7 +149,7 @@
 - name: Clear Existing MATE Key Bindings
   ansible.builtin.shell: dconf reset -f {{ dconf_path }}/
 
-- name: Customize DE Key Bindings
+- name: Combine Keybinding definitions
   ansible.builtin.set_fact:
     zoidy_matecocido_keybindings: "{{
       []
