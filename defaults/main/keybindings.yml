@@ -356,67 +356,50 @@ zoidy_matecocido_keybindings_basic:
   #
   #     ~/.kit/sh/sh-humble-prompt/lib/show-command-name-in-window-title.sh
 
-  # Note that `wmctrl -a '1. '` does not work (the trailing space).
-  # - But `wmctrl -a '1.'` or `wmctrl -a '1. <some-text>'` works.
-
-  # CXREF: Homefries uses different dots for window title window numbers:
-  # - Either Full Stop (normal period, “.”), or One Dot Leader (“․”) for
-  #   sticky terminal windows.
-  #
-  # See:
-  #
-  #   https://github.com/landonb/home-fries#🍟
-  #
-  #     https://github.com/landonb/home-fries/blob/release/lib/term/perhaps-always-on-visible-desktop.sh
-  #
-  #   Or if running a DepoXy environment, locally at:
-  #
-  #     ~/.kit/sh/home-fries/lib/term/perhaps-always-on-visible-desktop.sh
-
   # BNDNG: <Cmd-1>
   - name: "'Window 1. to front'"
     binding: "'<Mod4>1'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'1.\\' \\'1․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'1\\''"
 
   # BNDNG: <Cmd-2>
   - name: "'Window 2. to front'"
     binding: "'<Mod4>2'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'2.\\' \\'2․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'2\\''"
 
   # BNDNG: <Cmd-3>
   - name: "'Window 3. to front'"
     binding: "'<Mod4>3'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'3.\\' \\'3․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'3\\''"
 
   # BNDNG: <Cmd-4>
   - name: "'Window 4. to front'"
     binding: "'<Mod4>4'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'4.\\' \\'4․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'4\\''"
 
   # BNDNG: <Cmd-5>
   - name: "'Window 5. to front'"
     binding: "'<Mod4>5'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'5.\\' \\'5․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'5\\''"
 
   # BNDNG: <Cmd-6>
   - name: "'Window 6. to front'"
     binding: "'<Mod4>6'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'6.\\' \\'6․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'6\\''"
 
   # BNDNG: <Cmd-7>
   - name: "'Window 7. to front'"
     binding: "'<Mod4>7'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'7.\\' \\'7․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'7\\''"
 
   # BNDNG: <Cmd-8>
   - name: "'Window 8. to front'"
     binding: "'<Mod4>8'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'8.\\' \\'8․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'8\\''"
 
   # BNDNG: <Cmd-9>
   - name: "'Window 9. to front'"
     binding: "'<Mod4>9'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'9.\\' \\'9․\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'9\\''"
 
   # ***
 
