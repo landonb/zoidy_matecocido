@@ -95,11 +95,6 @@ def to_gvim_keybinding_action(
         # easier for user to change their preferred servername without
         # having to repair all the keybindings. So prefer not setting.
         # - TL/DR: Prefer *not* setting servername.
-        # - But I'm leaving this code b/c I can't remember if the
-        #   `wmctrl` calls was meaningful. Perhaps on old MATE, or
-        #   maybe gvim-open-kindness now does it? (I havent' checked.)
-        #   - So while I assume the `wmctrl` is redundant or unnecessary
-        #     now, keep it *just in case*.
         #
         # CXREF: Runs gvim or nvim (See: GVIM_OPEN_PREFER_NVIM=true):
         # ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
@@ -109,7 +104,6 @@ def to_gvim_keybinding_action(
                 "'sh -c \\\""
                     "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
                         "\\\'{servername}\\\' -- \\\'{file_path}\\\' "
-                    "&& wmctrl -b add,sticky -r {servername}"
                 "\\\"'"
             ).format(
                 user_home=user_home,
