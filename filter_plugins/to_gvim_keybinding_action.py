@@ -102,8 +102,11 @@ def to_gvim_keybinding_action(
         if servername:
             bash_cmd = (
                 "'sh -c \\\""
+                    "if [ -f \\\'{user_home}/.config/depoxy/depoxyrc\\\' ]; then "
+                    "  . \\\'{user_home}/.config/depoxy/depoxyrc\\\'; "
+                    "fi; "
                     "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "\\\'{servername}\\\' -- \\\'{file_path}\\\' "
+                        "\\\'{servername}\\\' -- \\\'{file_path}\\\';"
                 "\\\"'"
             ).format(
                 user_home=user_home,
@@ -113,8 +116,11 @@ def to_gvim_keybinding_action(
         else:
             bash_cmd = (
                 "'sh -c \\\""
+                    "if [ -f \\\'{user_home}/.config/depoxy/depoxyrc\\\' ]; then "
+                    "  . \\\'{user_home}/.config/depoxy/depoxyrc\\\'; "
+                    "fi; "
                     "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "-- \\\'{file_path}\\\'"
+                        "-- \\\'{file_path}\\\';"
                 "\\\"'"
             ).format(
                 user_home=user_home,
