@@ -108,7 +108,7 @@ def to_gvim_keybinding_action(
             bash_cmd = (
                 "'sh -c \\\""
                     "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "\\\'{servername}\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\' "
+                        "\\\'{servername}\\\' -- \\\'{file_path}\\\' "
                     "&& wmctrl -b add,sticky -r {servername}"
                 "\\\"'"
             ).format(
@@ -120,7 +120,7 @@ def to_gvim_keybinding_action(
             bash_cmd = (
                 "'sh -c \\\""
                     "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "\\\'\\\' \\\'\\\' \\\'\\\' \\\'{file_path}\\\'"
+                        "-- \\\'{file_path}\\\'"
                 "\\\"'"
             ).format(
                 user_home=user_home,
