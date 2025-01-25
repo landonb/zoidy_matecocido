@@ -100,6 +100,10 @@ def to_gvim_keybinding_action(
         #   maybe gvim-open-kindness now does it? (I havent' checked.)
         #   - So while I assume the `wmctrl` is redundant or unnecessary
         #     now, keep it *just in case*.
+        #
+        # CXREF: Runs gvim or nvim (See: GVIM_OPEN_PREFER_NVIM=true):
+        # ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
+        # ~/.depoxy/running/home/.config/depoxy/depoxyrc
         if servername:
             bash_cmd = (
                 "'sh -c \\\""
