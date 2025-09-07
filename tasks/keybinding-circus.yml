@@ -148,7 +148,7 @@
 - name: Suss Desktop Environment (DE) — set fact — current_de
   ansible.builtin.set_fact:
     current_de: 'UNSUPPORTED'
-  when: not current_de
+  when: current_de == ''
 
 - name: Debug trace
   ansible.builtin.debug:
