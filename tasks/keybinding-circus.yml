@@ -131,11 +131,15 @@
       }}
 
 - name: Suss Desktop Environment (DE) — set fact — current_de
+  # SAVVY: Use >- and not > or |, otherhwise current_de set with trailing newline.
   ansible.builtin.set_fact:
-    current_de: "{{
-      (current_de_confident.stdout is defined and current_de_confident.stdout)
-      or (current_de_guess.stdout is defined and current_de_guess.stdout)
-    }}"
+    current_de: >-
+      {{
+        (current_de_confident.stdout is defined and current_de_confident.stdout)
+        or (current_de_guess.stdout is defined and current_de_guess.stdout)
+        or ''
+      }}
+
 # Using default()  doesn't work in previous set_fact, or alone, e.g.:
 #   - name: Suss Desktop Environment (DE) — set fact — current_de
 #     ansible.builtin.set_fact:
@@ -176,13 +180,14 @@
 
 - name: Combine Keybinding definitions
   ansible.builtin.set_fact:
-    zoidy_matecocido_keybindings: "{{
-      []
-      + zoidy_matecocido_keybindings_basic
-      + zoidy_matecocido_keybindings_bonus
-      + zoidy_matecocido_keybindings_gvims
-        | to_gvim_keybinding_action('', ansible_env.HOME)
-    }}"
+    zoidy_matecocido_keybindings: >-
+      {{
+        []
+        + zoidy_matecocido_keybindings_basic
+        + zoidy_matecocido_keybindings_bonus
+        + zoidy_matecocido_keybindings_gvims
+          | to_gvim_keybinding_action('', ansible_env.HOME)
+      }}
 
 # - ansible.builtin.debug: msg="zoidy_matecocido_keybindings∷ {{ zoidy_matecocido_keybindings }}"
 
