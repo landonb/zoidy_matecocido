@@ -39,6 +39,18 @@
 #   103004 ?        00:00:00 gnome-session-c
 #   103019 ?        00:00:00 gnome-session-b
 
+# Note that ansible_env.XDG_CURRENT_DESKTOP is not set, because
+# XDG_CURRENT_DESKTOP won't be set over the SSH connection.
+# - If user wants, they can use -e arg, e.g.,
+#     ansible-playbook ... -e XDG_CURRENT_DESKTOP=GNOME
+# - But we'll suss it if they don't set it.
+#
+# ASIDE: You can easily dump the target's environs:
+#   - name: Display all variables/facts known for a host
+#     debug:
+#       var: hostvars["host"]
+#       # Or print its (very limited set of) environs.
+#       #  var: hostvars["host"]["ansible_env"]
 - name: Debug trace
   ansible.builtin.debug:
     msg:
