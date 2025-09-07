@@ -39,8 +39,11 @@
 #   103004 ?        00:00:00 gnome-session-c
 #   103019 ?        00:00:00 gnome-session-b
 
-- ansible.builtin.debug: msg="XDG_CURRENT_DESKTOP∷ {{ XDG_CURRENT_DESKTOP }}"
-  when: XDG_CURRENT_DESKTOP is defined and XDG_CURRENT_DESKTOP != ""
+- name: Debug trace
+  ansible.builtin.debug:
+    msg:
+      XDG_CURRENT_DESKTOP∷ {{ XDG_CURRENT_DESKTOP }}
+  when: XDG_CURRENT_DESKTOP is defined
 
 - name: Suss Desktop Environment (DE) — check XDG_CURRENT_DESKTOP (local)
   register: current_de_confident
@@ -64,8 +67,13 @@
   #   ansible-playbook -e XDG_CURRENT_DESKTOP=foo ...
   when: XDG_CURRENT_DESKTOP is defined and XDG_CURRENT_DESKTOP != ""
 
-- ansible.builtin.debug: msg="current_de_confident∷ {{
-    current_de_confident.stdout is defined and current_de_confident.stdout }}"
+- name: Debug trace
+  ansible.builtin.debug:
+    msg:
+      current_de_confident∷ {{
+        (current_de_confident.stdout is defined and current_de_confident.stdout)
+        or ''
+      }}
 
 # When running over SSH, XDG_CURRENT_DESKTOP won't be set.
 - name: Suss Desktop Environment (DE) — check XDG_CURRENT_DESKTOP (remote)
@@ -103,8 +111,12 @@
     fi
   when: XDG_CURRENT_DESKTOP is not defined or XDG_CURRENT_DESKTOP == ""
 
-- ansible.builtin.debug: msg="current_de_guess∷ {{
-    current_de_guess.stdout is defined and current_de_guess.stdout }}"
+- name: Debug trace
+  ansible.builtin.debug:
+    msg:
+      current_de_guess∷ {{
+        current_de_guess.stdout is defined and current_de_guess.stdout
+      }}
 
 - name: Suss Desktop Environment (DE) — set fact — current_de
   ansible.builtin.set_fact:
@@ -139,7 +151,8 @@
     dconf_cmd_key: "action"
   when: current_de == 'MATE'
 
-- ansible.builtin.fail:
+- name: Fail if unrecognized or unknown Desktop Environment
+  ansible.builtin.fail:
     msg: "Unrecognized Desktop Environment: XDG_CURRENT_DESKTOP ~ {{ current_de }} ({{ XDG_CURRENT_DESKTOP }})"
   when: dconf_path is not defined
 
