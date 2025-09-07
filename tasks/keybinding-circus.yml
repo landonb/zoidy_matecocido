@@ -150,6 +150,10 @@
     current_de: 'UNSUPPORTED'
   when: not current_de
 
+- name: Debug trace
+  ansible.builtin.debug:
+    msg: "current_de∷ {{ current_de }}"
+
 - name: Set XDG_CURRENT_DESKTOP default
   ansible.builtin.set_fact:
     XDG_CURRENT_DESKTOP: 'UNDEFINED'
