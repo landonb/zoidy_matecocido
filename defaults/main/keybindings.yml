@@ -14,7 +14,7 @@
 #
 #     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-slack
 #     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-spotify
-#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-window
+#     https://github.com/DepoXy/depoxy/blob/release/bin/windows/toggle-visibility
 #
 # and are expected to be found locally under:
 #
@@ -92,7 +92,7 @@ zoidy_matecocido_keybindings_basic:
     # Simple action when Gmail always active tab in its window:
     #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
     # Using static landing tab, and also sleep because timing issue:
-    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'{{ zoidy_matecocido_personal_email }}\\' \\'Google Calendar - \\' || ( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://mail.google.com/mail/u/0/#inbox\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'{{ zoidy_matecocido_personal_email }}\\' \\'Google Calendar - \\' || ( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://mail.google.com/mail/u/0/#inbox\\' --profile-directory=Default\\\"'"
 
   # *** New Chrome window
 
@@ -188,7 +188,7 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Shift-Ctrl-Cmd-P>
   - name: "'PowerThesaurus [tab]'"
     binding: "'<Shift><Primary><Mod4>p'"
-    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Power Thesaurus - \\' || sensible-browser --new-window \\'https://www.powerthesaurus.org/\\' --profile-directory=Default\\\"'"
 
   # *** Focus or Open RegexDictionary browser tab
 
@@ -198,7 +198,7 @@ zoidy_matecocido_keybindings_basic:
     #   binding: "'<Shift><Primary><Mod4>8'"
     #   binding: "'<Shift><Primary><Mod4>asterisk'"
     binding: "'<Shift><Primary><Alt>p'"
-    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Regex Dictionary by Lou Hevly - \\' || sensible-browser --new-window \\'https://www.visca.com/regexdict/\\' --profile-directory=Default\\\"'"
 
   # *** Focus Spotify application window
 
@@ -216,7 +216,7 @@ zoidy_matecocido_keybindings_basic:
   - name: "'[Facebook] Messenger'"
     # Brings the Facebook Messenger browser tab to the front.
     binding: "'<Shift><Primary><Mod4>s'"
-    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://www.messenger.com/\\' --profile-directory=Default\\\"'"
+    action: "'sh -c \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Messenger - \\' || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' ) || sensible-browser --new-window \\'https://www.messenger.com/\\' --profile-directory=Default\\\"'"
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
@@ -478,5 +478,5 @@ zoidy_matecocido_keybindings_basic:
     # that tmux truncates it after 3 letters and prefixes a box drawing heavy
     # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     binding: "'<Mod4>d'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-window \\'┇ ham\\' \\'dob edit\\''"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'┇ ham\\' \\'dob edit\\''"
 
