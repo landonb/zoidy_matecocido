@@ -280,7 +280,7 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Cmd--> (<Cmd-minus>)
   - name: "'Now(TTT)'"
     binding: "'<Mod4>minus'"
-    action: "'sh -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip -selection c\\\"'"
+    action: "'sh -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | wl-copy\\\"'"
 
   # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
   #
@@ -291,7 +291,7 @@ zoidy_matecocido_keybindings_basic:
   #
   #         - name: "'Now(TTTtt)'"
   #           binding: "'<Shift><Mod4>minus'"
-  #           action: "'…/bash -c \\\"printf \\$(date \\'+%Y-%m-%d-%H-%M\\') | xclip -selection c\\\"'"
+  #           action: "'…/bash -c \\\"printf \\$(date \\'+%Y-%m-%d-%H-%M\\') | wl-copy\\\"'"
   #
   #         (I also tried '<Shift><Mod4>_' and '<Shift><Mod4>underscore'
   #                          and '<Mod4>_' and        '<Mod4>underscore'
@@ -330,34 +330,34 @@ zoidy_matecocido_keybindings_basic:
     # - So we'll pick Ctrl-Cmd-' which is next to a related binding, Ctrl-Cmd-;
     #   (and hopefully you'll remember where it's at).
     binding: "'<Primary><Mod4>apostrophe'"
-    action: "'sh -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | wl-copy\\\"'"
   #
   # Normal date plus:time.
   # - Note: Using printf with date input with a space gets tricky, e.g.,
-  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip …
+  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | wl-copy …
   #         becomes
-  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d %H:%M\\') | xclip …
-  #         but the printf input is not quoted, so the time of day is not xclipped.
+  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d %H:%M\\') | wl-copy …
+  #         but the printf input is not quoted, so the time of day is not xclipped|wl-/pbcopied.
   #         So we'd need to quote the print input, e.g., something like
-  #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | xclip …
+  #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | wl-copy …
   #         but I couldn't get that to work.
   #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
   # BNDNG: <Ctrl-Cmd-;> (<Ctrl-Cmd-semicolon>)
   - name: "'Now(TTTtt:)'"
     binding: "'<Primary><Mod4>semicolon'"
     # How it looks on dconf-dump:
-    #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip -selection c\""
-    action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip -selection c\\\"'"
+    #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | wl-copy\""
+    action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | wl-copy\\\"'"
 
   # *** pwgen23 to clippy
 
   # Using printf to avoid the newline.
   # BNDNG: <Cmd-Alt-P>
-  - name: "'pwgen|xclip'"
+  - name: "'pwgen|clip'"
     binding: "'<Mod4><Alt>p'"
     # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
     #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
-    action: "'sh -c \\\"printf \\'%s\\' \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | xclip -selection c\\\"'"
+    action: "'sh -c \\\"printf \\'%s\\' \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ; pwgen 2 1) | wl-copy\\\"'"
 
   # ***
 
