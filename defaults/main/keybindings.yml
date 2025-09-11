@@ -131,6 +131,22 @@ zoidy_matecocido_keybindings_basic:
     action: "'caja {{ ansible_env.HOME }}/Downloads'"
     env: "MATE"
 
+  # *** Open Settings
+
+  # BNDNG: <Shift-Ctrl-Cmd-Comma> (<Shift-Ctrl-Cmd-,>)
+  - name: "'Configure GNOME settings (Control Center)'"
+    # SAVVY: MATE uses <Mod4> and <Primary>, which ZP converts
+    # to <Super> and <Control>, respectively, when run on GNOME.
+    # - See loop on zym_keybindings_de_specific:
+    #   ~/.kit/ansible/roles/zoidy_matecocido/tasks/keybinding-circus.yml
+    binding: "'<Shift><Control><Alt>comma'"
+    # Calling `gnome-control-center` when it's already running doesn't
+    # raise it (but does show popup saying "“Settings” is ready".
+    #   action: "'gnome-control-center'"
+    # REMEM/2025-09-11: IIRC, raw "action" cannot pipe, so callout "sh -c".
+    action: "'sh -c \\\"ps aux | grep -v grep | grep -q -e \\' gnome-control-center$\\' && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Settings\\' || gnome-control-center\\\"'"
+    env: "GNOME"
+
   # *** Float topmost window
 
   # BNDNG: <Cmd-G>
