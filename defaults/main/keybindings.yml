@@ -20,6 +20,11 @@
 #
 #   ~/.depoxy/ambers/bin
 
+# CXREF: DepoXy users: See similar macOS bindings:
+#
+#   ~/.kit/mOS/macOS-Hammyspoony/.hammerspoon/init.lua
+#   ~/.kit/mOS/macOS-onboarder/bin/slather-defaults.sh
+
 # USAGE: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
