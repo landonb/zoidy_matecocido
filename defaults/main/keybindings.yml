@@ -51,7 +51,7 @@ zoidy_matecocido_keybindings_basic:
   #
   #   <Cmd-Y>             New Chromium Browser window
   #
-  #   <Shift-Alt-F>       Open File Manager (caja)
+  #   <Shift-Alt-F>       Open File Manager (caja, nautilus)
   #
   #   <Cmd-G>             Float Topmost Window [~center on a 1920x1080]
   #
@@ -117,12 +117,19 @@ zoidy_matecocido_keybindings_basic:
     #  action: "'/usr/bin/chromium-browser'"
     action: "'/usr/bin/chromium'"
 
-  # *** New caja (file system) window
+  # *** New file browser window (caja, nautilus)
 
   # BNDNG: <Shift-Alt-F>
   - name: "'File Manager'"
     binding: "'<Shift><Alt>f'"
+    action: "'nautilus {{ ansible_env.HOME }}/Downloads'"
+    env: "GNOME"
+  #
+  # BNDNG: <Shift-Alt-F>
+  - name: "'File Manager'"
+    binding: "'<Shift><Alt>f'"
     action: "'caja {{ ansible_env.HOME }}/Downloads'"
+    env: "MATE"
 
   # *** Float topmost window
 
