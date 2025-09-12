@@ -171,6 +171,7 @@ zoidy_matecocido_keybindings_basic:
   - name: "'Float Topmost Window'"
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
+    env: "MATE"
 
   # SAVVY: Familiar macOS binding
   #
