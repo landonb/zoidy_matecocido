@@ -181,8 +181,9 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Float topmost window
 
-  # BNDNG: <Cmd-G>
+  # If fullscreen, floats the topmost window using a specific geometry.
   - name: "'Float Topmost Window'"
+    # BNDNG: <Cmd-G> [MATE]
     binding: "'<Mod4>g'"
     action: "'wmctrl -r :ACTIVE: -e 0,395,115,1050,750'"
     env: "MATE"
@@ -223,8 +224,8 @@ zoidy_matecocido_keybindings_basic:
   #   error while init
   # - But don't care.
   #
-  #  # BNDNG: <Cmd-I>
   #  - name: "'Invert Screen Colors'"
+  #    # BNDNG: <Cmd-I> [MATE] [ISOFF]
   #    binding: "'<Mod4>i'"
   #    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors\\\"'"
 
