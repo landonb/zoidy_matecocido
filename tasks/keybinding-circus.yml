@@ -277,7 +277,8 @@
     fi
   when: current_de == 'GNOME'
 
-- ansible.builtin.debug: msg="keyb_entries∷ {{
+- name: Inspect keyb_entries
+  ansible.builtin.debug: msg="keyb_entries∷ {{
     keyb_entries.stdout is defined and keyb_entries.stdout }}"
 
 - name: Disable built-in GNOME <Super-1>..<Super-9> Key Bindings
