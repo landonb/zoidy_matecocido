@@ -489,17 +489,41 @@ zoidy_matecocido_keybindings_basic:
   # *** pwgen23 to clippy
 
   # Using printf to avoid the newline.
-  # BNDNG: <Cmd-Alt-P>
   - name: "'pwgen|clip'"
+    # BNDNG: <Cmd-Alt-P>
     binding: "'<Mod4><Alt>p'"
-    # CXREF: ~/.homefries/lib/alias/alias_pwgen.sh
-    #   alias pwgen23='(pwgen 2 1 | tr -d '\''\n'\'' ; pwgen -n 21 -s -N 1 -y | tr -d '\''\n'\'' ; pwgen 2 1)'
+    # CXREF: We use a Home-fries func. for better maintainability:
+    #   https://github.com/landonb/home-fries#🍟
+    #     ~/.kit/sh/home-fries/lib/alias/alias_pwgen.sh
+    #   - Albeit requiring the user to also have home-fries
+    #     installed. But we're all DepoXy users here, aren't
+    #     we?
+    # - ALTLY: Here's how you might specify this directly:
+    #     action: >-
+    #       'sh -c
+    #       \\\"printf \\'%s\\'
+    #       \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ;
+    #       pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ;
+    #       pwgen 2 1) | xclip\\\"'
+    # NTRST: Watch your escapes — this 'action' value is processed by
+    # ansible.builtin.shell, which calls `dconf write` (we're not using
+    # a dconf Anisble module, but rather just shelling out).
+    # - So this value is subject to shell expansion (as are 'name' and 'binding').
+    # - I've noted this because the HOMEFRIES_LIB usage here is just for
+    #   readability/findabililty/consistency. Because expansion (and because
+    #   Ansible runs over SSH w/ very few environs set), HOMEFRIES_LIB will
+    #   always be unset during the play.
     action: >-
       'sh -c
-      \\\"printf \\'%s\\'
-      \\$(pwgen 2 1 | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ;
-      pwgen -n 21 -s -N 1 -y | tr -d \\'\\\\'\\'\\n\\'\\\\'\\' ;
-      pwgen 2 1) | xclip\\\"'
+      \\\". ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
+      && printf \\'%s\\' \\\"\\\$(_hf_aliases_wire_pwgen_pwgen23)\\\"
+      | xclip\\\"'
+    # ALTLY: Here's an approach with 68% less escaping (6 \'s vs. 19).
+    #   action: >-
+    #     'bash -c \\\"
+    #     . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
+    #     && . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_clip.sh
+    #     && _hf_aliases_wire_pwgen_pwgen23 | _hf_clip\\\"'
 
   # ***
 
