@@ -411,81 +411,53 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Date.now()/datetime.now()
 
-  # Put YYYY-MM-DD into clipboard register using Cmd+-.
-  #
-  # - Note: Use printf to avoid newline injection.
-  # - Note: It's 'minus', not '-' (I.e., not: `binding: "'<Mod4>-'"`).
-  # BNDNG: <Cmd--> (<Cmd-minus>)
+  # Copies "YYYY-MM-DD" date into clipboard.
   - name: "'Now(TTT)'"
+    # FRMAT: +%Y-%m-%d
+    # BNDNG: <Cmd-Minus> (<Cmd-->)
     binding: "'<Mod4>minus'"
-    action: "'sh -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip\\\"'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d\\' | tr -d \\'\\n\\' | xclip\\\"'"
 
-  # Put YYYY-MM-DD-TT-tt into clipboard register using Cmd+(Mod)+-.
-  #
-  # (lb): I'd prefer just Super-Shift-minus for date with time, but MATE does
-  #       not recognize Super-*Shift*, e.g., Super-Shift-minus does nothing
-  #       for me (not even fallback on Super-minus).
-  #       - E.g.,:
-  #
-  #         - name: "'Now(TTTtt)'"
-  #           binding: "'<Shift><Mod4>minus'"
-  #           action: "'…/bash -c \\\"printf \\$(date \\'+%Y-%m-%d-%H-%M\\') | xclip\\\"'"
-  #
-  #         (I also tried '<Shift><Mod4>_' and '<Shift><Mod4>underscore'
-  #                          and '<Mod4>_' and        '<Mod4>underscore'
-  #          but none of these worked, either.)
-  #
-  #       - So we'll use Ctrl-Super-minus for the date-plus-time-to-clipboard
-  #         feature.
-  #       - And MATE *does* recognize the Shift in Shift-Ctrl-Super-minus,
-  #         so we can wire that to a modified date-plus-time.
-  #         - The all-dashed date-plus-time, e.g., "2022-02-28-22-02",
-  #           is good for filenames when you want to avoid spaces.
-  #         - The normal date-plus-time, e.g., "2022-02-28 22:02",
-  #           is good for adding date and time when using apps other
-  #           than the terminal or Vim, say, Gmail.
-  #­­
-  # Dashed date-plus-time.
-  # BNDNG: <Ctrl-Cmd-'> (<Ctrl-Cmd-apostrophe>)
+  # Copies "YYYY-MM-DD TT:tt" datetime into clipboard.
+  - name: "'Now(TTTtt:)'"
+    # BNDNG: <Ctrl-Cmd-Semicolon> (<Ctrl-Cmd-;>)
+    binding: "'<Primary><Mod4>semicolon'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip\\\"'"
+
+  # Copies "YYYY-MM-DD-TT-tt" datetime into clipboard.
+  # - Aka: Dashed date-plus-time.
   - name: "'Now(TTTtt-)'"
-    # Ideally, this binding would incorporate the dash key to help you
-    # remember where it's bound (the mnemonic being that the press the
-    # dash key to seed the clipboard with the dashed datetime). But we
-    # are using Ctrl-Cmd-- for the window shrink command binding instead.
-    # - Though really we'd want to use Shift-Ctrl-Cmd-- for window shrink,
-    #   because all the other MATE window shortcuts use the Shift-Ctrl-Cmd
-    #   prefix (see: tasks/mate-marco-window-keybindings.yml). But MATE
-    #   ignores <Shift><Primary><Mod4>minus, whether set via dconf or set
-    #   via the Keyboard Shortcuts GUI. So unless we find a different
-    #   Shift-Ctrl-Cmd binding for window shrink (and a related binding
-    #   for window grow, which is currently wired to Ctrl-Cmd-+), we'll
-    #   use a different binding for this dashed datetime binding.
-    # SOSAD/2024-03-17: These bindings do not work, whether set via dconf
-    # or set via MATE's Keyboard Shortcuts GUI:
-    #   binding: "'<Shift><Mod4>underscore'"
-    #   binding: "'<Shift><Primary><Mod4>colon'"
-    #   binding: "'<Shift><Primary><Mod4>semicolon'"
-    # - So we'll pick Ctrl-Cmd-' which is next to a related binding, Ctrl-Cmd-;
-    #   (and hopefully you'll remember where it's at).
+    # FRMAT: +%Y-%m-%d-%H-%M
+    # BNDNG: <Ctrl-Cmd-Quote> (<Ctrl-Cmd-SingleQuote>, <Ctrl-Cmd-Apostrophe>, <Ctrl-Cmd-'>)
     binding: "'<Primary><Mod4>apostrophe'"
     action: "'sh -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip\\\"'"
+    # MAYBE: Restrict to MATE. (See GNOME TTTtt- binding below.)
+    #  env: "MATE"
+  # REFER: Not all bindings that work in GNOME also work in MATE (at least
+  # in author's experience). / So avoid at least these bindings in MATE:
+  # - Didn't work in MATE: <Shift><Mod4>underscore / <Shift><Mod4>minus
+  #   Works fine in GNOME: <Shift><Super>minus
+  # - Didn't work in MATE: <Shift><Primary><Mod4>semicolon / <Shift><Primary><Mod4>colon
+  #   Works fine in GNOME: <Shift><Control><Super>semicolon
+  # - Although this worked in MATE: <Shift-Ctrl-Super-minus> (and was separate
+  #   from <Ctrl-Super-minus>).
   #
-  # Normal date plus:time.
-  # - Note: Using printf with date input with a space gets tricky, e.g.,
-  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d\\') | xclip …
-  #         becomes
-  #           … bash -c \\\"printf \\$(date \\'+%Y-%m-%d %H:%M\\') | xclip …
-  #         but the printf input is not quoted, so the time of day is not xclipped|wl-/pbcopied.
-  #         So we'd need to quote the print input, e.g., something like
-  #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | xclip …
-  #         but I couldn't get that to work.
-  #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
   - name: "'Now(TTTtt:)'"
-    # BNDNG: <Ctrl-Cmd-;> (<Ctrl-Cmd-semicolon>)
-    binding: "'<Primary><Mod4>semicolon'"
-    # How it looks on dconf-dump:
-    #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip\""
+    # BNDNG: <Ctrl-Cmd-Minus> (<Ctrl-Cmd-->) [vim: <C-D-->]
+    #        - The "normal" date-plus-time format, e.g., "2022-02-28 22:02",
+    #          is good for adding date and time to notes, emails, etc.
+    binding: "'<Control><Super>minus'"
     action: "'sh -c \\\"date \\'+%Y-%m-%d %H:%M\\' | tr -d \\'\\n\\' | xclip\\\"'"
+  #
+  - name: "'Now(TTTtt-)'"
+    # FRMAT: +%Y-%m-%d-%H-%M
+    # - UCASE: The all-dashed date-plus-time, e.g., "2022-02-28-22-02", is
+    #          good for using in filenames (when you care to avoid spaces).
+    # BNDNG: <Shift-Cmd-Minus> (<Shift-Cmd-Underscore>, <Shift-Cmd-->, <Shift-Cmd-_>)
+    binding: "'<Shift><Super>minus'"
+    action: "'sh -c \\\"date \\'+%Y-%m-%d-%H-%M\\' | tr -d \\'\\n\\' | xclip\\\"'"
+    # See comment above re: MATE <Shift-Cmd> bindings.
+    env: "GNOME"
 
   # *** pwgen23 to clippy
 
