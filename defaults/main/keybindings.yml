@@ -478,8 +478,8 @@ zoidy_matecocido_keybindings_basic:
   #           … bash -c \\\"printf \\\\\"\\$(date \\'+%Y-%m-%d %H:%M\\')\\\\\" | xclip …
   #         but I couldn't get that to work.
   #         - Easier to skip the printf, and then use \`tr\` to strip the newline.
-  # BNDNG: <Ctrl-Cmd-;> (<Ctrl-Cmd-semicolon>)
   - name: "'Now(TTTtt:)'"
+    # BNDNG: <Ctrl-Cmd-;> (<Ctrl-Cmd-semicolon>)
     binding: "'<Primary><Mod4>semicolon'"
     # How it looks on dconf-dump:
     #   action="/home/puck/.local/bin/bash -c \"date '+%Y-%m-%d %H:%M' | tr -d '\n' | xclip\""
