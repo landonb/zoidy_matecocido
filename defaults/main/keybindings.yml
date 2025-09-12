@@ -12,8 +12,8 @@
 #
 #   https://github.com/DepoXy/depoxy#🍯
 #
-#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-slack
-#     https://github.com/DepoXy/depoxy/blob/release/bin/marco-toggle-spotify
+#     https://github.com/DepoXy/depoxy/blob/release/bin/windows/marco-toggle-slack
+#     https://github.com/DepoXy/depoxy/blob/release/bin/windows/marco-toggle-spotify
 #     https://github.com/DepoXy/depoxy/blob/release/bin/windows/toggle-visibility
 #
 # and are expected to be found locally under:
@@ -259,7 +259,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>x'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-spotify'"
+    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-spotify'"
 
   # *** Focus Facebook Messenger browser tab
 
@@ -328,7 +328,7 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"wmctrl -a \\'| Slack\\'
-      || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/marco-toggle-slack\\'\\\"'
+      || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-slack\\'\\\"'
 
   # *** Date.now()/datetime.now()
 
