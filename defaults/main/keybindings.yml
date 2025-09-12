@@ -28,12 +28,18 @@
 # USAGE: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
+# ***
+
+# **** User-customizeable vars. used below.
+
 # USAGE: Target Neovim instance w/ matching socket name (or Vim w/ --servername).
 # - USYNC: See DepoXy's default ${NVIM_OPEN_SOCKETNAME:-🧸}
 zoidy_matecocido_gvim_servername: '🧸'
 
 # USAGE: Set your personal email addy in your playbook's group_vars/.
 zoidy_matecocido_personal_email: 'user@gmail.com'
+
+# ***
 
 # USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
