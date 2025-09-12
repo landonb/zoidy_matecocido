@@ -258,12 +258,12 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus or Open RegexDictionary browser tab
 
-  # BNDNG: <Shift-Ctrl-Alt-P>
+  # BNDNG: <Shift-Ctrl-Alt-*> (<Shift-Ctrl-Alt-8>)
   - name: "'Regex Dictionary [tab]'"
     # These don't work:
     #   binding: "'<Shift><Primary><Mod4>8'"
     #   binding: "'<Shift><Primary><Mod4>asterisk'"
-    binding: "'<Shift><Primary><Alt>p'"
+    binding: "'<Shift><Primary><Mod4>8'"
     action: >-
       'sh -c
       \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
