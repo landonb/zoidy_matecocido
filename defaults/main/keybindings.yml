@@ -28,10 +28,9 @@
 # USAGE: Set zoidy_matecocido_keybindings_bonus in your playbook's group_vars/.
 zoidy_matecocido_keybindings_bonus: []
 
-# USAGE: Send file to the Gvim instance using its --servername.
-# (lb): 'SAMPI' is just the arbitrary term that I use.
-# 2021-02-21: See Home Fries environ: ${NVIM_OPEN_SOCKETNAME:-🧸}
-zoidy_matecocido_gvim_servername: 'SAMPI'
+# USAGE: Target Neovim instance w/ matching socket name (or Vim w/ --servername).
+# - USYNC: See DepoXy's default ${NVIM_OPEN_SOCKETNAME:-🧸}
+zoidy_matecocido_gvim_servername: '🧸'
 
 # USAGE: Set your personal email addy in your playbook's group_vars/.
 zoidy_matecocido_personal_email: 'user@gmail.com'
