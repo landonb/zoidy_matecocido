@@ -193,8 +193,9 @@ zoidy_matecocido_keybindings_basic:
 
   # SAVVY: Familiar macOS binding
   # BNDNG: <Ctrl-Cmd-Q>
-  # - SAVVY: In GNOME Shell, the lock screen keybinding as at
+  # - CXREF: In GNOME Shell, the lock screen keybinding as at
   #     /org/gnome/settings-daemon/plugins/media-keys/screensaver
+  #   ~/.kit/mOS/macOS-onboarder/bin/slather-gsettings.sh @ 899
   - name: "'Lock Desktop'"
     binding: "'<Primary><Mod4>q'"
     action: "'sh -c \\\"mate-screensaver-command --lock\\\"'"
