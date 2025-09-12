@@ -284,13 +284,27 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus Spotify application window
 
-  # BNDNG: <Shift-Ctrl-Cmd-X>
+  # Brings the Spotify application window to the front.
+  # - CXREF/2025-09-11: At least for Spotify installed
+  #     via `apt install spotify-client` (e.g., Debian 12):
+  #   ~/.kit/ansible/roles/zoidy_mintyfresh/tasks/install-desktop-spotify.yml
   - name: "'Kick Out The Jams [Spotify]'"
-    # Brings the Spotify application window to the front.
+    # BNDNG: <Shift-Ctrl-Cmd-X>
+    binding: "'<Shift><Primary><Mod4>x'"
+    action: >-
+      'sh -c
+      \\\"ps aux | grep -v grep | grep -q -e \\' /usr/share/spotify/spotify \\'
+      && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Spotify\\'
+      || /usr/bin/spotify\\\"'
+    env: "GNOME"
+    #
+  - name: "'Kick Out The Jams [Spotify]'"
+    # BNDNG: <Shift-Ctrl-Cmd-X>
     binding: "'<Shift><Primary><Mod4>x'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-spotify'"
+    env: "MATE"
 
   # *** Focus Facebook Messenger browser tab
 
