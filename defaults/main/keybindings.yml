@@ -194,13 +194,13 @@ zoidy_matecocido_keybindings_basic:
   #   implement a Hidden state different from Minimize like macOS does).
   #   - Just saying, <Cmd-M> and <Cmd-H> are equivalent on GNOME Shell.
   # BNDNG: <Cmd-M>
-  - name: "'Minimize (Iconify) Topmost Window'"
+  - name: "'Minimize (aka Hide, Iconify) Topmost Window'"
     binding: "'<Mod4>m'"
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/minimize-focused'"
     env: "GNOME"
   #
   # BNDNG: <Cmd-M>
-  - name: "'Minimize (Iconify) Topmost Window'"
+  - name: "'Minimize (aka Hide, Iconify) Topmost Window'"
     binding: "'<Mod4>m'"
     action: "'sh -c \\\"xdotool windowminimize \\$(xdotool getactivewindow)\\\"'"
     env: "MATE"
