@@ -39,6 +39,9 @@ zoidy_matecocido_gvim_servername: '🧸'
 # USAGE: Set your personal email addy in your playbook's group_vars/.
 zoidy_matecocido_personal_email: 'user@gmail.com'
 
+zoidy_matecocido_tab_match_chats: ''
+zoidy_matecocido_tab_url_chats: 'https://www.messenger.com/'
+
 # ***
 
 # USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
@@ -308,16 +311,45 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus Facebook Messenger browser tab
 
-  # BNDNG: <Shift-Ctrl-Cmd-S>
+  # Brings "Chats" window to the front.
+  # - UCASE: Author maintains long-running Chrome window with
+  #   one tab each for Android SMS (Google Messages), Facebook
+  #   Messenger, and Instagram Chats.
+  # - USAGE: The default chat URL defaults to Facebook:
+  #     zoidy_matecocido_tab_url_chats: 'https://www.messenger.com/'
+  #   If you customize that value, be sure to set the window title
+  #   match value.
+  #   - E.g., the author opens a local HTML file with href links to
+  #     all my chat URLs (i.e., SMS, FB, Insta). Then I can just
+  #     Ctrl-Click each link to open all the chats tabs.
+  #     - Accordingly, I've customized the two vars. thusly:
+  #       zoidy_matecocido_tab_url_chats: 'file:///path/to/Chat-Tabs.html'
+  #       zoidy_matecocido_tab_match_chats: "\\'🗨️         Chat & Social\\'"
   - name: "'[Facebook] Messenger'"
-    # Brings the Facebook Messenger browser tab to the front.
+    # BNDNG: <Shift-Ctrl-Cmd-S>
     binding: "'<Shift><Primary><Mod4>s'"
     action: >-
       'sh -c
       \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
-      \\'Messenger - \\'
-      || ( wmctrl -a \\'Chat & Social - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )
-      || sensible-browser --new-window \\'https://www.messenger.com/\\' --profile-directory=Default\\\"'
+      \\'Google Messages for web\\'
+      \\'Messenger\\'
+      \\'Inbox • Chats\\'
+      {{ zoidy_matecocido_tab_match_chats }}
+      || sensible-browser
+      --new-window \\'{{ zoidy_matecocido_tab_url_chats }}\\'
+      --profile-directory=Default\\\"'
+    # HSTRY/2025-09-11: Previously, if the Chrome window was showing the first
+    # tab (which shows the author's HTML links file), the accelerator would
+    # call xdotool to change tabs, e.g.:
+    #   || (
+    #   wmctrl -a \\'Chat & Social - \\'
+    #   && sleep 0.13
+    #   && xdotool key \\'ctrl+Tab\\'
+    #   )
+    # but GNOME doesn't support sending GUI input (at least not easily).
+    #
+    # - HSTRY: The remainder of this comment is old notes on the matter.
+    #
     # (lb): If you always had a Messenger tab active in some window somewhere,
     # this would be a simple action:
     #
