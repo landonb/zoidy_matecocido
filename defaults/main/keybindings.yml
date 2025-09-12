@@ -216,13 +216,25 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focum gVim window
 
-  # Bring gVim to the foreground.
-  # - Looks for --servername "SAMPI", a convention used by
-  #   Home Fries' `fs` alias; and by `sensible-open`.
+  # Bring gVim/Neovide/(n)vim to the foreground.
+  # - Looks for window titles matching socket name or
+  #   --servername, a convention used by DepoXy (e.g.,
+  #   `fs` alias), `gvim-open-kindness`/`nvim-open-kindness`
+  #   (GVIM_OPEN_SERVERNAME/NVIM_OPEN_SOCKETNAME), and more.
   # BNDNG: <Cmd-`> (<Cmd-backtick>)
-  - name: "'gVim [fs]'"
+  - name: "'Raise EDITOR named {{ zoidy_matecocido_gvim_servername }}'"
+    # BNDNG: <Cmd-Backtick> (<Cmd-`>)
+    binding: "'<Mod4>grave'"
+    action: >-
+      '{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ zoidy_matecocido_gvim_servername }}\\\"'
+    env: "GNOME"
+  #
+  - name: "'Raise EDITOR named {{ zoidy_matecocido_gvim_servername }}'"
+    # BNDNG: <Cmd-Backtick> (<Cmd-`>)
     binding: "'<Mod4>grave'"
     action: "'xdotool search --name {{ zoidy_matecocido_gvim_servername }} windowactivate'"
+    env: "MATE"
 
   # [lb]: Use --new-window for the obvious reason of not changing any
   # existing browser windows you've got open (and, say, changing the
