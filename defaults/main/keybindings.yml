@@ -110,10 +110,17 @@ zoidy_matecocido_keybindings_basic:
 
   # 2022-01-05: --profile-directory added to start with default user,
   #             and not the last-used profile. Which can be annoying.
+  #
+  # SAVVY/2025-09-11: Debian 12's /usr/bin/google-chrome targets wrapper:
+  #   /opt/google/chrome/google-chrome
+  # which sets a few environs and will "Sanitize std{in,out,err}" before
+  # calling:
+  #   /opt/google/chrome/chrome
+  #
   # BNDNG: <Cmd-T>
   - name: "'Chrome Browser'"
     binding: "'<Mod4>t'"
-    action: "'/opt/google/chrome/chrome --profile-directory=Default'"
+    action: "'/usr/bin/google-chrome --profile-directory=Default'"
 
   # *** New Chromium window
 
