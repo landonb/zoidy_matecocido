@@ -39,6 +39,9 @@ zoidy_matecocido_gvim_servername: '🧸'
 # USAGE: Set your personal email addy in your playbook's group_vars/.
 zoidy_matecocido_personal_email: 'user@gmail.com'
 
+zoidy_matecocido_tab_match_email: ''
+zoidy_matecocido_tab_url_email: 'https://mail.google.com/mail/u/0/#inbox'
+
 zoidy_matecocido_tab_match_chats: ''
 zoidy_matecocido_tab_url_chats: 'https://www.messenger.com/'
 
@@ -104,19 +107,17 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus Email window/tab
 
-  # BNDNG: <Shift-Ctrl-Cmd-A>
   - name: "'[Personal] Gmail'"
+    # BNDNG: <Shift-Ctrl-Cmd-A>
     binding: "'<Shift><Primary><Mod4>a'"
-    # Simple action when Gmail always active tab in its window:
-    #   action: "'wmctrl -a \\\" - Gmail - \\\"'"
-    # Using static landing tab, and also sleep because timing issue:
     action: >-
       'sh -c
       \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
-      \\'{{ zoidy_matecocido_personal_email }}\\' \\'Google Calendar - \\'
-      || ( wmctrl -a \\'Email & Calendar - \\' && sleep 0.13 && xdotool key \\'ctrl+Tab\\' )
+      \\'{{ zoidy_matecocido_personal_email }}\\'
+      \\'Google Calendar - \\'
+      {{ zoidy_matecocido_tab_match_email }}
       || sensible-browser
-      --new-window \\'https://mail.google.com/mail/u/0/#inbox\\'
+      --new-window \\'{{ zoidy_matecocido_tab_url_email }}\\'
       --profile-directory=Default\\\"'
 
   # *** New Chrome window
