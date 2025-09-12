@@ -44,8 +44,13 @@ zoidy_matecocido_personal_email: 'user@gmail.com'
 # USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
 zoidy_matecocido_keybindings_gvims: []
 
-# CXREF: zoidy_matecocido_keybindings_bonus
-#        zoidy_matecocido_keybindings_gvims
+# CXREF:
+#     zoidy_matecocido_keybindings_basic (this file)
+#   + zoidy_matecocido_keybindings_bonus
+#   + zoidy_matecocido_keybindings_gvims
+#   = zoidy_matecocido_keybindings (for processing in:)
+#     ~/.kit/ansible/roles/zoidy_matecocido/tasks/keybinding-circus.yml
+#
 zoidy_matecocido_keybindings_basic:
 
   # *** Keybindings defined below (where BTF: Bring-to-front):
