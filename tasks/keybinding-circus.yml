@@ -232,11 +232,24 @@
 - name: Customize DE Key Bindings
   # debug:
   #   msg: "{{ index }} -- {{ item.name }} / {{ item.binding }} / {{ item.action }}"
+  #
+  # KLUGE: From "seamless" dual GNOME and MATE support, the user inputs,
+  # from, e.g., defaults/main/keybindings.yml, use MATE constructs for a
+  # few items, which we translate here:
+  # - MATE refers to the <Command>/<Windows>/Super key as <Mod4>; GNOME as <Super>.
+  # - MATE refers to the <Control>/<Ctrl> key as <Primary>; GNOME as <Control>.
+  # - MATE's clipboard command is `xclip`; GNOME's is `wl-copy`.
+  #   - SAVVY: We'll be strict about the substitute, to avoid accidentally
+  #     substituting the wrong thing, e.g., "open-sensible LAxClippers.tld".
+  # REFER:
+  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_replace_filter.html
   ansible.builtin.shell: |
     dconf write {{ dconf_path }}/custom{{ index }}/name "{{ item.name }}" ; \
     dconf write {{ dconf_path }}/custom{{ index }}/binding "{{
       item.binding | replace('<Mod4>', '<Super>') | replace('<Primary>', '<Control>')}}" ; \
-    dconf write {{ dconf_path }}/custom{{ index }}/{{ dconf_cmd_key }} "{{ item.action }}" ; \
+    dconf write {{ dconf_path }}/custom{{ index }}/{{ dconf_cmd_key }} "{{
+      item.action | regex_replace(' \| xclip\b', ' \| wl-copy')
+    }}"
   # ISOFF/2024-06-06: Don't apply servername, but let gvim-open-kindness figure it out.
   #   | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
   loop: "{{ zym_keybindings_de_specific }}"
