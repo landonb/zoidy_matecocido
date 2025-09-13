@@ -162,7 +162,7 @@ zoidy_matecocido_keybindings_basic:
   # *** Open Settings
 
   # BNDNG: <Shift-Ctrl-Cmd-Comma> (<Shift-Ctrl-Cmd-,>)
-  - name: "'Configure GNOME settings (Control Center)'"
+  - name: "'GNOME Settings (Control Center)'"
     # SAVVY: MATE uses <Mod4> and <Primary>, which ZP converts
     # to <Super> and <Control>, respectively, when run on GNOME.
     # - See loop on zym_keybindings_de_specific:
@@ -171,10 +171,16 @@ zoidy_matecocido_keybindings_basic:
     # Calling `gnome-control-center` when it's already running doesn't
     # raise it (but does show popup saying "“Settings” is ready".
     #   action: "'gnome-control-center'"
-    # REMEM/2025-09-11: IIRC, raw "action" cannot pipe, so callout "sh -c".
+    # - SAVVY: `ps` might report command as `gnome-control-center"
+    #   or `/usr/bin/gnome-control-center`
+    #   or `/usr/bin/gnome-control-center notifications`
+    #   - ORGLY: ps aux | grep -v grep | grep -q -e \\'gnome-control-center\\'
+    #     - But `-o command=` gives us more confidence.
+    #    - We'll look for "^gnome-control-center\b" or ".*/gnome-control-center\b".
+    # - REMEM/2025-09-11: IIRC, raw "action" cannot pipe, so callout "sh -c".
     action: >-
       'sh -c
-      \\\"ps aux | grep -v grep | grep -q -e \\' gnome-control-center$\\'
+      \\\"ps -ax -o command= | grep -v grep | grep -e \\'\\\\(^\\\\|\\/\\\\)gnome-control-center\\\\b\\'
       && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Settings\\'
       || gnome-control-center\\\"'
     env: "GNOME"
