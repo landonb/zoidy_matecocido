@@ -244,11 +244,15 @@
   # REFER:
   # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_replace_filter.html
   ansible.builtin.shell: |
-    dconf write {{ dconf_path }}/custom{{ index }}/name "{{ item.name }}" ; \
+    dconf write {{ dconf_path }}/custom{{ index }}/name "{{
+      item.name }}" ; \
     dconf write {{ dconf_path }}/custom{{ index }}/binding "{{
-      item.binding | replace('<Mod4>', '<Super>') | replace('<Primary>', '<Control>')}}" ; \
+      item.binding
+        | replace('<Mod4>', '<Super>')
+        | replace('<Primary>', '<Control>')}}" ; \
     dconf write {{ dconf_path }}/custom{{ index }}/{{ dconf_cmd_key }} "{{
-      item.action | regex_replace(' \| xclip\b', ' \| wl-copy')
+      item.action
+        | regex_replace(' \| xclip\b', ' \| wl-copy')
     }}"
   # ISOFF/2024-06-06: Don't apply servername, but let gvim-open-kindness figure it out.
   #   | to_gvim_keybinding_action(zoidy_matecocido_gvim_servername, ansible_env.HOME)
