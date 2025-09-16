@@ -188,6 +188,25 @@
     done
   when: current_de == 'GNOME'
 
+# SAVVY: The <Ctrl-Cmd-1>..<Ctrl-Cmd-9> bindings open the nth app from the Dock.
+# - DUNNO: Not sure why both <Cmd-N> and <Shift-Cmd-N> are wired,
+#   nor why these variants are not GUI-configurable nor have any
+#   dconf/gsettings defaults.
+# - THANX: (Phew! It took a few different search queries to find the sol'n!):
+#   https://www.reddit.com/r/gnome/comments/1ccvdxu/disable_super_ctrl_number_in_gnome_46/
+#   - BEGET: https://www.google.com/search?q=gnome+%22control%22+%22super%22+%22number%22
+# - SAVVY: If these built-in bindings are not disabled first, the
+#   user's <Ctrl-Super-{Number}> bindings won't bind (at least not
+#   until user runs this keybinding-circus.yml task a second time).
+- name: Disable built-in GNOME <Control+Super+1>..<Control+Super+9> Key Bindings
+  register: keyb_entries
+  ansible.builtin.shell: |
+    for index in $(seq 1 9); do
+      echo dconf write "/org/gnome/shell/keybindings/open-new-window-application-${index}" "@as []"
+      dconf write "/org/gnome/shell/keybindings/open-new-window-application-${index}" "@as []"
+    done
+  when: current_de == 'GNOME'
+
 # ***
 
 # Reset keybindings to their default state: absent.
