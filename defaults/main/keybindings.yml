@@ -584,6 +584,12 @@ zoidy_matecocido_keybindings_basic:
     #   else resets it, so we have to include the path here (to user-local
     #   libevent and ncurses libraries).
     action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
+    env: "MATE"
+  #
+  - name: "'tmux Window'"
+    binding: "'<Shift><Mod4>m'"
+    action: "'gnome-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
+    env: "GNOME"
 
   # ****
 
