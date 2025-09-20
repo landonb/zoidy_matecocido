@@ -407,13 +407,24 @@ zoidy_matecocido_keybindings_basic:
   # *** Focus Slack
   #           ↑   ↑
 
-  # BNDNG: <Shift-Ctrl-Cmd-F>
   - name: "'Slack'"
+    # BNDNG: <Shift-Ctrl-Cmd-F>
+    binding: "'<Shift><Primary><Mod4>f'"
+    action: >-
+      'sh -c
+      \\\"ps aux | grep -v grep | grep -q -e \\' /snap/bin/slack \\'
+      && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Slack\\'
+      || /snap/bin/slack\\\"'
+    env: "GNOME"
+  #
+  - name: "'Slack'"
+    # BNDNG: <Shift-Ctrl-Cmd-F>
     binding: "'<Shift><Primary><Mod4>f'"
     action: >-
       'sh -c
       \\\"wmctrl -a \\'| Slack\\'
       || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-slack\\'\\\"'
+    env: "MATE"
 
   # *** Date.now()/datetime.now()
 
