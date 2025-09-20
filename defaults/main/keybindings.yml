@@ -308,7 +308,7 @@ zoidy_matecocido_keybindings_basic:
       && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Spotify\\'
       || /usr/bin/spotify\\\"'
     env: "GNOME"
-    #
+  #
   - name: "'Kick Out The Jams [Spotify]'"
     # BNDNG: <Shift-Ctrl-Cmd-X>
     binding: "'<Shift><Primary><Mod4>x'"
