@@ -161,12 +161,12 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Open Settings
 
-  # BNDNG: <Shift-Ctrl-Cmd-Comma> (<Shift-Ctrl-Cmd-,>)
   - name: "'GNOME Settings (Control Center)'"
     # SAVVY: MATE uses <Mod4> and <Primary>, which ZP converts
     # to <Super> and <Control>, respectively, when run on GNOME.
     # - See loop on zym_keybindings_de_specific:
     #   ~/.kit/ansible/roles/zoidy_matecocido/tasks/keybinding-circus.yml
+    # BNDNG: <Shift-Ctrl-Alt-Comma> (<Shift-Ctrl-Alt-,>)
     binding: "'<Shift><Control><Alt>comma'"
     # Calling `gnome-control-center` when it's already running doesn't
     # raise it (but does show popup saying "“Settings” is ready".
