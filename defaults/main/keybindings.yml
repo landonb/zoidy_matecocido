@@ -299,7 +299,7 @@ zoidy_matecocido_keybindings_basic:
   # Brings the Spotify application window to the front.
   # - CXREF/2025-09-11: At least for Spotify installed
   #     via `apt install spotify-client` (e.g., Debian 12):
-  #   ~/.kit/ansible/roles/zoidy_mintyfresh/tasks/install-desktop-spotify.yml
+  #   ~/.kit/ansible/roles/zoidy_captivator/tasks/install-desktop-spotify.yml
   # ISOFF/2025-09-23: Relocated to `run-or-raise` config, for compatibility with:
   #   gsettings set org.gnome.desktop.wm.preferences raise-on-click false
   #   - name: "'Kick Out The Jams [Spotify]'"
