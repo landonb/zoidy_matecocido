@@ -581,6 +581,8 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Cmd-0>
   - name: "'New terminal window (Alacritty, or *-terminal)'"
     binding: "'<Mod4>0'"
+    # CXREF:
+    # ~/.depoxy/ambers/bin/windows/new-terminal-window
     action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/new-terminal-window'"
 
   # ****
