@@ -24,7 +24,8 @@
 
 # REFER/2025-01-11: Hack Font itself still v3.003
 #   https://github.com/source-foundry/Hack/tags
-- ansible.builtin.set_fact:
+- name: Set latest Nerd Font version fact
+  ansible.builtin.set_fact:
     # 2022-09-21:
     #  HACK_NERD_FONT_VERS: 'v2.2.2'
     # 2023-04-25:
@@ -49,35 +50,48 @@
 # this task file with privileges.
 - name: 'Ensure ‘jq’ is available'
   become: true
-  ansible.builtin.apt: name=jq
+  ansible.builtin.apt:
+    name: jq
   when: is_jq_avail_raw.failed
 
 - name: Check for new version of Hack.
   ansible.builtin.shell: "curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r '.tag_name'"
   register: LATEST_VERSION
 
-- ansible.builtin.debug: msg="Latest HACK NERD FONT∷ {{ LATEST_VERSION.stdout }}"
+- name: Print Hack Nerd Font version
+  ansible.builtin.debug:
+    msg: "Latest HACK NERD FONT∷ {{ LATEST_VERSION.stdout }}"
 
-- ansible.builtin.fail: msg="Update HACK NERD FONT! / Latest∷ {{ LATEST_VERSION.stdout }} / Current∷ {{ HACK_NERD_FONT_VERS }}"
+- name: Fail if newer Hack Nerd Font detected
+  ansible.builtin.fail:
+    msg: "Update HACK NERD FONT! / Latest∷ {{ LATEST_VERSION.stdout }} / Current∷ {{ HACK_NERD_FONT_VERS }}"
   when: HACK_NERD_FONT_VERS != LATEST_VERSION.stdout
 
 # *** Do the work.
 
 - name: Ensure ~/.downloads directory exists
-  ansible.builtin.file: path={{ zoidy_homefries_downloads_dir }} state=directory
+  ansible.builtin.file:
+    path: "{{ zoidy_homefries_downloads_dir }}"
+    state: directory
+    mode: '2775'
 
 - name: Fetch the Hack Nerd Font font release
   ansible.builtin.get_url:
     url: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ HACK_NERD_FONT_VERS }}/{{ HACK_NERD_FONT_FILE }}.zip"
     dest: "{{ zoidy_homefries_downloads_dir }}/"
+    mode: '0664'
 
 - name: Ensure user home font directory directory exists
-  ansible.builtin.file: path="{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/" state=directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/"
+    state: directory
+    mode: '2775'
 
 - name: Unarchive the Hack Nerd Font font release archive (Install Font- HACK NERD FONT!)
   ansible.builtin.unarchive:
-    remote_src: yes
+    remote_src: true
     src: "{{ zoidy_homefries_downloads_dir }}/{{ HACK_NERD_FONT_FILE }}.zip"
     dest: "{{ ansible_env.HOME }}/.fonts/{{ HACK_NERD_FONT_FILE }}/"
   notify: Build font information cache files
 
+# ***
