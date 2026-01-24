@@ -45,6 +45,9 @@ zoidy_matecocido_tab_url_email: 'https://mail.google.com/mail/u/0/#inbox'
 zoidy_matecocido_tab_match_chats: ''
 zoidy_matecocido_tab_url_chats: 'https://www.messenger.com/'
 
+zoidy_matecocido_tab_match_llms: ''
+zoidy_matecocido_tab_url_llms: 'https://claude.ai/'
+
 # ***
 
 # USAGE: Set zoidy_matecocido_keybindings_gvims in your playbook's group_vars/.
@@ -405,6 +408,23 @@ zoidy_matecocido_keybindings_basic:
     # Note that I tried `sleep 0.05` but that didn't work.
     #   Using 0.1 seems to always work (so far, at least).
     #   Or maybe 0.13, I think I had one 0.1 slip through.
+
+  # *** Focus LLM Chat tabs window
+
+  - name: "'LLM Chats'"
+    # FIXME:
+    # BNDNG: <Shift-Ctrl-Cmd-L>
+    binding: "'<Shift><Primary><Mod4>l'"
+    action: >-
+      'sh -c
+      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\'Perplexity Account\\'
+      \\'Google Gemini\\'
+      \\'Claude\\'
+      {{ zoidy_matecocido_tab_match_llms }}
+      || sensible-browser
+      --new-window \\'{{ zoidy_matecocido_tab_url_llms }}\\'
+      --profile-directory=Default\\\"'
 
   #           ↓   ↓
   # *** Focus Slack
