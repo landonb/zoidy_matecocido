@@ -339,6 +339,8 @@ zoidy_matecocido_keybindings_basic:
   #     - Accordingly, I've customized the two vars. thusly:
   #       zoidy_matecocido_tab_url_chats: 'file:///path/to/Chat-Tabs.html'
   #       zoidy_matecocido_tab_match_chats: "\\'🗨️         Chat & Social\\'"
+  # - HSTRY/2026-02-04: Did Insta change window title from "Inbox • Chats"
+  #   to "(N) Instagram • Messages"? (We'll keep/match either one now.)
   - name: "'[Facebook] Messenger'"
     # BNDNG: <Shift-Ctrl-Cmd-S>
     binding: "'<Shift><Primary><Mod4>s'"
@@ -348,6 +350,7 @@ zoidy_matecocido_keybindings_basic:
       \\'Google Messages for web\\'
       \\'Messenger\\'
       \\'Inbox • Chats\\'
+      \\'Instagram • Messages\\'
       {{ zoidy_matecocido_tab_match_chats }}
       || sensible-browser
       --new-window \\'{{ zoidy_matecocido_tab_url_chats }}\\'
