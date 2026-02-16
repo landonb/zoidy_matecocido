@@ -116,9 +116,9 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      {{ zoidy_matecocido_tab_match_email }}
       \\'{{ zoidy_matecocido_personal_email }}\\'
       \\'Google Calendar - \\'
-      {{ zoidy_matecocido_tab_match_email }}
       || sensible-browser
       --new-window \\'{{ zoidy_matecocido_tab_url_email }}\\'
       --profile-directory=Default\\\"'
