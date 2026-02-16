@@ -119,6 +119,8 @@ zoidy_matecocido_keybindings_basic:
       {{ zoidy_matecocido_tab_match_email }}
       \\'{{ zoidy_matecocido_personal_email }}\\'
       \\'Google Calendar - \\'
+      \\'Sign in to Outlook\\'
+      \\'Sign out\\'
       || sensible-browser
       --new-window \\'{{ zoidy_matecocido_tab_url_email }}\\'
       --profile-directory=Default\\\"'
