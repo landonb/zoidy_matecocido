@@ -534,14 +534,14 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\". ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
-      && printf \\'%s\\' \\\"\\\$(_hf_aliases_wire_pwgen_pwgen23)\\\"
+      && printf \\'%s\\' \\\"\\\$(_hf_pwgen23)\\\"
       | xclip\\\"'
     # ALTLY: Here's an approach with 68% less escaping (6 \'s vs. 19).
     #   action: >-
     #     'bash -c \\\"
     #     . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
     #     && . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_clip.sh
-    #     && _hf_aliases_wire_pwgen_pwgen23 | _hf_clip\\\"'
+    #     && _hf_pwgen23 | _hf_clip\\\"'
 
   # ***
 
