@@ -20,7 +20,7 @@
       #   "blank" the screen instead:
       #     val: "blank"
       # MAYBE/2023-04-21: Make this settable from group_vars, possibly
-      #                   tied to ansible_hostname.
+      #                   tied to ansible_facts.hostname.
       val: "nothing"
 
     # On Battery Power: When laptop lid is closed: Blank screen.
