@@ -8,6 +8,8 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
+from ansible.errors import AnsibleError
+
 # (lb): Just a note to self highlighting some filter behaviors,
 # this one being that a filter can raise an error.
 #
@@ -41,6 +43,9 @@ class FilterModule(object):
 
 def to_gvim_keybinding_action(
     name_binding_actions,
+    # ISOFF: See below: 'servername' obtained dynamically now;
+    # but not removing arg. for now, emitting exception instead
+    # if used.
     servername='',
     user_home='',
 ):
@@ -99,19 +104,8 @@ def to_gvim_keybinding_action(
         # ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
         # ~/.depoxy/running/home/.config/depoxy/depoxyrc
         if servername:
-            bash_cmd = (
-                "'sh -c \\\""
-                    "if [ -f \\\'{user_home}/.config/depoxy/depoxyrc\\\' ]; then "
-                    "  . \\\'{user_home}/.config/depoxy/depoxyrc\\\'; "
-                    "fi; "
-                    "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "\\\'{servername}\\\' -- \\\'{file_path}\\\';"
-                "\\\"'"
-            ).format(
-                user_home=user_home,
-                file_path=file_path,
-                servername=servername,
-            )
+            # ISOFF/2026-08-09: Unused branch, AFAIK; but let's double-check.
+            raise AnsibleError("Unexpected 'servername' passed to 'to_gvim_keybinding_action'")
         else:
             bash_cmd = (
                 "'sh -c \\\""
