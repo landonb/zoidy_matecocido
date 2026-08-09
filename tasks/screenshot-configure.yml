@@ -12,5 +12,5 @@
 
     - schema: org.mate.screenshot
       key: last-save-directory
-      val: "'file://{{ ansible_env.HOME }}/Downloads'"
+      val: "'file://{{ ansible_facts['env']['HOME'] }}/Downloads'"
 

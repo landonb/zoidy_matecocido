@@ -115,7 +115,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>a'"
     action: >-
       'sh -c
-      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       {{ zoidy_matecocido_tab_match_email }}
       \\'{{ zoidy_matecocido_personal_email }}\\'
       \\'Google Calendar - \\'
@@ -158,13 +158,13 @@ zoidy_matecocido_keybindings_basic:
   #   # BNDNG: <Shift-Alt-F>
   #   - name: "'File Manager'"
   #     binding: "'<Shift><Alt>f'"
-  #     action: "'nautilus {{ ansible_env.HOME }}/Downloads'"
+  #     action: "'nautilus {{ ansible_facts['env']['HOME'] }}/Downloads'"
   #     env: "GNOME"
   #
   # BNDNG: <Shift-Alt-F>
   - name: "'File Manager'"
     binding: "'<Shift><Alt>f'"
-    action: "'caja {{ ansible_env.HOME }}/Downloads'"
+    action: "'caja {{ ansible_facts['env']['HOME'] }}/Downloads'"
     env: "MATE"
 
   # *** Open Settings
@@ -189,7 +189,7 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"ps -ax -o command= | grep -v grep | grep -e \\'\\\\(^\\\\|\\/\\\\)gnome-control-center\\\\b\\'
-      && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Settings\\'
+      && {{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Settings\\'
       || gnome-control-center\\\"'
     env: "GNOME"
 
@@ -211,7 +211,7 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Cmd-M>
   - name: "'Minimize (aka Hide, Iconify) Topmost Window'"
     binding: "'<Mod4>m'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/minimize-focused'"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/minimize-focused'"
     env: "GNOME"
   #
   # BNDNG: <Cmd-M>
@@ -242,7 +242,7 @@ zoidy_matecocido_keybindings_basic:
   #  - name: "'Invert Screen Colors'"
   #    # BNDNG: <Cmd-I> [MATE] [ISOFF]
   #    binding: "'<Mod4>i'"
-  #    action: "'/bin/bash -c \\\"{{ ansible_env.HOME }}/.local/bin/xrandr-invert-colors\\\"'"
+  #    action: "'/bin/bash -c \\\"{{ ansible_facts['env']['HOME'] }}/.local/bin/xrandr-invert-colors\\\"'"
 
   # *** Focum gVim window
 
@@ -256,7 +256,7 @@ zoidy_matecocido_keybindings_basic:
     # BNDNG: <Cmd-Backtick> (<Cmd-`>)
     binding: "'<Mod4>grave'"
     action: >-
-      '{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      '{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       \\\"{{ zoidy_matecocido_gvim_servername }}\\\"'
     env: "GNOME"
   #
@@ -280,7 +280,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>p'"
     action: >-
       'sh -c
-      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       \\'Power Thesaurus - \\'
       || sensible-browser
       --new-window \\'https://www.powerthesaurus.org/\\'
@@ -296,7 +296,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>8'"
     action: >-
       'sh -c
-      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       \\'Regex Dictionary by Lou Hevly - \\'
       || sensible-browser
       --new-window \\'https://www.visca.com/regexdict/\\'
@@ -316,7 +316,7 @@ zoidy_matecocido_keybindings_basic:
   #     action: >-
   #       'sh -c
   #       \\\"ps aux | grep -v grep | grep -q -e \\' /usr/share/spotify/spotify \\'
-  #       && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Spotify\\'
+  #       && {{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Spotify\\'
   #       || /usr/bin/spotify\\\"'
   #     env: "GNOME"
   #
@@ -325,7 +325,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>x'"
     # Argh: (lb): I give up, deferring to script, trying to delimit quotes
     # and dollar signs in dconf entries is frustrating, just shell out!
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-spotify'"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/marco-toggle-spotify'"
     env: "MATE"
 
   # *** Focus Facebook Messenger browser tab
@@ -351,7 +351,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>s'"
     action: >-
       'sh -c
-      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       \\'Google Messages for web\\'
       \\'Messenger\\'
       \\'Inbox • Chats\\'
@@ -425,7 +425,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Shift><Primary><Mod4>l'"
     action: >-
       'sh -c
-      \\\"{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility
+      \\\"{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility
       \\'Perplexity Account\\'
       \\'Google Gemini\\'
       \\'Claude\\'
@@ -444,7 +444,7 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"ps aux | grep -v grep | grep -q -e \\' /snap/bin/slack \\'
-      && {{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Slack\\'
+      && {{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'Slack\\'
       || /snap/bin/slack\\\"'
     env: "GNOME"
   #
@@ -454,7 +454,7 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"wmctrl -a \\'| Slack\\'
-      || \\'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/marco-toggle-slack\\'\\\"'
+      || \\'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/marco-toggle-slack\\'\\\"'
     env: "MATE"
 
   # *** Date.now()/datetime.now()
@@ -536,14 +536,14 @@ zoidy_matecocido_keybindings_basic:
     #   always be unset during the play.
     action: >-
       'sh -c
-      \\\". ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
+      \\\". ${HOMEFRIES_LIB:-{{ ansible_facts['env']['HOME'] }}/.homefries/lib}/alias/alias_pwgen.sh
       && printf \\'%s\\' \\\"\\\$(_hf_pwgen23)\\\"
       | xclip\\\"'
     # ALTLY: Here's an approach with 68% less escaping (6 \'s vs. 19).
     #   action: >-
     #     'bash -c \\\"
-    #     . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_pwgen.sh
-    #     && . ${HOMEFRIES_LIB:-{{ ansible_env.HOME }}/.homefries/lib}/alias/alias_clip.sh
+    #     . ${HOMEFRIES_LIB:-{{ ansible_facts['env']['HOME'] }}/.homefries/lib}/alias/alias_pwgen.sh
+    #     && . ${HOMEFRIES_LIB:-{{ ansible_facts['env']['HOME'] }}/.homefries/lib}/alias/alias_clip.sh
     #     && _hf_pwgen23 | _hf_clip\\\"'
 
   # ***
@@ -562,47 +562,47 @@ zoidy_matecocido_keybindings_basic:
   # BNDNG: <Cmd-1>
   - name: "'Window 1. to front'"
     binding: "'<Mod4>1'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'1\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'1\\''"
 
   # BNDNG: <Cmd-2>
   - name: "'Window 2. to front'"
     binding: "'<Mod4>2'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'2\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'2\\''"
 
   # BNDNG: <Cmd-3>
   - name: "'Window 3. to front'"
     binding: "'<Mod4>3'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'3\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'3\\''"
 
   # BNDNG: <Cmd-4>
   - name: "'Window 4. to front'"
     binding: "'<Mod4>4'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'4\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'4\\''"
 
   # BNDNG: <Cmd-5>
   - name: "'Window 5. to front'"
     binding: "'<Mod4>5'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'5\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'5\\''"
 
   # BNDNG: <Cmd-6>
   - name: "'Window 6. to front'"
     binding: "'<Mod4>6'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'6\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'6\\''"
 
   # BNDNG: <Cmd-7>
   - name: "'Window 7. to front'"
     binding: "'<Mod4>7'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'7\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'7\\''"
 
   # BNDNG: <Cmd-8>
   - name: "'Window 8. to front'"
     binding: "'<Mod4>8'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'8\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'8\\''"
 
   # BNDNG: <Cmd-9>
   - name: "'Window 9. to front'"
     binding: "'<Mod4>9'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-numbered \\'9\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-numbered \\'9\\''"
 
   # ***
 
@@ -611,7 +611,7 @@ zoidy_matecocido_keybindings_basic:
     binding: "'<Mod4>0'"
     # CXREF:
     # ~/.depoxy/ambers/bin/windows/new-terminal-window
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/new-terminal-window'"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/new-terminal-window'"
 
   # ****
 
@@ -627,12 +627,12 @@ zoidy_matecocido_keybindings_basic:
     # - (lb): Unforunately, after ~/.profile updates LD_LIBRARY_PATH, something
     #   else resets it, so we have to include the path here (to user-local
     #   libevent and ncurses libraries).
-    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
+    action: "'mate-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_facts['env']['HOME'] }}/.local/lib tmux\\'\\\"'"
     env: "MATE"
   #
   - name: "'tmux Window'"
     binding: "'<Shift><Mod4>m'"
-    action: "'gnome-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_env.HOME }}/.local/lib tmux\\'\\\"'"
+    action: "'gnome-terminal --geometry=130x48+402+8 -e \\\"bash -c \\'LD_LIBRARY_PATH={{ ansible_facts['env']['HOME'] }}/.local/lib tmux\\'\\\"'"
     env: "GNOME"
 
   # ****
@@ -673,6 +673,6 @@ zoidy_matecocido_keybindings_basic:
     # triple dash vertical symbol, ┇, the Vim `3/` digraph).
     # BNDNG: <Cmd-D>
     binding: "'<Mod4>d'"
-    action: "'{{ ansible_env.HOME }}/.depoxy/ambers/bin/windows/toggle-visibility \\'┇ ham\\' \\'dob edit\\''"
+    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'┇ ham\\' \\'dob edit\\''"
 
   # /zoidy_matecocido_keybindings_basic

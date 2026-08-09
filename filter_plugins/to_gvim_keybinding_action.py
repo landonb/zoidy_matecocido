@@ -49,7 +49,7 @@ def to_gvim_keybinding_action(
 
     # (lb): I didn't figure out how to expandvars the return string, or send
     # it through the jinja2 filter, or however it'd be accomplished, that is:
-    # - If a return string contains a {{ var }}, e.g., {{ ansible_env.HOME }},
+    # - If a return string contains a {{ var }}, e.g., {{ ansible_facts['env']['HOME'] }},
     #   it will not be expanded after being returned from this filter function.
     # - As a work around, just have the caller pass it in.
     # - See also environment filter:
