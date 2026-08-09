@@ -130,4 +130,3 @@ def to_gvim_keybinding_action(
     return _to_gvim_keybinding_action()
 
 # ***
-
