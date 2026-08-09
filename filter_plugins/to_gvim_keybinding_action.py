@@ -52,6 +52,10 @@ class FilterModule(object):
 
 # ***
 
+# REFER: First arg is whatever's piped to the filter, e.g.,
+# a simple string, or a dictionary object, etc.
+# - The servername and user_home are added by our intermediate shim/decorator:
+#     ansible/roles/zoidy_matecocido/tasks/keybinding-circus.yml @ 228
 def to_gvim_keybinding_action(
     name_binding_actions,
     # ISOFF: See below: 'servername' obtained dynamically now;
