@@ -1,8 +1,7 @@
 # vim:tw=0:ts=4:sw=4:et:norl:ft=python
 
 # USAGE: Ansible loads this filter automatically when found in the playbook's
-# filter_plugins/ directory. Call it to process MATE actions so your group_vars
-# file can be more readable.
+# ./filter_plugins/ directory.
 
 # MAYBE/2021-01-06 17:20: I just copied these from another filter...
 # might not be necessary... or might be necessary for Python 2....
