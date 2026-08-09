@@ -16,7 +16,8 @@
 
 # MAYBE/2021-01-06 17:20: I just copied these from another filter...
 # might not be necessary... or might be necessary for Python 2....
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 from ansible.errors import AnsibleError
@@ -27,20 +28,21 @@ from ansible.errors import AnsibleError
 #  from ansible.errors import AnsibleFilterError
 
 ANSIBLE_METADATA = {
-    'metadata_version': '1.0.0',
-    'status': ['preview'],
-    'supported_by': 'community'
+    "metadata_version": "1.0.0",
+    "status": ["preview"],
+    "supported_by": "community",
 }
 
 
 # ***
 
+
 class FilterModule(object):
-    ''' URI filter '''
+    """URI filter"""
 
     def filters(self):
         return {
-            'to_gvim_keybinding_action': to_gvim_keybinding_action,
+            "to_gvim_keybinding_action": to_gvim_keybinding_action,
             # Another way to do it (lb: A note to self, b/c this my first filter!):
             #  'another_filter': self.b_filter,
         }
@@ -61,8 +63,8 @@ def to_gvim_keybinding_action(
     # ISOFF: See below: 'servername' obtained dynamically now;
     # but not removing arg. for now, emitting exception instead
     # if used.
-    servername='',
-    user_home='',
+    servername="",
+    user_home="",
 ):
     """"""
 
@@ -94,11 +96,11 @@ def to_gvim_keybinding_action(
         with_hydrated_actions = []
         for binding_def in name_binding_actions:
             # hydrated_action = binding_def['action']
-            hydrated_action = hydrate_action(binding_def['file_path'])
+            hydrated_action = hydrate_action(binding_def["file_path"])
             with_hydrated_action = {
-                'name': binding_def['name'],
-                'binding': binding_def['binding'],
-                'action': hydrated_action,
+                "name": binding_def["name"],
+                "binding": binding_def["binding"],
+                "action": hydrated_action,
             }
             with_hydrated_actions.append(with_hydrated_action)
 
@@ -132,7 +134,9 @@ def to_gvim_keybinding_action(
         #   ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
         if servername:
             # ISOFF/2026-08-09: Unused branch, AFAIK; but let's double-check.
-            raise AnsibleError("Unexpected 'servername' passed to 'to_gvim_keybinding_action'")
+            raise AnsibleError(
+                "Unexpected 'servername' passed to 'to_gvim_keybinding_action'"
+            )
         else:
             # INERT/FTREQ/2026-08-09: Decouple zoidy_matecocido from DepoXy:
             # - Make 'sensible-gui-editor' an installable dep?
@@ -140,8 +144,8 @@ def to_gvim_keybinding_action(
             #     of the ~/.depoxy/ambers/bin/ prefix.
             bash_cmd = (
                 "'sh -c \\\""
-                    "{user_home}/.depoxy/ambers/bin/sensible-gui-editor "
-                        "\\\'{file_path}\\\';"
+                "{user_home}/.depoxy/ambers/bin/sensible-gui-editor "
+                "\\'{file_path}\\';"
                 "\\\"'"
             ).format(
                 user_home=user_home,
@@ -150,5 +154,6 @@ def to_gvim_keybinding_action(
         return bash_cmd
 
     return _to_gvim_keybinding_action()
+
 
 # ***
