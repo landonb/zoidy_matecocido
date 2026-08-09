@@ -115,20 +115,33 @@ def to_gvim_keybinding_action(
         # having to repair all the keybindings. So prefer not setting.
         # - TL/DR: Prefer *not* setting servername.
         #
-        # CXREF: Runs gvim or nvim (See: GVIM_OPEN_PREFER_NVIM=true):
-        # ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
-        # ~/.depoxy/running/home/.config/depoxy/depoxyrc
+        # USYNC: CXREF: bin/sensible-gui-editor callers:
+        # - 'gvim_open_kindness':
+        #     depoxy/home/.hammerspoon/depoxy-hs.lua
+        #   'to_gvim_keybinding_action':
+        #     ansible/roles/zoidy_matecocido/filter_plugins/to_gvim_keybinding_action.py
+        # - Callee:
+        #     depoxy/bin/sensible-gui-editor
+        #
+        # CXREF: User env. determines if runs gvim or nvim (See:
+        # GVIM_OPEN_PREFER_NVIM=true); if opens in current terminal
+        # or GUI app (Neovide, MacVim, gVim, etc.); and (for nvim)
+        # what socketname (path) to use. See:
+        #   ~/.depoxy/running/home/.config/depoxy/depoxyrc
+        #   ~/.local/state/depoxy/sensible-gui-editor.socketname
+        #   ~/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness
         if servername:
             # ISOFF/2026-08-09: Unused branch, AFAIK; but let's double-check.
             raise AnsibleError("Unexpected 'servername' passed to 'to_gvim_keybinding_action'")
         else:
+            # INERT/FTREQ/2026-08-09: Decouple zoidy_matecocido from DepoXy:
+            # - Make 'sensible-gui-editor' an installable dep?
+            #   - E.g., install under ~/.local/bin/, and use instead
+            #     of the ~/.depoxy/ambers/bin/ prefix.
             bash_cmd = (
                 "'sh -c \\\""
-                    "if [ -f \\\'{user_home}/.config/depoxy/depoxyrc\\\' ]; then "
-                    "  . \\\'{user_home}/.config/depoxy/depoxyrc\\\'; "
-                    "fi; "
-                    "{user_home}/.kit/sh/gvim-open-kindness/bin/gvim-open-kindness "
-                        "-- \\\'{file_path}\\\';"
+                    "{user_home}/.depoxy/ambers/bin/sensible-gui-editor "
+                        "\\\'{file_path}\\\';"
                 "\\\"'"
             ).format(
                 user_home=user_home,
