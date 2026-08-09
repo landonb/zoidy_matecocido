@@ -3,6 +3,17 @@
 # USAGE: Ansible loads this filter automatically when found in the playbook's
 # ./filter_plugins/ directory.
 
+# REFER: Erm, not really documented... See source for other filter examples:
+#   https://github.com/search?q=repo%3Aansible%2Fansible+FilterModule&type=code
+# - Where Ansible hardcode-expects 'FilterModule' class:
+#   https://github.com/ansible/ansible/blob/c5ecb46c3f8/lib/ansible/plugins/loader.py#L1830
+# - Here's official documentation, which doesn't mention 'FilterModule', etc.
+#   https://docs.ansible.com/projects/ansible/latest/plugins/filter.html
+#   https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_filters.html#playbooks-filters
+# - Here are community docs that *do* mention conventions used below:
+#   https://me.micahrl.com/blog/ansible-filter-pure-function/
+#   https://www.dasblinkenlichten.com/creating-ansible-filter-plugins/
+
 # MAYBE/2021-01-06 17:20: I just copied these from another filter...
 # might not be necessary... or might be necessary for Python 2....
 from __future__ import (absolute_import, division, print_function)
