@@ -136,10 +136,23 @@ zoidy_matecocido_keybindings_basic:
   # calling:
   #   /opt/google/chrome/chrome
   #
+  # HSTRY/2026-08-13: Add raise because author added Deja Window
+  # GNOME Shell extension, which sometimes immediately minimizes
+  # the new tab window (if you've most recently minimized a New
+  # Tab window, Deja Window remembers that setting!).
+  # - Alternatively, disable Deja Window after starting Chrome,
+  #   and enable before quitting Chrome... but sometimes I forget,
+  #   so this 'raise' kludge.
+  #
   # BNDNG: <Cmd-T>
   - name: "'Chrome Browser'"
     binding: "'<Mod4>t'"
-    action: "'/usr/bin/google-chrome --profile-directory=Default'"
+    action: >-
+      'sh -c
+      \\\"/usr/bin/google-chrome --profile-directory=Default \\
+        && RAISELOWER_RAISE_ONLY=true \\
+          ${SHOILERPLATE:-${HOME}/.kit/sh}/raise-or-lower/bin/raise-or-lower \\
+            \\'New Tab - Google Chrome\\'\\\"'
 
   # *** New Chromium window
 
