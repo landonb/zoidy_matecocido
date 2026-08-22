@@ -155,6 +155,7 @@ zoidy_matecocido_keybindings_basic:
     action: >-
       'sh -c
       \\\"/usr/bin/google-chrome --profile-directory=Default \\
+        && sleep 0.33 \\
         && RAISELOWER_RAISE_ONLY=true \\
           ${SHOILERPLATE:-${HOME}/.kit/sh}/raise-or-lower/bin/raise-or-lower \\
             \\'New Tab - Google Chrome\\'\\\"'
