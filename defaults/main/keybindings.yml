@@ -33,8 +33,13 @@ zoidy_matecocido_keybindings_bonus: []
 # **** User-customizeable vars. used below.
 
 # USAGE: Target Neovim instance w/ matching socket name (or Vim w/ --servername).
-# - USYNC: See DepoXy's default ${NVIM_OPEN_SOCKETNAME:-🧸}
-zoidy_matecocido_gvim_servername: '🧸'
+# - USYNC: DepoXy default NVIM_OPEN_SOCKETNAME= [GNOME] ‖ 🧸 [macOS]
+# HSTRY/2026-08-18: Because Neovide GNOME Shell window titlebar font not
+# falling-back emoji characters, use Font Awesome glyph from Nerd Font.
+# - PREVY: Emoji works on gVim under marco but not Neovide under GNOME Shell
+#   (and is still currently used by author for Neovide under macOS/Darwin):
+#     zoidy_matecocido_gvim_servername: '🧸'
+zoidy_matecocido_gvim_servername: ''
 
 # USAGE: Set your personal email addy in your playbook's group_vars/.
 zoidy_matecocido_personal_email: 'user@gmail.com'
