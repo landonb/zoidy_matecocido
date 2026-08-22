@@ -264,11 +264,11 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focum gVim window
 
-  # Bring gVim/Neovide/(n)vim to the foreground.
+  # Bring Neovide/gVim/(n)vim to the foreground.
   # - Looks for window titles matching socket name or
   #   --servername, a convention used by DepoXy (e.g.,
-  #   `fs` alias), `gvim-open-kindness`/`nvim-open-kindness`
-  #   (GVIM_OPEN_SERVERNAME/NVIM_OPEN_SOCKETNAME), and more.
+  #   `fs` alias), `nvim-open-kindness`/`gvim-open-kindness`
+  #   (NVIM_OPEN_SOCKETNAME/GVIM_OPEN_SERVERNAME), and more.
   # BNDNG: <Cmd-`> (<Cmd-backtick>)
   - name: "'Raise EDITOR named {{ zoidy_matecocido_gvim_servername }}'"
     # BNDNG: <Cmd-Backtick> (<Cmd-`>)
