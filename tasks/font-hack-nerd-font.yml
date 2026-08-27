@@ -87,7 +87,7 @@
 
 - name: Ensure user home font directory directory exists
   ansible.builtin.file:
-    path: "{{ ansible_facts['env']['HOME'] }}/.fonts/{{ HACK_NERD_FONT_FILE }}/"
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/share/fonts/{{ HACK_NERD_FONT_FILE }}/"
     state: directory
     mode: '2775'
 
@@ -95,7 +95,7 @@
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ zoidy_homefries_downloads_dir }}/{{ HACK_NERD_FONT_FILE }}.zip"
-    dest: "{{ ansible_facts['env']['HOME'] }}/.fonts/{{ HACK_NERD_FONT_FILE }}/"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.local/share/fonts/{{ HACK_NERD_FONT_FILE }}/"
   notify: Build font information cache files
 
 # ***
