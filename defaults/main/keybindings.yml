@@ -684,14 +684,17 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus dob terminal window
 
-  - name: "'dob sweet [dob]'"
-    # Brings dob to the front.
-    # CONVENTION: Assumes you're running the `dob edit` command, or that you
-    # started a tmux session named 'ham'-something (e.g., 'hamsterdob'; note
-    # that tmux truncates it after 3 letters and prefixes a box drawing heavy
-    # triple dash vertical symbol, ┇, the Vim `3/` digraph).
-    # BNDNG: <Cmd-D>
-    binding: "'<Mod4>d'"
-    action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'┇ ham\\' \\'dob edit\\''"
+  # ISOFF/2026-10-18: Transitioned to run-or-raise:
+  #   depoxy/home/.config/run-or-raise/shortcuts-depoxy
+  #
+  # - name: "'dob sweet [dob]'"
+  #   # Brings dob to the front.
+  #   # CONVENTION: Assumes you're running the `dob edit` command, or that you
+  #   # started a tmux session named 'ham'-something (e.g., 'hamsterdob'; note
+  #   # that tmux truncates it after 3 letters and prefixes a box drawing heavy
+  #   # triple dash vertical symbol, ┇, the Vim `3/` digraph).
+  #   # BNDNG: <Cmd-D>
+  #   binding: "'<Mod4>d'"
+  #   action: "'{{ ansible_facts['env']['HOME'] }}/.depoxy/ambers/bin/windows/toggle-visibility \\'┇ ham\\' \\'dob edit\\''"
 
   # /zoidy_matecocido_keybindings_basic
