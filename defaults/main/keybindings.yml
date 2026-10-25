@@ -115,6 +115,16 @@ zoidy_matecocido_keybindings_basic:
 
   # *** Focus Email window/tab
 
+  # ISOFF/2026-10-25: Some matches author has previously used:
+  #
+  # - E.g., if you toggle force-dark mode when you check emails, you might
+  #   have the flags tab open — chrome://flags/#enable-force-dark with title:
+  #     \\'Experiments\\'
+  #
+  # - Microsoft Outlook, and what happens if I.T. sets an aggressive timeout:
+  #     \\'Sign in to Outlook\\'
+  #     \\'Sign out\\'
+
   - name: "'[Personal] Gmail'"
     # BNDNG: <Shift-Ctrl-Cmd-A>
     binding: "'<Shift><Primary><Mod4>a'"
@@ -124,8 +134,6 @@ zoidy_matecocido_keybindings_basic:
       {{ zoidy_matecocido_tab_match_email }}
       \\'{{ zoidy_matecocido_personal_email }}\\'
       \\'Google Calendar - \\'
-      \\'Sign in to Outlook\\'
-      \\'Sign out\\'
       || sensible-browser
       --new-window \\'{{ zoidy_matecocido_tab_url_email }}\\'
       --profile-directory=Default\\\"'
